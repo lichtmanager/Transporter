@@ -1,0 +1,15 @@
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.csproj.AssemblyReference.cache
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.GeneratedMSBuildEditorConfig.editorconfig
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.AssemblyInfoInputs.cache
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.AssemblyInfo.cs
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.csproj.CoreCompileInputs.cache
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/bin/Debug/net6.0/Abgabe 1_2 Firmenort
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/bin/Debug/net6.0/Abgabe 1_2 Firmenort.deps.json
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/bin/Debug/net6.0/Abgabe 1_2 Firmenort.runtimeconfig.json
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/bin/Debug/net6.0/Abgabe 1_2 Firmenort.dll
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/bin/Debug/net6.0/Abgabe 1_2 Firmenort.pdb
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.dll
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/refint/Abgabe 1_2 Firmenort.dll
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.pdb
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/Abgabe 1_2 Firmenort.genruntimeconfig.cache
+/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Abgabe 1_2 Firmenort/obj/Debug/net6.0/ref/Abgabe 1_2 Firmenort.dll
