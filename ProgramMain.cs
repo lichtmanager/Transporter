@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 namespace Abgabe_1_2;
 
 public class ProgramMain
@@ -29,5 +31,7 @@ public class ProgramMain
         //    City.printStartEnd(c1);
         //City.CalculateDistance(c1);
         Driver.LoadNamesfromFile();
+        Driver.CreateName();
+        
     }
 }

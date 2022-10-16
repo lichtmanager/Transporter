@@ -6,16 +6,16 @@ namespace Abgabe_1_2;
 
 public class City
 {
-    private string cityName { get; }
-    private int easting { get; }
-    private int northing { get; }
+    private string CityName { get; }
+    private int Easting { get; }
+    private int Northing { get; }
 
 
     public City(string cityName, int easting, int northing)
     {
-        this.cityName = cityName;
-        this.easting = easting;
-        this.northing = northing;
+        this.CityName = cityName;
+        this.Easting = easting;
+        this.Northing = northing;
     }
     
 
@@ -23,7 +23,7 @@ public class City
     {
         for (var i = 0; i < c1.Length; i++)
         {
-            Console.WriteLine((i + 1) + " " + c1[i].cityName);
+            Console.WriteLine((i + 1) + " " + c1[i].CityName);
         }
     }
 
@@ -81,8 +81,8 @@ public class City
 
     public static void PrintStartEnd(City[] c1)
     {
-        Console.WriteLine(ChooseStart(c1).cityName);
-        Console.WriteLine(ChooseEnd(c1).cityName);
+        Console.WriteLine(ChooseStart(c1).CityName);
+        Console.WriteLine(ChooseEnd(c1).CityName);
     }
 
 
@@ -91,8 +91,8 @@ public class City
         City startCity = ChooseStart(c1);
         City endCity = ChooseEnd(c1);
 
-        int distance = (int)Math.Sqrt(Math.Pow(startCity.northing - endCity.northing, 2) +
-                                      Math.Pow(startCity.easting - endCity.easting, 2));
+        int distance = (int)Math.Sqrt(Math.Pow(startCity.Northing - endCity.Northing, 2) +
+                                      Math.Pow(startCity.Easting - endCity.Easting, 2));
 
         Console.WriteLine($"Die Distanz beträgt: {distance / 1000} km");
     }

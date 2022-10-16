@@ -1,31 +1,57 @@
+using System.Linq;
+using System.Runtime.Intrinsics.Arm;
+
 namespace Abgabe_1_2;
 
 public class Driver
 {
     public static void LoadNamesfromFile()
     {
-        /*string loadedNamesString = System.IO.File.ReadAllText(@"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 2/names.txt");
-       // print loaded string
-       Console.WriteLine(loadedNamesString);*/
+        string allNamesString =
+            System.IO.File.ReadAllText(
+                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
 
-        /*  String[] namesAsArray = loadedNamesString.Split(",");
-               foreach (var Name in namesAsArray)
-               {
-                   Console.WriteLine(Name);
-                   
-               }*/
-       
-       
-              
-        var filestream = new System.IO.FileStream(@"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 2/names.txt",
-            System.IO.FileMode.Open,
-            System.IO.FileAccess.Read,
-            System.IO.FileShare.ReadWrite);
-        var loadedNamesString = new System.IO.StreamReader(filestream, System.Text.Encoding.UTF8, true, 128);
+        List<string> names = DivideNamesToList(allNamesString);
 
-       
-       
-         
-       
+        DivideFirstLastName(names);
     }
+
+    private static void DivideFirstLastName(List<string> names)
+    {
+        List<string> firstNames = new List<string>();
+        List<string> lastNames = new List<string>();
+
+        for (int i = 0; i < names.Count; i++)
+        {
+            if (i % 2 == 0)
+                firstNames.Add(names[i]);
+            else
+                lastNames.Add(names[i]);
+        }
+
+        foreach (var fn in firstNames)
+        {
+            Console.WriteLine(fn);
+        }
+
+        foreach (var ln in lastNames)
+        {
+            Console.WriteLine(ln);
+        }
+    }
+
+    private static List<string> DivideNamesToList(string allNamesString)
+    {
+        char[] separators = { ' ', ',' };
+        List<string> names = new List<string>(allNamesString.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+        return names;
+    }
+
+    public static void CreateName()
+    {
+        throw new NotImplementedException();
+    }
+
+
+   
 }
