@@ -32,7 +32,10 @@ public class ProgramMain
         //    City.CalculateDistance(c1);
         //    Driver.GenerateProperties(5);
 
-        Driver.GenerateProperties();
-        Console.WriteLine();
+       // Driver.GenerateProperties();
+        TruckDriver.InitializeNDrivers(5);
+       // Console.WriteLine(driverOne);
+
     }
+    
 }

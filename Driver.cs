@@ -65,6 +65,7 @@ public class Driver
         return (driversName, salary, workingMode);
     }
 
+
     public static int GenerateSalary()
     {
         int salary = 1;
@@ -86,9 +87,9 @@ public class Driver
 
 public class TruckDriver
 {
-    private string truckerName;
-    private int salary;
-    private string workingMode;
+    private string truckerName { get; set; }
+    private int salary { get; set; }
+    private string workingMode { get; set; }
 
 
     public TruckDriver(string truckerName, int salary, int randomWorkingMode)
@@ -101,10 +102,37 @@ public class TruckDriver
     private string MappedWorkingMode(int randomWorkingMode)
     {
         List<string> wokringModeCategories = new List<string>()
-            { "Alt, aber erfahren", "Rennfahrer", "Verträumt", "Liebt seinen Job", "Unauffällig" };
+            { "Erfahren, aber alt", "Rennfahrer", "Verträumt", "Liebt den Job", "Unauffällig" };
 
         string mappedWorkingMode = wokringModeCategories[randomWorkingMode];
 
         return mappedWorkingMode;
     }
-}
+
+    public static void InitializeNDrivers(int numOfDriversToCreate)
+    {
+        List<TruckDriver> listOfTruckers = new List<TruckDriver>();
+        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
+        
+        for (int i = 0; i < numOfDriversToCreate; i++)
+        {
+            TruckDriver driverInstance = new TruckDriver(
+                Driver.GenerateDriverName(firstNames,lastNames),Driver.GenerateSalary(), Driver.GenerateWorkindMode());
+            listOfTruckers.Add(driverInstance);
+            //Console.WriteLine( driverInstance.truckerName.ToString() + driverInstance.salary.ToString() + driverInstance.workingMode.ToString());
+        }
+
+        for (int i = 0; i < numOfDriversToCreate; i++)
+        {
+            /*Console.WriteLine(
+                i+1 + listOfTruckers[i].truckerName.ToString() + listOfTruckers[i].salary.ToString() +
+                listOfTruckers[i].workingMode.ToString());*/
+            
+              Console.WriteLine($"{i+1}: {listOfTruckers[i].truckerName.ToString()} \t {listOfTruckers[i].salary.ToString()} " +
+                                $"\t {listOfTruckers[i].workingMode.ToString()}" );
+        };
+          
+        }
+        
+    }
+
