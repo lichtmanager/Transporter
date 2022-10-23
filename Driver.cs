@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 
@@ -15,7 +16,6 @@ public class Driver
 
         var (firstNames, lastNames) = DivideFirstLastName(names);
         return (firstNames, lastNames);
-
     }
 
     private static List<string> DivideNamesToList(string allNamesString)
@@ -40,30 +40,71 @@ public class Driver
         }
 
         return (firstNames, lastNames);
-
-        /*foreach (var fn in firstNames)
-        {
-            Console.WriteLine(fn);
-        }
-
-        foreach (var ln in lastNames)
-        {
-            Console.WriteLine(ln);
-        }*/
     }
 
-    public static List<string> GenerateDriverName(int namesToGenerate, List<string> firstNames, List<string> lastNames)
+    public static string GenerateDriverName(List<string> firstNames, List<string> lastNames)
     {
         Random rnd = new Random();
-        List<string> generatedFullNames = new List<string>();
-        for (int i = 0; i < namesToGenerate; i++)
-        {
-            generatedFullNames.Add(
-                firstNames[rnd.Next(0, firstNames.Count)] + " " + lastNames[rnd.Next(0, lastNames.Count)]);
-            Console.Write(generatedFullNames[i]);
-        }
+        string generatedFullName =
+            firstNames[rnd.Next(0, firstNames.Count)] + " " + lastNames[rnd.Next(0, lastNames.Count)];
+        // Console.Write(generatedFullName);
+        return generatedFullName;
+    }
 
-        return generatedFullNames;
+    public static (string driversName, int salary, int workingMode) GenerateProperties()
+    {
+        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
+
+        string driversName = Driver.GenerateDriverName(firstNames, lastNames);
+        // int workingMode = Driver.GeneateWorkingMode();
+        Console.WriteLine(driversName);
+
+        int salary = GenerateSalary();
+        int workingMode = GenerateWorkindMode();
+
+        return (driversName, salary, workingMode);
+    }
+
+    public static int GenerateSalary()
+    {
+        int salary = 1;
+
+        Random rnd = new Random();
+        salary = rnd.Next(2000, 5000);
+
+        return salary;
+    }
+
+
+    public static int GenerateWorkindMode()
+    {
+        Random rnd = new Random();
+        int workingMode = rnd.Next(0, 4);
+        return workingMode;
     }
 }
 
+public class TruckDriver
+{
+    private string truckerName;
+    private int salary;
+    private string workingMode;
+
+
+    public TruckDriver(string truckerName, int salary, int randomWorkingMode)
+    {
+        this.truckerName = truckerName;
+        this.salary = salary;
+        this.workingMode = MappedWorkingMode(randomWorkingMode);
+    }
+
+    private string MappedWorkingMode(int randomWorkingMode)
+    {
+        List<string> wokringModeCategories = new List<string>()
+            { "Alt, aber erfahren", "Rennfahrer", "Verträumt", "Liebt seinen Job", "Unauffällig" };
+
+        string mappedWorkingMode = wokringModeCategories[randomWorkingMode];
+
+        return mappedWorkingMode;
+    }
+}

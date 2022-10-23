@@ -24,15 +24,15 @@ public class ProgramMain
         c1[7] = new City("Tallinn", 1889074, 1368933);
 
 
-        // City.PrintAllCities(c1);
+        //    City.PrintAllCities(c1);
         //    City.ChooseCity(c1);
         //    City.ChooseStart(c1);
         //    City.ChooseEnd(c1);
         //    City.printStartEnd(c1);
-        //City.CalculateDistance(c1);
-        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
+        //    City.CalculateDistance(c1);
+        //    Driver.GenerateProperties(5);
 
-        Driver.GenerateDriverName(5,firstNames, lastNames);
-        
+        Driver.GenerateProperties();
+        Console.WriteLine();
     }
 }
