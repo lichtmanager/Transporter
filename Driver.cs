@@ -119,17 +119,12 @@ public class TruckDriver
             TruckDriver driverInstance = new TruckDriver(
                 Driver.GenerateDriverName(firstNames,lastNames),Driver.GenerateSalary(), Driver.GenerateWorkindMode());
             listOfTruckers.Add(driverInstance);
-            //Console.WriteLine( driverInstance.truckerName.ToString() + driverInstance.salary.ToString() + driverInstance.workingMode.ToString());
         }
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
-            /*Console.WriteLine(
-                i+1 + listOfTruckers[i].truckerName.ToString() + listOfTruckers[i].salary.ToString() +
-                listOfTruckers[i].workingMode.ToString());*/
-            
-              Console.WriteLine($"{i+1}: {listOfTruckers[i].truckerName.ToString()} \t {listOfTruckers[i].salary.ToString()} " +
-                                $"\t {listOfTruckers[i].workingMode.ToString()}" );
+            Console.WriteLine($"{i+1}: {listOfTruckers[i].truckerName.ToString()}\t{listOfTruckers[i].salary.ToString()}€" +
+                              $"\t{listOfTruckers[i].workingMode.ToString()}" );
         };
           
         }
