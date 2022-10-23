@@ -30,8 +30,9 @@ public class ProgramMain
         //    City.ChooseEnd(c1);
         //    City.printStartEnd(c1);
         //City.CalculateDistance(c1);
-        Driver.LoadNamesfromFile();
-       
-        //ToDo create Driver randomly.
+        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
+
+        Driver.GenerateDriverName(5,firstNames, lastNames);
+        
     }
 }

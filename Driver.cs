@@ -5,7 +5,7 @@ namespace Abgabe_1_2;
 
 public class Driver
 {
-    public static void LoadNamesfromFile()
+    public static (List<string> firstNames, List<string> lastNames) LoadNamesfromFile()
     {
         string allNamesString =
             System.IO.File.ReadAllText(
@@ -13,10 +13,20 @@ public class Driver
 
         List<string> names = DivideNamesToList(allNamesString);
 
-        DivideFirstLastName(names);
+        var (firstNames, lastNames) = DivideFirstLastName(names);
+        return (firstNames, lastNames);
+
     }
 
-    private static void DivideFirstLastName(List<string> names)
+    private static List<string> DivideNamesToList(string allNamesString)
+    {
+        char[] separators = { ' ', ',' };
+        List<string> fullNames =
+            new List<string>(allNamesString.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+        return fullNames;
+    }
+
+    private static (List<string> firstNames, List<string> lastNames) DivideFirstLastName(List<string> names)
     {
         List<string> firstNames = new List<string>();
         List<string> lastNames = new List<string>();
@@ -29,7 +39,9 @@ public class Driver
                 lastNames.Add(names[i]);
         }
 
-        foreach (var fn in firstNames)
+        return (firstNames, lastNames);
+
+        /*foreach (var fn in firstNames)
         {
             Console.WriteLine(fn);
         }
@@ -37,17 +49,21 @@ public class Driver
         foreach (var ln in lastNames)
         {
             Console.WriteLine(ln);
-        }
+        }*/
     }
 
-    private static List<string> DivideNamesToList(string allNamesString)
+    public static List<string> GenerateDriverName(int namesToGenerate, List<string> firstNames, List<string> lastNames)
     {
-        char[] separators = { ' ', ',' };
-        List<string> names = new List<string>(allNamesString.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-        return names;
+        Random rnd = new Random();
+        List<string> generatedFullNames = new List<string>();
+        for (int i = 0; i < namesToGenerate; i++)
+        {
+            generatedFullNames.Add(
+                firstNames[rnd.Next(0, firstNames.Count)] + " " + lastNames[rnd.Next(0, lastNames.Count)]);
+            Console.Write(generatedFullNames[i]);
+        }
+
+        return generatedFullNames;
     }
-
-   
-
-   
 }
+
