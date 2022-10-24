@@ -71,11 +71,19 @@ public class Truck
 
         for (int i = 0; i < numberOfTrucksToCreate; i++)
         {
-            Console.WriteLine($"{i+1}: {listOfTrucks[i].TruckType.ToString()}, {listOfTrucks[i].TruckAge} Jahre,\t {listOfTrucks[i].TruckLocation.ToString()}");
+            if (listOfTrucks[i].TruckAge == 0)
+            {
+                Console.WriteLine(
+                    $"{i + 1}: {listOfTrucks[i].TruckType.ToString()},\t- neu -\t Standort: {listOfTrucks[i].TruckLocation.ToString()}");
+            }
+            else
+            {
+                Console.WriteLine(
+                    $"{i + 1}: {listOfTrucks[i].TruckType.ToString()},\t{listOfTrucks[i].TruckAge.ToString()} Jahre\t Standort: {listOfTrucks[i].TruckLocation.ToString()}");
+
+            }
         }
     }
 
-
-
-
+    
 }
