@@ -35,6 +35,6 @@ public class ProgramMain
         // Driver.GenerateProperties();
         //TruckDriver.InitializeNDrivers(5);
         // Console.WriteLine(driverOne);
-        Truck.InitializeTrucks(5);
+        Truck.InitializeNewTrucks(5);
     }
 }

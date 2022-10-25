@@ -2,40 +2,68 @@ namespace Abgabe_1_2;
 
 public class Truck
 {
-    private string TruckType;
+    private int TruckType;
     private int TruckAge;
-    private string TruckLocation;
-    private string Size;
+    private int TruckLocation;
+    private int Size;
     private int Performance;
     private int MaxPayload;
-    private int consumption;
+    private int Consumption;
 
-
-    public Truck(int truckType, int truckAge, int truckLocation, int size, int performance, int maxPayload,
+    private Truck(int truckType, int truckAge, int truckLocation, int truckSize, int performance, int maxPayload,
         int consumption)
     {
-        this.TruckType = MappedTruckType(GenerateTruckType());
-        this.TruckAge = GenerateTruckAge();
-        this.TruckLocation = MappedTruckLocation(GenerateTruckLocation());
-        this.Size = MappedTruckSize(GenerateTruckSize());
-        this.Performance = GenerateTruckPerformance(GenerateTruckSize());
-        this.MaxPayload = GenerateMaxPayload(GenerateTruckSize(), GenerateTruckType());
-        this.consumption = GenerateTruckConsumption();
+        this.TruckType = truckType;
+        this.TruckAge = truckAge;
+        this.TruckLocation = truckLocation;
+        this.Size = truckSize;
+        this.Performance = performance;
+        this.MaxPayload = maxPayload;
+        this.Consumption = consumption;
     }
 
+    public static void InitializeNewTrucks(int numberOfTrucksToCreate)
+    {
+        List<Truck> listOfTrucks = new List<Truck>();
+        for (int i = 0; i < numberOfTrucksToCreate; i++)
+        {
+            int size = GenerateTruckSize();
+            int type = GenerateTruckType();
+            int age = GenerateTruckAge();
+            int loc = GenerateTruckLocation();
+            int perf = GenerateTruckPerformance(size);
+            int payload = GenerateMaxPayload(size, type);
+            int cons = GenerateTruckConsumption(type, size, age);
+
+            Truck truck = new Truck(
+                type, age, loc, size, perf, payload, cons);
+            listOfTrucks.Add(truck);
+        }
+
+        //prints generated trucks
+        for (int i = 0; i < numberOfTrucksToCreate; i++)
+        {
+            Console.WriteLine(
+                    $"{i + 1}: {MappedTruckType(listOfTrucks[i].TruckType)}   \t {MappedTruckAge(listOfTrucks[i].TruckAge)}\t Standort: {MappedTruckLocation(listOfTrucks[i].TruckLocation)} " +
+                    $" \t Größe: {MappedTruckSize(listOfTrucks[i].Size)} \t Perf: {listOfTrucks[i].Performance.ToString()} " +
+                    $" \t max. Load: {listOfTrucks[i].MaxPayload.ToString()} \t Cons:{listOfTrucks[i].Consumption.ToString()}");
+            
+            
+        } 
+    }
 
     private static int GenerateTruckType()
     {
         Random rnd = new Random();
-        int truckType = rnd.Next(0, 2);
-
+        int truckType = rnd.Next(0, 3);
+      //  Console.WriteLine($"Typengereator: {truckType}");
         return truckType;
     }
 
     private static int GenerateTruckAge()
     {
         Random rnd = new Random();
-        int truckAge = rnd.Next(0, 9);
+        int truckAge = rnd.Next(0, 10);
 
         return truckAge;
     }
@@ -43,7 +71,7 @@ public class Truck
     private static int GenerateTruckLocation()
     {
         Random rnd = new Random();
-        int truckLocation = rnd.Next(0, 7);
+        int truckLocation = rnd.Next(0, 8);
 
         return truckLocation;
     }
@@ -51,7 +79,8 @@ public class Truck
     private static int GenerateTruckSize()
     {
         Random rnd = new Random();
-        int size = rnd.Next(0, 3);
+        int size = rnd.Next(0, 4);
+        Console.WriteLine($"Größengenerator: {size}");
 
         return size;
     }
@@ -59,114 +88,126 @@ public class Truck
     private static int GenerateTruckPerformance(int size)
     {
         Random rnd = new Random();
-        int perf;
+        var perf = 0;
         switch (size)
         {
             case 0:
-                perf = rnd.Next(10, 25);
+                perf = rnd.Next(10, 26);
+                //Console.WriteLine("perf. klein");
                 return perf;
             case 1:
-                perf = rnd.Next(30, 50);
+                perf = rnd.Next(30, 51);
+               // Console.WriteLine("perf. medium");
                 return perf;
             case 2:
-                perf = rnd.Next(40, 70);
+                perf = rnd.Next(40, 71);
+               // Console.WriteLine("perf. groß");
                 return perf;
             case 3:
-                perf = rnd.Next(60, 80);
+                perf = rnd.Next(60, 81);
+               // Console.WriteLine("perf. rießig");
                 return perf;
-
-            default: return perf = 0;
+            default:
+                return perf = 0;
         }
     }
 
     private static int GenerateMaxPayload(int size, int type)
     {
-        int payload = 0;
+        var payload = 0;
+
+        return size switch
+        {
+            0 => type switch
+            {
+                0 => payload = 3,
+                1 => payload = 4,
+                2 => payload = 2,
+                _ => payload = 0
+            },
+            1 => type switch
+            {
+                0 => payload = 4,
+                1 => payload = 6,
+                2 => payload = 4,
+                _ => payload = 0
+            },
+            2 => type switch
+            {
+                0 => payload = 5,
+                1 => payload = 7,
+                2 => payload = 8,
+                _ => payload = 0
+            },
+            3 => type switch
+            {
+                0 => payload = 6,
+                1 => payload = 10,
+                2 => payload = 10,
+                _ => payload = 0
+            },
+            _ => payload
+        };
+    }
+
+    private static int GenerateTruckConsumption(int type, int size, int age)
+    {
+        var consumption = 0;
+        switch (age)
+        {
+            case <= 2:
+                consumption += 1;
+                break;
+            case var n and >= 3 and <= 5:
+                consumption += 2;
+                break;
+            case var n and >= 6 and <= 8:
+                consumption += 3;
+                break;
+            case > 9:
+                consumption += 4;
+                break;
+        }
 
         switch (size)
         {
             case 0:
-                switch (type)
+                return type switch
                 {
-                    case 0:
-                        return payload = 3;
-                        break;
-                    case 1:
-                        return payload = 4;
-                        break;
-                    case 2:
-                        return payload = 2;
-                        break;
-                    default:
-                        payload = 0;
-                        break;
-                }
-
-                break;
-
+                    0 => consumption += 14,
+                    1 => consumption += 10,
+                    2 => consumption += 14,
+                    _ => consumption += 0
+                };
 
             case 1:
-                switch (type)
+                return type switch
                 {
-                    case 0:
-                        return payload = 4;
-                        break;
-                    case 1:
-                        return payload = 6;
-                        break;
-                    case 2:
-                        return payload = 4;
-                        break;
-                    default:
-                        payload = 0;
-                        break;
-                }
+                    0 => consumption += 18,
+                    1 => consumption += 12,
+                    2 => consumption += 18,
+                    _ => consumption += 0
+                };
 
-                break;
             case 2:
-                switch (type)
+                return type switch
                 {
-                    case 0:
-                        return payload = 5;
-                        break;
-                    case 1:
-                        return payload = 7;
-                        break;
-                    case 2:
-                        return payload = 8;
-                        break;
-                    default:
-                        payload = 0;
-                        break;
-                }
+                    0 => consumption += 20,
+                    1 => consumption += 16,
+                    2 => consumption + 20,
+                    _ => consumption += 0
+                };
 
-                break;
             case 3:
-                switch (type)
+                return type switch
                 {
-                    case 0:
-                        return payload = 6;
-                        break;
-                    case 1:
-                        return payload = 10;
-                        break;
-                    case 2:
-                        return payload = 10;
-                        break;
-                    default:
-                        payload = 0;
-                        break;
-                }
-
-                break;
+                    0 => consumption += 30,
+                    1 => consumption += 22,
+                    2 => consumption += 30,
+                    _ => consumption += 0
+                };
         }
-        
-        return payload;
-    }
 
-    private static int GenerateTruckConsumption()
-    {
-        int consumption = 0;
         return consumption;
     }
 
@@ -197,30 +238,18 @@ public class Truck
         return size;
     }
 
-    
-        public static void InitializeTrucks(int numberOfTrucksToCreate)
+    private static string MappedTruckAge(int randomTruckAge)
     {
-        List<Truck> listOfTrucks = new List<Truck>();
-        for (int i = 0; i < numberOfTrucksToCreate; i++)
+        string ageString;
+        if (randomTruckAge == 0)
         {
-            Truck truck = new Truck(
-                GenerateTruckType(), GenerateTruckAge(), GenerateTruckLocation(), MappedTruckSize(GenerateTruckSize()),
-                GenerateTruckPerformance(),GenerateMaxPayload(GenerateTruckSize(), GenerateTruckType()));
-            listOfTrucks.Add(truck);
+            ageString = "- neu -";
+            return ageString;
         }
-
-        for (int i = 0; i < numberOfTrucksToCreate; i++)
+        else
         {
-            if (listOfTrucks[i].TruckAge == 0)
-            {
-                Console.WriteLine(
-                    $"{i + 1}: {listOfTrucks[i].TruckType.ToString()},\t- neu -\t Standort: {listOfTrucks[i].TruckLocation.ToString()}");
-            }
-            else
-            {
-                Console.WriteLine(
-                    $"{i + 1}: {listOfTrucks[i].TruckType.ToString()},\t{listOfTrucks[i].TruckAge.ToString()} Jahre\t Standort: {listOfTrucks[i].TruckLocation.ToString()}");
-            }
+            ageString = $"{randomTruckAge} Jahre";
+            return ageString;
         }
     }
 }
