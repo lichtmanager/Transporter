@@ -1,7 +1,3 @@
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Abgabe_1_2;
-
 namespace Abgabe_1_2;
 
 public class City
@@ -19,77 +15,76 @@ public class City
     }
     
 
-    public static void PrintAllCities(City[] c1)
+    public static void PrintAllCities(City[] cities)
     {
-        for (var i = 0; i < c1.Length; i++)
+        for (var i = 0; i < cities.Length; i++)
         {
-            Console.WriteLine((i + 1) + " " + c1[i].CityName);
+            Console.WriteLine((i + 1) + " " + cities[i].CityName);
         }
     }
 
-    private static City CheckInput(City[] c1)
+    private static City GetUserInputForCitySelection(City[] cities)
     {
         string? input = Console.ReadLine();
         if (string.IsNullOrEmpty(input))
         {
             Console.WriteLine("is empty, try again!: ");
-            return CheckInput(c1);
+            return GetUserInputForCitySelection(cities);
         }
         else
         {
             try
             {
                 int desiredCity = Convert.ToInt16(input);
-                if (desiredCity >= 1 && desiredCity < c1.Length)
+                if (desiredCity >= 1 && desiredCity < cities.Length)
                 {
-                    // Console.WriteLine(c1[desiredCity - 1].cityName);
-                    return c1[desiredCity - 1];
+                    return cities[desiredCity - 1];
                 }
                 else
                 {
-                    Console.Write($"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {c1.Length -1}): ");
-                    return CheckInput(c1);
+                    Console.Write($"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length -1}): ");
+                    return GetUserInputForCitySelection(cities);
                 }
             }
             catch (Exception e)
             {
-                Console.Write($"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {c1.Length -1 }): ");
-                return CheckInput(c1);
+                Console.Write($"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length -1 }): ");
+                return GetUserInputForCitySelection(cities);
             }
         }
     }
 
-    public static void ChooseCity(City[] c1)
+    public static void ChooseCity(City[] cities)
     {
         Console.WriteLine("Geben Sie die entsprechende Zahl für Ihren Wunschort ein: ");
-        CheckInput(c1);
+        GetUserInputForCitySelection(cities);
     }
 
-    private static City ChooseStart(City[] c1)
+    private static City ChooseStartCity(City[] cities)
     {
         Console.WriteLine("Wählen Sie den Startort: ");
 
-        return CheckInput(c1);
+        return GetUserInputForCitySelection(cities);
     }
 
-    private static City ChooseEnd(City[] c1)
+    private static City ChooseEndCity(City[] cities)
     {
         Console.WriteLine("Wählen Sie den Zielort: ");
 
-        return CheckInput(c1);
+        return GetUserInputForCitySelection(cities);
     }
 
-    public static void PrintStartEnd(City[] c1)
+    public static void PrintStartEnd(City[] cities)
     {
-        Console.WriteLine(ChooseStart(c1).CityName);
-        Console.WriteLine(ChooseEnd(c1).CityName);
+        Console.WriteLine(ChooseStartCity(cities).CityName);
+        Console.WriteLine(ChooseEndCity(cities).CityName);
     }
 
 
-    public static void CalculateDistance(City[] c1)
+    public static void CalculateAndPrintDistance(City[] cities)
     {
-        City startCity = ChooseStart(c1);
-        City endCity = ChooseEnd(c1);
+        City startCity = ChooseStartCity(cities);
+        City endCity = ChooseEndCity(cities);
 
         int distance = (int)Math.Sqrt(Math.Pow(startCity.Northing - endCity.Northing, 2) +
                                       Math.Pow(startCity.Easting - endCity.Easting, 2));

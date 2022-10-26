@@ -3,7 +3,7 @@ namespace Abgabe_1_2;
 public class Initialice
 {
 
-   public static void InitialiceCities()
+   public static City[] InitialiceCities()
     {
         City[] cityArray = new City[8];
         cityArray[0] = new City("Amsterdam", 868851, 297477);
@@ -14,5 +14,6 @@ public class Initialice
         cityArray[5] = new City("Istanbul", 3015490, -498084);
         cityArray[6] = new City("Aarhus", 1156381, 763352);
         cityArray[7] = new City("Tallinn", 1889074, 1368933);
+        return cityArray;
     }
 }

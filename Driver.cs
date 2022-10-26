@@ -1,6 +1,4 @@
-using System.Dynamic;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
+
 
 namespace Abgabe_1_2;
 
@@ -15,7 +13,7 @@ public class Driver
         Console.WriteLine(driversName);
 
         int salary = GenerateSalary();
-        int workingMode = GenerateWorkindMode();
+        int workingMode = GenerateWorkingMode();
 
         return (driversName, salary, workingMode);
     }
@@ -23,7 +21,7 @@ public class Driver
     public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
     {
         string allNamesString =
-            System.IO.File.ReadAllText(
+            File.ReadAllText(
                 @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
 
         List<string> namesList = DivideNamesToList(allNamesString);
@@ -77,7 +75,7 @@ public class Driver
     }
 
 
-    public static int GenerateWorkindMode()
+    public static int GenerateWorkingMode()
     {
         Random rnd = new Random();
         int workingMode = rnd.Next(0, 5);
@@ -90,14 +88,14 @@ public class TruckDriver
 {
     private string TruckerName { get; }
     private int Salary { get; }
-    private string WorkingMode { get; }
+    private int WorkingMode { get; }
 
 
-    public TruckDriver(string truckerName, int salary, int randomWorkingMode)
+    private TruckDriver(string truckerName, int salary, int randomWorkingMode)
     {
         this.TruckerName = truckerName;
         this.Salary = salary;
-        this.WorkingMode = MappedWorkingMode(randomWorkingMode);
+        this.WorkingMode = randomWorkingMode;
     }
 
     public static void InitializeNDrivers(int numOfDriversToCreate)
@@ -109,26 +107,28 @@ public class TruckDriver
         {
             TruckDriver driverInstance = new TruckDriver(
                 Driver.GenerateDriverName(firstNames, lastNames), Driver.GenerateSalary(),
-                Driver.GenerateWorkindMode());
+                Driver.GenerateWorkingMode());
             listOfTruckers.Add(driverInstance);
         }
+        PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
+    }
 
+    private static void PrintoutDrivers(int numOfDriversToCreate, List<TruckDriver> listOfTruckers)
+    {
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
             Console.WriteLine(
-                $"{i + 1}: {listOfTruckers[i].TruckerName.ToString()}\t{listOfTruckers[i].Salary.ToString()}€" +
-                $"\t{listOfTruckers[i].WorkingMode.ToString()}");
+                $"{i + 1}: {listOfTruckers[i].TruckerName}\t{listOfTruckers[i].Salary.ToString()}€" +
+                $"\t{MappedWorkingMode(listOfTruckers[i].WorkingMode)}");
         }
-
-        ;
     }
 
-    private string MappedWorkingMode(int randomWorkingMode)
+    private static string MappedWorkingMode(int workingMode)
     {
         List<string> wokringModeCategories = new List<string>()
             { "Erfahren, aber alt", "Rennfahrer", "Verträumt", "Liebt den Job", "Unauffällig" };
 
-        string mappedWorkingMode = wokringModeCategories[randomWorkingMode];
+        string mappedWorkingMode = wokringModeCategories[workingMode];
 
         return mappedWorkingMode;
     }
