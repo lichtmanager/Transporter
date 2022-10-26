@@ -2,16 +2,16 @@ namespace Abgabe_1_2;
 
 public class Truck
 {
-    private int TruckType;
-    private int TruckAge;
-    private int TruckLocation;
+    public int TruckType;
+    public int TruckAge;
+    public int TruckLocation;
     private int TruckSize;
-    private int TruckPerformance;
-    private int TruckMaxPayload;
-    private int TruckConsumption;
-    private double TruckPrice;
+    public int TruckPerformance;
+    public int TruckMaxPayload;
+    public int TruckConsumption;
+    public double TruckPrice;
 
-    private Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
+    public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
         int truckMaxPayload,
         int truckConsumption, double truckPrice)
     {
@@ -25,36 +25,8 @@ public class Truck
         this.TruckPrice = truckPrice;
     }
 
-    public static void InitializeNewTrucks(int numberOfTrucksToCreate)
-    {
-        List<Truck> listOfTrucks = new List<Truck>();
-        for (int i = 0; i < numberOfTrucksToCreate; i++)
-        {
-            int size = Generator.GenerateTruckSize();
-            int type = Generator.GenerateTruckType();
-            int age = Generator.GenerateTruckAge();
-            int loc = Generator.GenerateTruckLocation();
-            int perf = Generator.GenerateTruckPerformance(size);
-            int payload = Generator.GenerateMaxPayload(size, type);
-            int cons = Generator.GenerateTruckConsumption(type, size, age);
-            double price = Generator.GenerateTruckPrice(age, size, type);
 
-            Truck truck = new Truck(
-                type, age, loc, size, perf, payload, cons, price);
-            listOfTrucks.Add(truck);
-        }
-
-
-        for (int i = 0; i < numberOfTrucksToCreate; i++)
-        {
-            Console.WriteLine(
-                $"{i + 1}: {MappedTruckType(listOfTrucks[i].TruckType)}   \t {MappedTruckAge(listOfTrucks[i].TruckAge)}\t Standort: {MappedTruckLocation(listOfTrucks[i].TruckLocation)} " +
-                $" \t Perf: {listOfTrucks[i].TruckPerformance.ToString()} " +
-                $" \t max. Load: {listOfTrucks[i].TruckMaxPayload.ToString()} \t Cons:{listOfTrucks[i].TruckConsumption.ToString()} \t Preis: {listOfTrucks[i].TruckPrice.ToString("0")}€");
-        }
-    }
-
-    private static string MappedTruckType(int randomTruckType)
+    public static string MappedTruckType(int randomTruckType)
     {
         List<string> truckTypesList = new List<string>()
             { "Kühllastwagen", "Pritschenwagen", "Tanklaster" };
@@ -63,7 +35,7 @@ public class Truck
         return mappedTruckType;
     }
 
-    private static string MappedTruckLocation(int randomTruckLocation)
+    public static string MappedTruckLocation(int randomTruckLocation)
     {
         List<string> availableCities = new List<string>()
             { "Amsterdam", "Berlin", "Esslingen", "Rom", "Lissabon", "Istanbul", "Aarhus", "Tallinn" };
@@ -81,7 +53,7 @@ public class Truck
         return size;
     }
 
-    private static string MappedTruckAge(int randomTruckAge)
+    public static string MappedTruckAge(int randomTruckAge)
     {
         string ageString;
         if (randomTruckAge == 0)

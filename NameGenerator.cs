@@ -2,7 +2,7 @@ namespace Abgabe_1_2;
 
 public static class NameGenerator
 {
-    private static List<string> DivideNamesToList(string allNamesString)
+    public static List<string> DivideNamesToList(string allNamesString)
     {
         char[] separators = { ' ', ',' };
         List<string> fullNames =
@@ -11,7 +11,7 @@ public static class NameGenerator
         return fullNames;
     }
 
-    private static (List<string> firstNames, List<string> lastNames) DivideFirstLastName(List<string> names)
+    public static (List<string> firstNames, List<string> lastNames) DivideFirstLastName(List<string> names)
     {
         List<string> firstNames = new List<string>();
         List<string> lastNames = new List<string>();

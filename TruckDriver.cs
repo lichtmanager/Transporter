@@ -9,29 +9,14 @@ public class TruckDriver
     private int WorkingMode { get; }
 
 
-    private TruckDriver(string truckerName, int salary, int randomWorkingMode)
+    public TruckDriver(string truckerName, int salary, int randomWorkingMode)
     {
         this.TruckerName = truckerName;
         this.Salary = salary;
         this.WorkingMode = randomWorkingMode;
     }
 
-    public static void InitializeNDrivers(int numOfDriversToCreate)
-    {
-        List<TruckDriver> listOfTruckers = new List<TruckDriver>();
-        var (firstNames, lastNames) = DriverGenerator.LoadNamesFromFile();
-
-        for (int i = 0; i < numOfDriversToCreate; i++)
-        {
-            TruckDriver driverInstance = new TruckDriver(
-                NameGenerator.GenerateDriverName(firstNames, lastNames), DriverGenerator.GenerateSalary(),
-                DriverGenerator.GenerateWorkingMode());
-            listOfTruckers.Add(driverInstance);
-        }
-        PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
-    }
-
-    private static void PrintoutDrivers(int numOfDriversToCreate, List<TruckDriver> listOfTruckers)
+    public static void PrintoutDrivers(int numOfDriversToCreate, List<TruckDriver> listOfTruckers)
     {
         for (int i = 0; i < numOfDriversToCreate; i++)
         {

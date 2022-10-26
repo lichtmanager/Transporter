@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public class ProgramMain
+public static class Main_
 {
     public static void Main(string[] args)
 
@@ -19,6 +19,6 @@ public class ProgramMain
         // DriverGenerator.GenerateProperties();
         // TruckDriver.InitializeNDrivers(5);
 
-        Truck.InitializeNewTrucks(5);
+        Initialice.InitializeNewTrucks(5);
     }
 }
