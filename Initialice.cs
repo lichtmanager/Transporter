@@ -2,9 +2,6 @@ namespace Abgabe_1_2;
 
 public class Initialice
 {
-    public Initialice()
-    {
-    }
 
     public static City[] InitialiceCities()
     {
