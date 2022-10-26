@@ -16,7 +16,7 @@ public class ProgramMain
         // City.ChooseEnd(cities);
         // City.CalculateAndPrintDistance(cities);
 
-        // Driver.GenerateProperties();
+        // DriverGenerator.GenerateProperties();
         // TruckDriver.InitializeNDrivers(5);
 
         Truck.InitializeNewTrucks(5);

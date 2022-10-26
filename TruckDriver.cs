@@ -19,13 +19,13 @@ public class TruckDriver
     public static void InitializeNDrivers(int numOfDriversToCreate)
     {
         List<TruckDriver> listOfTruckers = new List<TruckDriver>();
-        var (firstNames, lastNames) = Driver.LoadNamesFromFile();
+        var (firstNames, lastNames) = DriverGenerator.LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
             TruckDriver driverInstance = new TruckDriver(
-                Driver.GenerateDriverName(firstNames, lastNames), Driver.GenerateSalary(),
-                Driver.GenerateWorkingMode());
+                NameGenerator.GenerateDriverName(firstNames, lastNames), DriverGenerator.GenerateSalary(),
+                DriverGenerator.GenerateWorkingMode());
             listOfTruckers.Add(driverInstance);
         }
         PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
