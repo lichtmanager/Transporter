@@ -99,7 +99,8 @@ public class TruckDriver
         this.Salary = salary;
         this.WorkingMode = MappedWorkingMode(randomWorkingMode);
     }
-public static void InitializeNDrivers(int numOfDriversToCreate)
+
+    public static void InitializeNDrivers(int numOfDriversToCreate)
     {
         List<TruckDriver> listOfTruckers = new List<TruckDriver>();
         var (firstNames, lastNames) = Driver.LoadNamesFromFile();
@@ -121,6 +122,7 @@ public static void InitializeNDrivers(int numOfDriversToCreate)
 
         ;
     }
+
     private string MappedWorkingMode(int randomWorkingMode)
     {
         List<string> wokringModeCategories = new List<string>()
@@ -130,6 +132,4 @@ public static void InitializeNDrivers(int numOfDriversToCreate)
 
         return mappedWorkingMode;
     }
-
-    
 }
