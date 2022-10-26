@@ -6,9 +6,9 @@ public class ProgramMain
 
     {
         // Call NameHelper to test, if a name looks good. 
-        NameHelper.NameTester();
+        // NameHelper.NameTester();
 
-        City[] cities = Initialice.InitialiceCities();
+        // City[] cities = Initialice.InitialiceCities();
 
         // City.PrintAllCities(cities);
         // City.ChooseCity(cities);
@@ -17,7 +17,7 @@ public class ProgramMain
         // City.CalculateAndPrintDistance(cities);
 
         // Driver.GenerateProperties();
-        TruckDriver.InitializeNDrivers(5);
+        // TruckDriver.InitializeNDrivers(5);
 
         Truck.InitializeNewTrucks(5);
     }
