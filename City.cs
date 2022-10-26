@@ -13,7 +13,6 @@ public class City
         this.Easting = easting;
         this.Northing = northing;
     }
-    
 
     public static void PrintAllCities(City[] cities)
     {
@@ -42,13 +41,15 @@ public class City
                 }
                 else
                 {
-                    Console.Write($"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length -1}): ");
+                    Console.Write(
+                        $"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length - 1}): ");
                     return GetUserInputForCitySelection(cities);
                 }
             }
             catch (Exception e)
             {
-                Console.Write($"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length -1 }): ");
+                Console.Write(
+                    $"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length - 1}): ");
                 return GetUserInputForCitySelection(cities);
             }
         }
@@ -79,8 +80,7 @@ public class City
         Console.WriteLine(ChooseStartCity(cities).CityName);
         Console.WriteLine(ChooseEndCity(cities).CityName);
     }
-
-
+    
     public static void CalculateAndPrintDistance(City[] cities)
     {
         City startCity = ChooseStartCity(cities);
