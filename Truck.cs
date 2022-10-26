@@ -56,62 +56,31 @@ public class Truck
 
     private static double GenerateTruckPrice(int age, int size, int type)
     {
-        double priceFactor;
         int basePrice;
         double price;
-
         Random rnd = new Random();
+
+        double priceFactor = (1 + rnd.Next(-20, 31) / 100.0) - age * 0.03;
+        if (type == 0)
+        {
+            priceFactor += 0.1;
+        }
 
         switch (size)
         {
             case 0:
                 basePrice = 25000;
-                priceFactor = (1 + rnd.Next(-20, 31) / 100.0) - age * 0.03;
-                price = basePrice * priceFactor;
-                if (type == 0)
-                {
-                    return price + 0.1;
-                }
-                else
-                {
-                    return price;
-                }
+                return price = basePrice * priceFactor;
             case 1:
                 basePrice = 60000;
-                priceFactor = (1 + rnd.Next(-20, 31) / 100.0) - age * 0.03;
-                price = basePrice * priceFactor;
-                if (type == 0)
-                {
-                    return price + 0.1;
-                }
-                else
-                {
-                    return price;
-                }
+                return price = basePrice * priceFactor;
             case 2:
                 basePrice = 80000;
-                priceFactor = (1 + rnd.Next(-20, 31) / 100.0) - age * 0.03;
-                price = basePrice * priceFactor;
-                if (type == 0)
-                {
-                    return price + 0.1;
-                }
-                else
-                {
-                    return price;
-                }
+                return price = basePrice * priceFactor;
+
             case 3:
                 basePrice = 120000;
-                priceFactor = (1 + rnd.Next(-20, 31) / 100.0) - age * 0.03;
-                price = basePrice * priceFactor;
-                if (type == 0)
-                {
-                    return price + 0.1;
-                }
-                else
-                {
-                    return price;
-                }
+                return price = basePrice * priceFactor;
             default: return price = 0;
         }
     }
@@ -298,6 +267,7 @@ public class Truck
         else
         {
             ageString = $"{randomTruckAge} Jahre";
+
             return ageString;
         }
     }

@@ -6,15 +6,29 @@ namespace Abgabe_1_2;
 
 public class Driver
 {
-    public static (List<string> firstNames, List<string> lastNames) LoadNamesfromFile()
+    public static (string driversName, int salary, int workingMode) GenerateProperties()
+    {
+        var (firstNames, lastNames) = Driver.LoadNamesFromFile();
+
+        string driversName = Driver.GenerateDriverName(firstNames, lastNames);
+
+        Console.WriteLine(driversName);
+
+        int salary = GenerateSalary();
+        int workingMode = GenerateWorkindMode();
+
+        return (driversName, salary, workingMode);
+    }
+
+    public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
     {
         string allNamesString =
             System.IO.File.ReadAllText(
                 @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
 
-        List<string> names = DivideNamesToList(allNamesString);
+        List<string> namesList = DivideNamesToList(allNamesString);
 
-        var (firstNames, lastNames) = DivideFirstLastName(names);
+        var (firstNames, lastNames) = DivideFirstLastName(namesList);
         return (firstNames, lastNames);
     }
 
@@ -23,6 +37,7 @@ public class Driver
         char[] separators = { ' ', ',' };
         List<string> fullNames =
             new List<string>(allNamesString.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+
         return fullNames;
     }
 
@@ -45,31 +60,18 @@ public class Driver
     public static string GenerateDriverName(List<string> firstNames, List<string> lastNames)
     {
         Random rnd = new Random();
+
         string generatedFullName =
             firstNames[rnd.Next(0, firstNames.Count)] + " " + lastNames[rnd.Next(0, lastNames.Count)];
-        // Console.Write(generatedFullName);
+
         return generatedFullName;
-    }
-
-    public static (string driversName, int salary, int workingMode) GenerateProperties()
-    {
-        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
-
-        string driversName = Driver.GenerateDriverName(firstNames, lastNames);
-        // int workingMode = Driver.GeneateWorkingMode();
-        Console.WriteLine(driversName);
-
-        int salary = GenerateSalary();
-        int workingMode = GenerateWorkindMode();
-
-        return (driversName, salary, workingMode);
     }
 
 
     public static int GenerateSalary()
     {
         Random rnd = new Random();
-        int salary = rnd.Next(2000, 5000);
+        int salary = rnd.Next(2000, 5001);
 
         return salary;
     }
@@ -78,17 +80,17 @@ public class Driver
     public static int GenerateWorkindMode()
     {
         Random rnd = new Random();
-        int workingMode = rnd.Next(0, 4);
-        
+        int workingMode = rnd.Next(0, 5);
+
         return workingMode;
     }
 }
 
 public class TruckDriver
 {
-    private string TruckerName { get; set; }
-    private int Salary { get; set; }
-    private string WorkingMode { get; set; }
+    private string TruckerName { get; }
+    private int Salary { get; }
+    private string WorkingMode { get; }
 
 
     public TruckDriver(string truckerName, int salary, int randomWorkingMode)
@@ -97,21 +99,10 @@ public class TruckDriver
         this.Salary = salary;
         this.WorkingMode = MappedWorkingMode(randomWorkingMode);
     }
-
-    private string MappedWorkingMode(int randomWorkingMode)
-    {
-        List<string> wokringModeCategories = new List<string>()
-            { "Erfahren, aber alt", "Rennfahrer", "Verträumt", "Liebt den Job", "Unauffällig" };
-
-        string mappedWorkingMode = wokringModeCategories[randomWorkingMode];
-
-        return mappedWorkingMode;
-    }
-
-    public static void InitializeNDrivers(int numOfDriversToCreate)
+public static void InitializeNDrivers(int numOfDriversToCreate)
     {
         List<TruckDriver> listOfTruckers = new List<TruckDriver>();
-        var (firstNames, lastNames) = Driver.LoadNamesfromFile();
+        var (firstNames, lastNames) = Driver.LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
@@ -130,4 +121,15 @@ public class TruckDriver
 
         ;
     }
+    private string MappedWorkingMode(int randomWorkingMode)
+    {
+        List<string> wokringModeCategories = new List<string>()
+            { "Erfahren, aber alt", "Rennfahrer", "Verträumt", "Liebt den Job", "Unauffällig" };
+
+        string mappedWorkingMode = wokringModeCategories[randomWorkingMode];
+
+        return mappedWorkingMode;
+    }
+
+    
 }
