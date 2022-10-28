@@ -1,9 +1,9 @@
 namespace Abgabe_1_2;
 
-public class Initialice
+public static class Initialize
 {
 
-    public static City[] InitialiceCities()
+    public static City[] InitializeCities()
     {
         City[] cityArray = new City[8];
         cityArray[0] = new City("Amsterdam", 868851, 297477);
@@ -23,14 +23,14 @@ public class Initialice
         List<Truck> listOfTrucks = new List<Truck>();
         for (int i = 0; i < numberOfTrucksToCreate; i++)
         {
-            int size = Generator.GenerateTruckSize();
-            int type = Generator.GenerateTruckType();
-            int age = Generator.GenerateTruckAge();
-            int loc = Generator.GenerateTruckLocation();
-            int perf = Generator.GenerateTruckPerformance(size);
-            int payload = Generator.GenerateMaxPayload(size, type);
-            int cons = Generator.GenerateTruckConsumption(type, size, age);
-            double price = Generator.GenerateTruckPrice(age, size, type);
+            int size = TruckPropertiesGenerator.GenerateTruckSize();
+            int type = TruckPropertiesGenerator.GenerateTruckType();
+            int age = TruckPropertiesGenerator.GenerateTruckAge();
+            int loc = TruckPropertiesGenerator.GenerateTruckLocation();
+            int perf = TruckPropertiesGenerator.GenerateTruckPerformance(size);
+            int payload = TruckPropertiesGenerator.DetermineMaxPayload(size, type);
+            int cons = TruckPropertiesGenerator.DetermineTruckConsumption(type, size, age);
+            double price = TruckPropertiesGenerator.DetermineTruckPrice(age, size, type);
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price);

@@ -1,8 +1,8 @@
 namespace Abgabe_1_2;
 
-public class Generator
+public static class TruckPropertiesGenerator
 {
-    public static double GenerateTruckPrice(int age, int size, int type)
+    public static double DetermineTruckPrice(int age, int size, int type)
     {
         int basePrice;
         double price;
@@ -92,7 +92,7 @@ public class Generator
         }
     }
 
-    public static int GenerateMaxPayload(int size, int type)
+    public static int DetermineMaxPayload(int size, int type)
     {
         var payload = 0;
 
@@ -130,7 +130,7 @@ public class Generator
         };
     }
 
-    public static int GenerateTruckConsumption(int type, int size, int age)
+    public static int DetermineTruckConsumption(int type, int size, int age)
     {
         var consumption = 0;
         consumption += (age / 3);

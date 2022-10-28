@@ -8,7 +8,7 @@ public static class Main_
         // Call NameHelper to test, if a name looks good. 
         // NameHelper.NameTester();
 
-        // City[] cities = Initialice.InitialiceCities();
+        // City[] cities = Initialize.InitializeCities();
 
         // City.PrintAllCities(cities);
         // City.ChooseCity(cities);
@@ -19,6 +19,6 @@ public static class Main_
         // DriverGenerator.GenerateProperties();
         // TruckDriver.InitializeNDrivers(5);
 
-        Initialice.InitializeNewTrucks(5);
+        Initialize.InitializeNewTrucks(5);
     }
 }
