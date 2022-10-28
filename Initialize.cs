@@ -23,11 +23,11 @@ public static class Initialize
         List<Truck> listOfTrucks = new List<Truck>();
         for (int i = 0; i < numberOfTrucksToCreate; i++)
         {
-            int size = TruckPropertiesGenerator.GenerateTruckSize();
-            int type = TruckPropertiesGenerator.GenerateTruckType();
-            int age = TruckPropertiesGenerator.GenerateTruckAge();
-            int loc = TruckPropertiesGenerator.GenerateTruckLocation();
-            int perf = TruckPropertiesGenerator.GenerateTruckPerformance(size);
+            int size = TruckPropertiesGenerator.GenerateRandomTruckSize();
+            int type = TruckPropertiesGenerator.GenerateRandomTruckType();
+            int age = TruckPropertiesGenerator.GenerateRandomTruckAge();
+            int loc = TruckPropertiesGenerator.GenerateRandomTruckLocation();
+            int perf = TruckPropertiesGenerator.DetermineTruckPerformanceBySize(size);
             int payload = TruckPropertiesGenerator.DetermineMaxPayload(size, type);
             int cons = TruckPropertiesGenerator.DetermineTruckConsumption(type, size, age);
             double price = TruckPropertiesGenerator.DetermineTruckPrice(age, size, type);

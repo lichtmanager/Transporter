@@ -33,7 +33,7 @@ public static class TruckPropertiesGenerator
         }
     }
 
-    public static int GenerateTruckType()
+    public static int GenerateRandomTruckType()
     {
         Random rnd = new Random();
         int truckType = rnd.Next(0, 3);
@@ -41,7 +41,7 @@ public static class TruckPropertiesGenerator
         return truckType;
     }
 
-    public static int GenerateTruckAge()
+    public static int GenerateRandomTruckAge()
     {
         Random rnd = new Random();
         int truckAge = rnd.Next(0, 11);
@@ -49,7 +49,7 @@ public static class TruckPropertiesGenerator
         return truckAge;
     }
 
-    public static int GenerateTruckLocation()
+    public static int GenerateRandomTruckLocation()
     {
         Random rnd = new Random();
         int truckLocation = rnd.Next(0, 8);
@@ -57,7 +57,7 @@ public static class TruckPropertiesGenerator
         return truckLocation;
     }
 
-    public static int GenerateTruckSize()
+    public static int GenerateRandomTruckSize()
     {
         Random rnd = new Random();
         int size = rnd.Next(0, 4);
@@ -65,7 +65,7 @@ public static class TruckPropertiesGenerator
         return size;
     }
 
-    public static int GenerateTruckPerformance(int size)
+    public static int DetermineTruckPerformanceBySize(int size)
     {
         Random rnd = new Random();
         var perf = 0;
