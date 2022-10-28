@@ -19,6 +19,11 @@ public static class Main_
         // DriverGenerator.GenerateProperties();
         // Driver.InitializeNDrivers(5);
 
-        Initialize.InitializeNewTrucks(5);
+        // Initialize.InitializeNewTrucks(5);
+
+        for (int i = 0; i < 15; i++)
+        {
+            GoodsPropertiesGenerator.RandomTypesGenerator();
+        }
     }
 }
