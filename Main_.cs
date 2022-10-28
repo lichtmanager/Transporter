@@ -23,7 +23,7 @@ public static class Main_
 
         for (int i = 0; i < 15; i++)
         {
-            GoodsPropertiesGenerator.RandomTypesGenerator();
+            GoodsPropertiesGenerator.RandomTypesGeneratorMappedToTruckType();
         }
     }
 }
