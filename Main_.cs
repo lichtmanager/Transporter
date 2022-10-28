@@ -17,7 +17,7 @@ public static class Main_
         // City.CalculateAndPrintDistance(cities);
 
         // DriverGenerator.GenerateProperties();
-        // TruckDriver.InitializeNDrivers(5);
+        // Driver.InitializeNDrivers(5);
 
         Initialize.InitializeNewTrucks(5);
     }

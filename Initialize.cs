@@ -49,17 +49,17 @@ public static class Initialize
     }
     public static void InitializeNDrivers(int numOfDriversToCreate)
     {
-        List<TruckDriver> listOfTruckers = new List<TruckDriver>();
+        List<Driver> listOfTruckers = new List<Driver>();
         var (firstNames, lastNames) = DriverGenerator.LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
-            TruckDriver driverInstance = new TruckDriver(
+            Driver driverInstance = new Driver(
                 NameGenerator.GenerateDriverName(firstNames, lastNames), DriverGenerator.GenerateSalary(),
                 DriverGenerator.GenerateWorkingMode());
             listOfTruckers.Add(driverInstance);
         }
-        TruckDriver.PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
+        Driver.PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
     }
     
 }

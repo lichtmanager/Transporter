@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public class TruckDriver
+public class Driver
 {
     
 
@@ -9,14 +9,14 @@ public class TruckDriver
     private int WorkingMode { get; }
 
 
-    public TruckDriver(string truckerName, int salary, int randomWorkingMode)
+    public Driver(string truckerName, int salary, int randomWorkingMode)
     {
         this.TruckerName = truckerName;
         this.Salary = salary;
         this.WorkingMode = randomWorkingMode;
     }
 
-    public static void PrintoutDrivers(int numOfDriversToCreate, List<TruckDriver> listOfTruckers)
+    public static void PrintoutDrivers(int numOfDriversToCreate, List<Driver> listOfTruckers)
     {
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
