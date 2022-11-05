@@ -77,7 +77,7 @@ public static class Initialize
 
 
             Console.WriteLine($"{i}: {tender.Good.GoodsName} \t {tender.Good.ReqTruckForTransport}\t " +
-                             $" {tender.StartingCity} \t {tender.EndingCity}" + 
+                              $" {tender.StartingCity} \t {tender.EndingCity}" +
                               $" {tender.Weight.ToString()}t ");
         }
     }

@@ -26,7 +26,4 @@ public class TenderGenerator
 
         return goodsList[rnd.Next(0, goodsList.Count)];
     }
-
-    
-
 }
