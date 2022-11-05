@@ -71,10 +71,13 @@ public static class Initialize
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
 
-            Tender tender = new Tender(goodForTender, rndWeight);
+            string startingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
+            string endingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
+            Tender tender = new Tender(goodForTender, rndWeight, startingCity, endingCity);
 
 
             Console.WriteLine($"{i}: {tender.Good.GoodsName} \t {tender.Good.ReqTruckForTransport}\t " +
+                             $" {tender.StartingCity} \t {tender.EndingCity}" + 
                               $" {tender.Weight.ToString()}t ");
         }
     }
