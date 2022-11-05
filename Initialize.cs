@@ -1,6 +1,9 @@
+using ConsoleTable;
+
 namespace Abgabe_1_2;
 
 public static class Initialize
+
 {
     public static City[] InitializeCities()
     {
@@ -80,6 +83,7 @@ public static class Initialize
             double penalty = TenderGenerator.DeterminePenalty(compensation);
 
             do
+                
             {
                 startingCity = TenderGenerator.GenerateStartingCity();
                 endingCity = TenderGenerator.GenerateEndingCity();

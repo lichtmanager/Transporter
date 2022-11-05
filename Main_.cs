@@ -21,6 +21,6 @@ public static class Main_
 
         // Initialize.InitializeNewTrucks(5);
 
-        Initialize.InitializeNTenders(10);
+        Initialize.InitializeNTenders(5);
     }
 }

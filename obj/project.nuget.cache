@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "V6q1Ho7ORXBC7vr2NUfIwF2tbh7D4aAqnQVKGXwqQX2SdxPRWab5WQ+EDTPrenj2EJiLD9fkcHDdmHIWcbV7Pw==",
+  "dgSpecHash": "+vf6Sn9hGm71ButUDx59nR1eYRZ1V+D/KC7/lP4tP2yscP6TGIEWEkD2JuFj7pW6qgtl5uyMyziQdmz9ocaSxQ==",
   "success": true,
   "projectFilePath": "/Users/philipplichtmannegger/Development/dotNET/Transporter.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/philipplichtmannegger/.nuget/packages/consoletable/1.0.1.1/consoletable.1.0.1.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,11 +1,36 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "ConsoleTable/1.0.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/ConsoleTable.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ConsoleTable.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ConsoleTable/1.0.1.1": {
+      "sha512": "B0xE1Wn5dGFPPQFLuFhYFby8EuNeZCwLg0Xb8ofq6ZLxlVIEullu3CdrOGWpV6E4GI/fDzQTZkl/61RsbgQ29g==",
+      "type": "package",
+      "path": "consoletable/1.0.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "consoletable.1.0.1.1.nupkg.sha512",
+        "consoletable.nuspec",
+        "lib/netcoreapp3.1/ConsoleTable.dll"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "ConsoleTable >= 1.0.1.1"
+    ]
   },
   "packageFolders": {
     "/Users/philipplichtmannegger/.nuget/packages/": {}
@@ -43,6 +68,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "ConsoleTable": {
+            "target": "Package",
+            "version": "[1.0.1.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
