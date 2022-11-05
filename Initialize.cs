@@ -2,7 +2,6 @@ namespace Abgabe_1_2;
 
 public static class Initialize
 {
-
     public static City[] InitializeCities()
     {
         City[] cityArray = new City[8];
@@ -47,6 +46,7 @@ public static class Initialize
                 $"   \t Preis: {listOfTrucks[i].TruckPrice:0.##}€");
         }
     }
+
     public static void InitializeNDrivers(int numOfDriversToCreate)
     {
         List<Driver> listOfTruckers = new List<Driver>();
@@ -59,7 +59,23 @@ public static class Initialize
                 DriverGenerator.GenerateWorkingMode());
             listOfTruckers.Add(driverInstance);
         }
+
         Driver.PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
     }
-    
+
+    public static void InitializeNTenders(int numOfTendersToCreate)
+    {
+        for (int i = 0; i < numOfTendersToCreate; i++)
+        {
+            Good goodForTender = TenderGenerator.ChooseRandomGood();
+            Random rnd = new Random();
+            int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
+
+            Tender tender = new Tender(goodForTender, rndWeight);
+
+
+            Console.WriteLine($"{i}: {tender.Good.GoodsName} \t {tender.Good.ReqTruckForTransport}\t " +
+                              $" {tender.Weight.ToString()}t ");
+        }
+    }
 }

@@ -21,13 +21,9 @@ public static class Main_
 
         // Initialize.InitializeNewTrucks(5);
 
-
-        List<Good> availGoods = Good.InitializeGood();
-
-        for (int i = 0; i < availGoods.Count; i++)
-        {
-            Console.WriteLine(availGoods[i].GoodsName+ availGoods[i].MaxWeight.ToString()+ availGoods[i].ReqTruckForTransport);
-        }
+Initialize.InitializeNTenders(5);
+        
+        
 
     }
 }

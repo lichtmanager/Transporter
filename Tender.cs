@@ -1,26 +1,25 @@
-using System.Runtime.Versioning;
-
 namespace Abgabe_1_2;
 
 public class Tender
 {
-
     public Good Good;
+    public int Weight;
 
-
-    public Tender(Good good, string goodsName, int goodsWeiht)
+    public Tender(Good good, int weight)
     {
-        this.Good = good;
+        this.Good = TenderGenerator.ChooseRandomGood();
+        this.Weight = weight;
     }
 }
 
 public class TenderGenerator
 {
-    public Good CreateGood()
+    public static Good ChooseRandomGood()
     {
         Random rnd = new Random();
-        Good good = Good.InitializeGood();
+        List<Good> goodsList = Good.InitializeGood();
 
-        return good;
+        return goodsList[rnd.Next(0, goodsList.Count)];
     }
+    
 }
