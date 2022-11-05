@@ -65,20 +65,29 @@ public static class Initialize
 
     public static void InitializeNTenders(int numOfTendersToCreate)
     {
+        List<Tender> tenders = new List<Tender>();
         for (int i = 0; i < numOfTendersToCreate; i++)
         {
             Good goodForTender = TenderGenerator.ChooseRandomGood();
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
+          
+            string startingCity = "";
+            string endingCity = "";
+            
+            string deliveryDate = TenderGenerator.GenerateDeliveryDate(goodForTender);
+            double compensation = TenderGenerator.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
+            double penalty = TenderGenerator.DeterminePenalty(compensation);
 
-            string startingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
-            string endingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
-            Tender tender = new Tender(goodForTender, rndWeight, startingCity, endingCity);
+            do
+            {
+                startingCity = TenderGenerator.GenerateStartingCity();
+                endingCity = TenderGenerator.GenerateEndingCity();
+            } while (startingCity == endingCity);
 
-
-            Console.WriteLine($"{i}: {tender.Good.GoodsName} \t {tender.Good.ReqTruckForTransport}\t " +
-                              $" {tender.StartingCity} \t {tender.EndingCity}" +
-                              $" {tender.Weight.ToString()}t ");
+            tenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation, penalty));
         }
+
+        Tender.PrintoutTenders(tenders, numOfTendersToCreate);
     }
 }

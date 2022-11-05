@@ -7,17 +7,17 @@ public class Good
     public string GoodsName;
     public string ReqTruckForTransport;
     public int MaxWeight;
-    public int MaxDeliveryDate;
-    public int MinPrice;
+    public int MaxDeliveryDays;
+    public int MinPricePerTon;
 
 
-    public Good(string goodsName, string reqTruckForTransport, int maxWeight, int maxDeliveryDate, int minPrice)
+    public Good(string goodsName, string reqTruckForTransport, int maxWeight, int maxDeliveryDays, int minPricePerTon)
     {
         GoodsName = goodsName;
         ReqTruckForTransport = reqTruckForTransport;
         MaxWeight = maxWeight;
-        MaxDeliveryDate = maxDeliveryDate;
-        MinPrice = minPrice;
+        MaxDeliveryDays = maxDeliveryDays;
+        MinPricePerTon = minPricePerTon;
     }
 
     public static List<Good> InitializeGood()
