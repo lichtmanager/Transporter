@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SkAwp4So+coO5KKGp90aRyULqh9FuDc67Yp9rxkgoYWuUbH4RH0eqMVJyUZABJLQNW63wH58deC6paNb3vt/rA==",
+  "dgSpecHash": "V6q1Ho7ORXBC7vr2NUfIwF2tbh7D4aAqnQVKGXwqQX2SdxPRWab5WQ+EDTPrenj2EJiLD9fkcHDdmHIWcbV7Pw==",
   "success": true,
-  "projectFilePath": "/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/Transporter.csproj",
+  "projectFilePath": "/Users/philipplichtmannegger/Development/dotNET/Transporter.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

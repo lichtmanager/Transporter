@@ -21,9 +21,13 @@ public static class Main_
 
         // Initialize.InitializeNewTrucks(5);
 
-        for (int i = 0; i < 15; i++)
+
+        List<Good> availGoods = Good.InitializeGood();
+
+        for (int i = 0; i < availGoods.Count; i++)
         {
-            GoodsPropertiesGenerator.RandomTypesGeneratorMappedToTruckType();
+            Console.WriteLine(availGoods[i].GoodsName+ availGoods[i].MaxWeight.ToString()+ availGoods[i].ReqTruckForTransport);
         }
+
     }
 }
