@@ -1,5 +1,3 @@
-using ConsoleTable;
-
 namespace Abgabe_1_2;
 
 public static class Initialize
@@ -74,22 +72,23 @@ public static class Initialize
             Good goodForTender = TenderGenerator.ChooseRandomGood();
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
-          
+
             string startingCity = "";
             string endingCity = "";
-            
+
             string deliveryDate = TenderGenerator.GenerateDeliveryDate(goodForTender);
             double compensation = TenderGenerator.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
             double penalty = TenderGenerator.DeterminePenalty(compensation);
 
             do
-                
+
             {
                 startingCity = TenderGenerator.GenerateStartingCity();
                 endingCity = TenderGenerator.GenerateEndingCity();
             } while (startingCity == endingCity);
 
-            tenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation, penalty));
+            tenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
+                penalty, deliveryDate));
         }
 
         Tender.PrintoutTenders(tenders, numOfTendersToCreate);

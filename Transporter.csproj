@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ConsoleTable" Version="1.0.1.1" />
+      <PackageReference Include="ConsoleTables" Version="2.4.2" />
     </ItemGroup>
 
 </Project>
