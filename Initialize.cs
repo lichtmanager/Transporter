@@ -61,22 +61,22 @@ public static class Initialize
         List<Tender> tenders = new List<Tender>();
         for (int i = 0; i < numOfTendersToCreate; i++)
         {
-            Good goodForTender = TenderGenerator.ChooseRandomGood();
+            Good goodForTender = TenderPropertiesGenerator.ChooseRandomGood();
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
 
             string startingCity = "";
             string endingCity = "";
 
-            string deliveryDate = TenderGenerator.GenerateDeliveryDate(goodForTender);
-            double compensation = TenderGenerator.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
-            double penalty = TenderGenerator.DeterminePenalty(compensation);
+            string deliveryDate = TenderPropertiesGenerator.GenerateDeliveryDate(goodForTender);
+            double compensation =
+                TenderPropertiesGenerator.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
+            double penalty = TenderPropertiesGenerator.DeterminePenalty(compensation);
 
             do
-
             {
-                startingCity = TenderGenerator.GenerateStartingCity();
-                endingCity = TenderGenerator.GenerateEndingCity();
+                startingCity = TenderPropertiesGenerator.GenerateStartingCity();
+                endingCity = TenderPropertiesGenerator.GenerateEndingCity();
             } while (startingCity == endingCity);
 
             tenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
