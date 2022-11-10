@@ -53,7 +53,7 @@ public class Truck
         return size;
     }
 
-    public static string MappedTruckAge(int randomTruckAge)
+    private static string MappedTruckAge(int randomTruckAge)
     {
         string ageString;
         if (randomTruckAge == 0)
@@ -66,6 +66,18 @@ public class Truck
             ageString = $"{randomTruckAge} Jahre";
 
             return ageString;
+        }
+    }
+
+    public static void PrintOut(List<Truck> listOfTrucks)
+    {
+        for (int i = 0; i < listOfTrucks.Count; i++)
+        {
+            Console.WriteLine(
+                $"{i + 1}: {Truck.MappedTruckType(listOfTrucks[i].TruckType)}   \t {Truck.MappedTruckAge(listOfTrucks[i].TruckAge)}  \t" +
+                $" Standort: {Truck.MappedTruckLocation(listOfTrucks[i].TruckLocation)}  \t Perf: {listOfTrucks[i].TruckPerformance.ToString()} " +
+                $"  \t max. Load: {listOfTrucks[i].TruckMaxPayload.ToString()}   \t Cons:{listOfTrucks[i].TruckConsumption.ToString()}" +
+                $"   \t Preis: {listOfTrucks[i].TruckPrice:0.##}€");
         }
     }
 }

@@ -37,15 +37,7 @@ public static class Initialize
             listOfTrucks.Add(truck);
         }
 
-
-        for (int i = 0; i < numberOfTrucksToCreate; i++)
-        {
-            Console.WriteLine(
-                $"{i + 1}: {Truck.MappedTruckType(listOfTrucks[i].TruckType)}   \t {Truck.MappedTruckAge(listOfTrucks[i].TruckAge)}  \t" +
-                $" Standort: {Truck.MappedTruckLocation(listOfTrucks[i].TruckLocation)}  \t Perf: {listOfTrucks[i].TruckPerformance.ToString()} " +
-                $"  \t max. Load: {listOfTrucks[i].TruckMaxPayload.ToString()}   \t Cons:{listOfTrucks[i].TruckConsumption.ToString()}" +
-                $"   \t Preis: {listOfTrucks[i].TruckPrice:0.##}€");
-        }
+        Truck.PrintOut(listOfTrucks);
     }
 
     public static void InitializeNDrivers(int numOfDriversToCreate)
