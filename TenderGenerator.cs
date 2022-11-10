@@ -7,7 +7,7 @@ public static class TenderPropertiesGenerator
     public static Good ChooseRandomGood()
     {
         Random rnd = new Random();
-        List<Good> goodsList = Good.InitializeGood();
+        List<Good> goodsList = Initialize.InitializeGood();
 
         return goodsList[rnd.Next(0, goodsList.Count)];
     }

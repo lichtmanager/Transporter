@@ -1,8 +1,19 @@
 namespace Abgabe_1_2;
 
 public static class Initialize
-
 {
+    public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
+    {
+        string allNamesString =
+            File.ReadAllText(
+                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
+
+        List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
+
+        var (firstNames, lastNames) = NameGenerator.DivideFirstLastName(namesList);
+        return (firstNames, lastNames);
+    }
+
     public static City[] InitializeCities()
     {
         City[] cityArray = new City[8];
@@ -16,7 +27,6 @@ public static class Initialize
         cityArray[7] = new City("Tallinn", 1889074, 1368933);
         return cityArray;
     }
-
 
     public static void InitializeNewTrucks(int numberOfTrucksToCreate)
     {
@@ -86,16 +96,20 @@ public static class Initialize
         Tender.PrintoutTenders(tenders, numOfTendersToCreate);
     }
 
-
-    public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
+    public static List<Good> InitializeGood()
     {
-        string allNamesString =
-            File.ReadAllText(
-                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
+        List<Good> goodsTypesList = new List<Good>();
 
-        List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
+        goodsTypesList.Add(new Good("Zigaretten", "Pritschenwagen", 10, 20, 100));
+        goodsTypesList.Add(new Good("Textilien", "Pritschenwagen", 10, 20, 50));
+        goodsTypesList.Add(new Good("Schokolade", "Pritschenwagen", 10, 10, 120));
+        goodsTypesList.Add(new Good("Früchte", "Kühllastwagen", 6, 14, 150));
+        goodsTypesList.Add(new Good("Eiscreme", "Kühllastwagen", 6, 10, 180));
+        goodsTypesList.Add(new Good("Fleisch", "Kühllastwagen", 6, 14, 130));
+        goodsTypesList.Add(new Good("Rohöl", "Tanklaster", 10, 14, 120));
+        goodsTypesList.Add(new Good("Heizöl", "Tanklaster", 10, 25, 90));
+        goodsTypesList.Add(new Good("Benzin", "Tanklaster", 10, 28, 80));
 
-        var (firstNames, lastNames) = NameGenerator.DivideFirstLastName(namesList);
-        return (firstNames, lastNames);
+        return goodsTypesList;
     }
 }
