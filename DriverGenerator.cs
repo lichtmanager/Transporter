@@ -1,12 +1,10 @@
-
-
 namespace Abgabe_1_2;
 
 public static class DriverGenerator
 {
     public static (string driversName, int salary, int workingMode) GenerateProperties()
     {
-        var (firstNames, lastNames) = DriverGenerator.LoadNamesFromFile();
+        var (firstNames, lastNames) = Initialize.LoadNamesFromFile();
 
         string driversName = NameGenerator.GenerateDriverName(firstNames, lastNames);
 
@@ -18,17 +16,6 @@ public static class DriverGenerator
         return (driversName, salary, workingMode);
     }
 
-    public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
-    {
-        string allNamesString =
-            File.ReadAllText(
-                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
-
-        List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
-
-        var (firstNames, lastNames) = NameGenerator.DivideFirstLastName(namesList);
-        return (firstNames, lastNames);
-    }
 
     public static int GenerateSalary()
     {

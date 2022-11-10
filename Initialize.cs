@@ -43,7 +43,7 @@ public static class Initialize
     public static void InitializeNDrivers(int numOfDriversToCreate)
     {
         List<Driver> listOfTruckers = new List<Driver>();
-        var (firstNames, lastNames) = DriverGenerator.LoadNamesFromFile();
+        var (firstNames, lastNames) = Initialize.LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
@@ -84,5 +84,18 @@ public static class Initialize
         }
 
         Tender.PrintoutTenders(tenders, numOfTendersToCreate);
+    }
+
+
+    public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
+    {
+        string allNamesString =
+            File.ReadAllText(
+                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
+
+        List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
+
+        var (firstNames, lastNames) = NameGenerator.DivideFirstLastName(namesList);
+        return (firstNames, lastNames);
     }
 }
