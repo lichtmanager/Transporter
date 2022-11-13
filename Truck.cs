@@ -80,4 +80,10 @@ public class Truck
                 $"   \t Preis: {listOfTrucks[i].TruckPrice:0.##}€");
         }
     }
+
+    public static void HandlePurchase(Market market, int stroke)
+    {
+        //Company get => 
+        // market.AvailTrucks[stroke];
+    }
 }

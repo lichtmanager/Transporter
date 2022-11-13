@@ -27,7 +27,6 @@ public static class Main_
 
 
         Company company = GuiLogic.StartupProcess();
-        List<Truck> AvailTrucks = Initialize.InitializeNTrucks(8);
 
 
         GuiLogic.Navigation();

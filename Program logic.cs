@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using ConsoleTables;
 
@@ -6,29 +7,29 @@ namespace Abgabe_1_2;
 
 public class GuiLogic
 {
-    // public List<Driver> availDrivers = Initialize.InitializeNDrivers(5);
-
     public static Company StartupProcess()
     {
         Company company = Initialize.InitializeCompany();
         Company.PrintOutCompanyStatus(company);
+
         return company;
     }
-
 
     public static void Navigation()
     {
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
-        DetermineActionOnInput(stroke);
+        Market market = Initialize.InitializeMarket(8, 5, 8);
+
+        DetermineActionOnNavigationInput(stroke, market);
     }
 
-    private static void DetermineActionOnInput(int stroke)
+    private static void DetermineActionOnNavigationInput(int stroke, Market market)
     {
         switch (stroke)
         {
             case 1:
-                TruckSelection();
+                TruckSelection(market);
                 break;
             case 2:
                 Console.WriteLine("einstellen");
@@ -45,9 +46,13 @@ public class GuiLogic
         }
     }
 
-    private static void TruckSelection()
+    private static void TruckSelection(Market market)
     {
-        //Truck.PrintOut();
+        Console.WriteLine("Choose the truck to buy or return to Navigation with 0");
+        Truck.PrintOut(market.AvailTrucks);
+        int stroke = GetUserInput();
+
+        Truck.HandlePurchase(market, stroke);
     }
 
     private static void PrintOutAvailableNavOptions()

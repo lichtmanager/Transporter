@@ -68,9 +68,9 @@ public static class Initialize
         return listOfTruckers;
     }
 
-    public static void InitializeNTenders(int numOfTendersToCreate)
+    public static List<Tender> InitializeNTenders(int numOfTendersToCreate)
     {
-        List<Tender> tenders = new List<Tender>();
+        List<Tender> listOfTenders = new List<Tender>();
         for (int i = 0; i < numOfTendersToCreate; i++)
         {
             Good goodForTender = TenderPropertiesGenerator.ChooseRandomGood();
@@ -91,11 +91,22 @@ public static class Initialize
                 endingCity = TenderPropertiesGenerator.GenerateEndingCity();
             } while (startingCity == endingCity);
 
-            tenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
+            listOfTenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
                 penalty, deliveryDate));
         }
 
-        Tender.PrintoutTenders(tenders, numOfTendersToCreate);
+        return listOfTenders;
+    }
+
+    public static Market InitializeMarket(int numberOfTrucks, int numOfDrivers, int numOfTenders)
+    {
+        List<Truck> availTrucks = InitializeNTrucks(numberOfTrucks);
+        List<Driver> availDrivers = InitializeNDrivers(numOfDrivers);
+        List<Tender> availTenders = InitializeNTenders(numOfTenders);
+
+        Market market = new Market(availTrucks, availDrivers, availTenders);
+
+        return market;
     }
 
     public static List<Good> InitializeGood()
@@ -117,11 +128,15 @@ public static class Initialize
 
     public static Company InitializeCompany()
     {
-        string cName = NameHelper.NameSelection();
+        string cName = "Bärchenlogistik";
+        // string cName = NameHelper.NameSelection();
+        //ToDo: remove static name!
+
+
         const int balance = 5000;
-        const int availTrucks = 0;
-        const int availDrivers = 0;
-        const int availTenders = 0;
+        List<Truck> availTrucks = new List<Truck>();
+        List<Driver> availDrivers = new List<Driver>();
+        List<Tender> availTenders = new List<Tender>();
 
         Company company = new Company(cName, balance, availTrucks, availDrivers, availTenders);
         return company;

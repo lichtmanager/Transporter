@@ -6,25 +6,26 @@ public class Company
 {
     private string _cName;
     private double _balance;
-    private int _availTrucks;
-    private int _availDrivers;
-    private int _availTenders;
+    public List<Truck> AvailTrucks;
+    public List<Driver> OwnedDrivers;
+    public List<Tender> OwnedTenders;
 
-    public Company(string cName, int balance, int availTrucks, int availDrivers, int availTenders)
+    public Company(string cName, int balance, List<Truck> ownedTrucks, List<Driver> ownedDrivers,
+        List<Tender> ownedTenders)
     {
         this._cName = cName;
         this._balance = balance;
-        this._availTrucks = availTrucks;
-        this._availDrivers = availDrivers;
-        this._availTenders = availTenders;
+        this.AvailTrucks = ownedTrucks;
+        this.OwnedDrivers = ownedDrivers;
+        this.OwnedTenders = ownedTenders;
     }
 
 
     public static void PrintOutCompanyStatus(Company company)
     {
         Console.WriteLine(
-            $"{company._cName} | {company._balance} EUR | {DateTime.Today.ToShortDateString()} | {company._availTrucks} Trucks | " +
-            $"{company._availDrivers} Drivers | {company._availTenders} Tenders");
+            $"{company._cName} | {company._balance} EUR | {DateTime.Today.ToShortDateString()} | {company.AvailTrucks.Count} Trucks | " +
+            $"{company.OwnedDrivers.Count} Drivers | {company.OwnedTenders.Count} Tenders");
         Console.WriteLine();
     }
 }
