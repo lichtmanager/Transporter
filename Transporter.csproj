@@ -5,11 +5,13 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Abgabe_1_2</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
+        <StartupObject>Abgabe_1_2.Main_</StartupObject>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="ConsoleTables" Version="2.4.2" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
       <PackageReference Include="xunit" Version="2.4.2" />
     </ItemGroup>
 
