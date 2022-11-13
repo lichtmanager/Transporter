@@ -6,17 +6,17 @@ namespace Abgabe_1_2;
 
 public class GuiLogic
 {
+    // public List<Driver> availDrivers = Initialize.InitializeNDrivers(5);
 
     public static Company StartupProcess()
     {
         Company company = Initialize.InitializeCompany();
         Company.PrintOutCompanyStatus(company);
-        Navigation();
         return company;
     }
 
 
-    private static void Navigation()
+    public static void Navigation()
     {
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
@@ -28,7 +28,7 @@ public class GuiLogic
         switch (stroke)
         {
             case 1:
-                Console.WriteLine("kaufen");
+                TruckSelection();
                 break;
             case 2:
                 Console.WriteLine("einstellen");
@@ -45,17 +45,31 @@ public class GuiLogic
         }
     }
 
+    private static void TruckSelection()
+    {
+        //Truck.PrintOut();
+    }
+
     private static void PrintOutAvailableNavOptions()
     {
         Console.Write("1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n");
+        Console.Write("Please choose in order proceed and hit the equivalent number: ");
         Console.WriteLine();
     }
 
     private static int GetUserInput()
     {
-        Console.Write("Please choose the number to proceed and hit the equivalent key: ");
         var userInput = Console.ReadKey(true);
-        int stroke = int.Parse(userInput.KeyChar.ToString());
-        return stroke;
+        try
+        {
+            int stroke = int.Parse(userInput.KeyChar.ToString());
+            return stroke;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("An error occured. You might have not pressed a number. Please hit a number key: ");
+            GetUserInput();
+            throw;
+        }
     }
 }

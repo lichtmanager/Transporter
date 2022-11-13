@@ -6,7 +6,7 @@ public static class Initialize
     {
         string allNamesString =
             File.ReadAllText(
-                @"/Users/philipplichtmannegger/Developement/dotNET/Abgabe 1/Transporter/names.txt");
+                @"/Users/philipplichtmannegger/Development/dotNET/names.txt");
 
         List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
 
@@ -28,7 +28,7 @@ public static class Initialize
         return cityArray;
     }
 
-    public static void InitializeNewTrucks(int numberOfTrucksToCreate)
+    public static List<Truck> InitializeNTrucks(int numberOfTrucksToCreate)
     {
         List<Truck> listOfTrucks = new List<Truck>();
         for (int i = 0; i < numberOfTrucksToCreate; i++)
@@ -44,13 +44,14 @@ public static class Initialize
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price);
+
             listOfTrucks.Add(truck);
         }
 
-        Truck.PrintOut(listOfTrucks);
+        return listOfTrucks;
     }
 
-    public static void InitializeNDrivers(int numOfDriversToCreate)
+    public static List<Driver> InitializeNDrivers(int numOfDriversToCreate)
     {
         List<Driver> listOfTruckers = new List<Driver>();
         var (firstNames, lastNames) = Initialize.LoadNamesFromFile();
@@ -63,7 +64,8 @@ public static class Initialize
             listOfTruckers.Add(driverInstance);
         }
 
-        Driver.PrintoutDrivers(numOfDriversToCreate, listOfTruckers);
+
+        return listOfTruckers;
     }
 
     public static void InitializeNTenders(int numOfTendersToCreate)

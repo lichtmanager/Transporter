@@ -5,7 +5,7 @@ namespace Abgabe_1_2;
 public class Company
 {
     private string _cName;
-    private int _balance;
+    private double _balance;
     private int _availTrucks;
     private int _availDrivers;
     private int _availTenders;
