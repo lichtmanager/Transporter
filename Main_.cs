@@ -23,6 +23,6 @@ public static class Main_
 
         // Initialize.InitializeNTenders(10);
 
-        GuiLogic.StartupProcess();
+        Company company = GuiLogic.StartupProcess();
     }
 }

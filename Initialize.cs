@@ -112,4 +112,16 @@ public static class Initialize
 
         return goodsTypesList;
     }
+
+    public static Company InitializeCompany()
+    {
+        string cName = NameHelper.NameSelection();
+        const int balance = 5000;
+        const int availTrucks = 0;
+        const int availDrivers = 0;
+        const int availTenders = 0;
+
+        Company company = new Company(cName, balance, availTrucks, availDrivers, availTenders);
+        return company;
+    }
 }
