@@ -2,12 +2,12 @@ namespace Abgabe_1_2;
 
 public class NameHelper
 {
-    public static void NameTester()
+    public static void NameSelection()
     {
-        Console.Write("Bitte hier den Kandidaten für die Firma eingeben: ");
+        Console.Write("What's your company name? ");
 
         string? nameOfFirmToTest = Console.ReadLine();
 
-        Console.WriteLine("* " + nameOfFirmToTest + " *");
+        Console.WriteLine("> " + nameOfFirmToTest + " <");
     }
 }

@@ -6,7 +6,7 @@ public static class Main_
 
     {
         // Call NameHelper to test, if a name looks good. 
-        // NameHelper.NameTester();
+        // NameHelper.NameSelection();
 
         // City[] cities = Initialize.InitializeCities();
 
@@ -21,6 +21,8 @@ public static class Main_
 
         // Initialize.InitializeNewTrucks(5);
 
-        Initialize.InitializeNTenders(10);
+        // Initialize.InitializeNTenders(10);
+
+        GuiLogic.StartupProcess();
     }
 }
