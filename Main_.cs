@@ -26,7 +26,7 @@ public static class Main_
          */
 
 
-        Company company = GuiLogic.StartupProcess();
+        GuiLogic.StartupProcess();
 
 
         GuiLogic.Navigation();

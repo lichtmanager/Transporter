@@ -7,29 +7,26 @@ namespace Abgabe_1_2;
 
 public class GuiLogic
 {
-    public static Company StartupProcess()
+    public static void StartupProcess()
     {
-        Company company = Initialize.InitializeCompany();
-        Company.PrintOutCompanyStatus(company);
-
-        return company;
     }
 
     public static void Navigation()
     {
+        Company.PrintOutCompanyStatus(storage.company);
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
-        Market market = Initialize.InitializeMarket(8, 5, 8);
+        //Market market = Initialize.InitializeMarket(8, 5, 8);
 
-        DetermineActionOnNavigationInput(stroke, market);
+        DetermineActionOnNavigationInput(stroke);
     }
 
-    private static void DetermineActionOnNavigationInput(int stroke, Market market)
+    private static void DetermineActionOnNavigationInput(int stroke)
     {
         switch (stroke)
         {
             case 1:
-                TruckSelection(market);
+                TruckSelection();
                 break;
             case 2:
                 Console.WriteLine("einstellen");
@@ -46,13 +43,27 @@ public class GuiLogic
         }
     }
 
-    private static void TruckSelection(Market market)
+    private static void TruckSelection()
     {
-        Console.WriteLine("Choose the truck to buy or return to Navigation with 0");
-        Truck.PrintOut(market.AvailTrucks);
-        int stroke = GetUserInput();
+        if (storage.availTrucks.Count > 0)
+        {
+            Console.WriteLine("Choose the truck to buy or return to Navigation with 0");
+            Truck.PrintOut(storage.availTrucks);
+            int stroke = GetUserInput();
+            Truck.HandlePurchase(stroke);
+            Navigation();
+        }
+        else
+        {
+            ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine();
+            }
 
-        Truck.HandlePurchase(market, stroke);
+            Navigation();
+        }
     }
 
     private static void PrintOutAvailableNavOptions()
@@ -75,6 +86,14 @@ public class GuiLogic
             Console.WriteLine("An error occured. You might have not pressed a number. Please hit a number key: ");
             GetUserInput();
             throw;
+        }
+    }
+
+    public static void ClearConsoleScreen()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Console.WriteLine();
         }
     }
 }

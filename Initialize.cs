@@ -100,11 +100,7 @@ public static class Initialize
 
     public static Market InitializeMarket(int numberOfTrucks, int numOfDrivers, int numOfTenders)
     {
-        List<Truck> availTrucks = InitializeNTrucks(numberOfTrucks);
-        List<Driver> availDrivers = InitializeNDrivers(numOfDrivers);
-        List<Tender> availTenders = InitializeNTenders(numOfTenders);
-
-        Market market = new Market(availTrucks, availDrivers, availTenders);
+        Market market = new Market(storage.availTrucks, storage.availDrivers, storage.availTenders);
 
         return market;
     }
@@ -132,13 +128,10 @@ public static class Initialize
         // string cName = NameHelper.NameSelection();
         //ToDo: remove static name!
 
+        int balance = 5000;
 
-        const int balance = 5000;
-        List<Truck> availTrucks = new List<Truck>();
-        List<Driver> availDrivers = new List<Driver>();
-        List<Tender> availTenders = new List<Tender>();
+        Company company = new Company(cName, balance, storage.ownedTrucks, storage.ownedDrivers, storage.ownedTenders);
 
-        Company company = new Company(cName, balance, availTrucks, availDrivers, availTenders);
         return company;
     }
 }

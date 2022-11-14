@@ -81,9 +81,21 @@ public class Truck
         }
     }
 
-    public static void HandlePurchase(Market market, int stroke)
+    public static void HandlePurchase(int stroke)
     {
-        //Company get => 
-        // market.AvailTrucks[stroke];
+        storage.ownedTrucks.Add((storage.availTrucks[stroke - 1]));
+        storage.availTrucks.Remove(storage.availTrucks[stroke - 1]);
+
+
+        Console.WriteLine("------------------------------");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine();
+        }
+
+        Truck.PrintOut(storage.availTrucks);
+        Console.WriteLine("------------------------------");
+        Truck.PrintOut(storage.ownedTrucks);
+        Console.WriteLine("------------------------------");
     }
 }
