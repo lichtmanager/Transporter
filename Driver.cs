@@ -2,8 +2,6 @@ namespace Abgabe_1_2;
 
 public class Driver
 {
-    
-
     private string TruckerName { get; }
     private int Salary { get; }
     private int WorkingMode { get; }
@@ -35,5 +33,11 @@ public class Driver
 
         return mappedWorkingMode;
     }
-    
+
+    public static void HandleEmployment(int stroke)
+    {
+        int listIndex = stroke - 1;
+        storage.ownedDrivers.Add(storage.availDrivers[listIndex]);
+        storage.availDrivers.Remove(storage.availDrivers[listIndex]);
+    }
 }

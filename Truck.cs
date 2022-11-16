@@ -85,23 +85,27 @@ public class Truck
 
     public static void HandlePurchase(int stroke)
     {
-        storage.ownedTrucks.Add((storage.availTrucks[stroke - 1]));
+        int listIndex = stroke - 1;
+        storage.ownedTrucks.Add((storage.availTrucks[listIndex]));
 
-        storage.company.balance = storage.company.balance - storage.availTrucks[stroke - 1].TruckPrice;
+        storage.company.balance = storage.company.balance - storage.availTrucks[listIndex].TruckPrice;
 
+        storage.availTrucks.Remove(storage.availTrucks[listIndex]);
 
-        storage.availTrucks.Remove(storage.availTrucks[stroke - 1]);
-
-
-        Console.WriteLine("------------------------------");
-        for (int i = 0; i < 10; i++)
+        // ToDo remove cw before submitting on moodle. dev usage only
+        // PrintOutTrucks();
+        /*void PrintOutTrucks()
         {
-            Console.WriteLine();
-        }
+            Console.WriteLine("------------------------------");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine();
+            }
 
-        Truck.PrintOut(storage.availTrucks);
-        Console.WriteLine("------------------------------");
-        Truck.PrintOut(storage.ownedTrucks);
-        Console.WriteLine("------------------------------");
+            Truck.PrintOut(storage.availTrucks);
+            Console.WriteLine("------------------------------");
+            Truck.PrintOut(storage.ownedTrucks);
+            Console.WriteLine("------------------------------");
+        }*/
     }
 }
