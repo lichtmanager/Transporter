@@ -29,7 +29,7 @@ public class GuiLogic
                 TruckSelection();
                 break;
             case 2:
-                Console.WriteLine("einstellen");
+                DriverSelection();
                 break;
             case 3:
                 Console.WriteLine("annehmen");
@@ -57,6 +57,29 @@ public class GuiLogic
         {
             ClearConsoleScreen();
             Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine();
+            }
+
+            Navigation();
+        }
+    }
+
+    private static void DriverSelection()
+    {
+        if (storage.availDrivers.Count > 0)
+        {
+            Console.WriteLine("Choose the Driver to employ or return to Navigation with 0");
+            Driver.PrintOut(storage.availDrivers);
+            int stroke = GetUserInput();
+            Driver.HandlePurchase(stroke);
+            Navigation();
+        }
+        else
+        {
+            ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
             for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine();

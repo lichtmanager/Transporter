@@ -92,20 +92,5 @@ public class Truck
 
         storage.availTrucks.Remove(storage.availTrucks[listIndex]);
 
-        // ToDo remove cw before submitting on moodle. dev usage only
-        // PrintOutTrucks();
-        /*void PrintOutTrucks()
-        {
-            Console.WriteLine("------------------------------");
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine();
-            }
-
-            Truck.PrintOut(storage.availTrucks);
-            Console.WriteLine("------------------------------");
-            Truck.PrintOut(storage.ownedTrucks);
-            Console.WriteLine("------------------------------");
-        }*/
     }
 }

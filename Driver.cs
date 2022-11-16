@@ -14,9 +14,9 @@ public class Driver
         this.WorkingMode = randomWorkingMode;
     }
 
-    public static void PrintoutDrivers(int numOfDriversToCreate, List<Driver> listOfTruckers)
+    public static void PrintOut(List<Driver> listOfTruckers)
     {
-        for (int i = 0; i < numOfDriversToCreate; i++)
+        for (int i = 0; i < listOfTruckers.Count; i++)
         {
             Console.WriteLine(
                 $"{i + 1}: {listOfTruckers[i].TruckerName}\t{listOfTruckers[i].Salary.ToString()}€" +
@@ -38,6 +38,14 @@ public class Driver
     {
         int listIndex = stroke - 1;
         storage.ownedDrivers.Add(storage.availDrivers[listIndex]);
+        storage.availDrivers.Remove(storage.availDrivers[listIndex]);
+    }
+
+    public static void HandlePurchase(int stroke)
+    {
+        int listIndex = stroke - 1;
+        storage.ownedDrivers.Add(storage.availDrivers[listIndex]);
+
         storage.availDrivers.Remove(storage.availDrivers[listIndex]);
     }
 }
