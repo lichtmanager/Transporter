@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Abgabe_1_2;
 
 public class Truck
@@ -84,6 +86,10 @@ public class Truck
     public static void HandlePurchase(int stroke)
     {
         storage.ownedTrucks.Add((storage.availTrucks[stroke - 1]));
+
+        storage.company.balance = storage.company.balance - storage.availTrucks[stroke - 1].TruckPrice;
+
+
         storage.availTrucks.Remove(storage.availTrucks[stroke - 1]);
 
 

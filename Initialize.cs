@@ -128,7 +128,7 @@ public static class Initialize
         // string cName = NameHelper.NameSelection();
         //ToDo: remove static name!
 
-        int balance = 5000;
+        int balance = 50000;
 
         Company company = new Company(cName, balance, storage.ownedTrucks, storage.ownedDrivers, storage.ownedTenders);
 
