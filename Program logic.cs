@@ -32,7 +32,7 @@ public class GuiLogic
                 DriverSelection();
                 break;
             case 3:
-                Console.WriteLine("annehmen");
+                TenderSelection();
                 break;
             case 4:
                 Console.WriteLine("beenden");
@@ -89,6 +89,29 @@ public class GuiLogic
         }
     }
 
+    private static void TenderSelection()
+    {
+        if (storage.availTenders.Count > 0)
+        {
+            Console.WriteLine("Choose the Tender to employ or return to Navigation with 0");
+            Tender.PrintOut(storage.availTenders);
+            int stroke = GetUserInput();
+            Tender.HandlePurchase(stroke);
+            Navigation();
+        }
+        else
+        {
+            ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ There are no more Tenders to employ +++++++++++");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine();
+            }
+
+            Navigation();
+        }
+    }
+
     private static void PrintOutAvailableNavOptions()
     {
         Console.Write("1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n");
@@ -112,7 +135,7 @@ public class GuiLogic
         }
     }
 
-    public static void ClearConsoleScreen()
+    private static void ClearConsoleScreen()
     {
         for (int i = 0; i < 20; i++)
         {

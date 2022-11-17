@@ -26,12 +26,12 @@ public class Tender
         this.DeliveryDate = deliveryDate;
     }
 
-    public static void PrintoutTenders(List<Tender> tenders, int numOfTenders)
+    public static void PrintOut(List<Tender> tenders)
     {
         var table = new ConsoleTable("#", "Good", "Type", "Origin", "Destination", "Weight", "Delivery-date",
             "Compensation", "Penalty");
 
-        for (int i = 0; i < numOfTenders; i++)
+        for (int i = 0; i < tenders.Count; i++)
         {
             table.AddRow($"{i + 1}", $"{tenders[i].Good.GoodsName}", $"{tenders[i].Good.ReqTruckForTransport}",
                 $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight.ToString()}t",
@@ -42,5 +42,13 @@ public class Tender
         table.Write();
         Console.WriteLine();
         Console.ReadKey();
+    }
+
+    public static void HandlePurchase(int stroke)
+    {
+        int listIndex = stroke - 1;
+        storage.ownedTenders.Add((storage.availTenders[listIndex]));
+
+        storage.availTenders.Remove(storage.availTenders[listIndex]);
     }
 }
