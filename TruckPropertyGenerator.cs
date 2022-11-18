@@ -2,7 +2,7 @@ namespace Abgabe_1_2;
 
 public static class TruckPropertiesGenerator
 {
-    public static double DetermineTruckPrice(int age, int size, int type)
+    public static double CalculateTruckPrice(int age, int size, int type)
     {
         int basePrice;
         double price;
@@ -45,7 +45,7 @@ public static class TruckPropertiesGenerator
     {
         Random rnd = new Random();
         int truckAge = rnd.Next(0, 11);
-        
+
         return truckAge;
     }
 

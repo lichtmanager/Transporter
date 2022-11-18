@@ -41,12 +41,17 @@ public class Tender
 
         table.Write();
         Console.WriteLine();
-        Console.ReadKey();
     }
 
     public static void HandlePurchase(int stroke)
     {
         int listIndex = stroke - 1;
+
+        if (stroke == 0)
+        {
+            GuiLogic.Navigation();
+        }
+
         storage.ownedTenders.Add((storage.availTenders[listIndex]));
 
         storage.availTenders.Remove(storage.availTenders[listIndex]);

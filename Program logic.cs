@@ -38,7 +38,7 @@ public class GuiLogic
                 Console.WriteLine("beenden");
                 break;
             default:
-                Console.WriteLine("0");
+                Navigation();
                 break;
         }
     }
@@ -97,6 +97,7 @@ public class GuiLogic
             Tender.PrintOut(storage.availTenders);
             int stroke = GetUserInput();
             Tender.HandlePurchase(stroke);
+            ClearConsoleScreen();
             Navigation();
         }
         else

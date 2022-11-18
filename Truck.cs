@@ -85,12 +85,18 @@ public class Truck
 
     public static void HandlePurchase(int stroke)
     {
+        if (stroke == 0)
+        {
+            GuiLogic.Navigation();
+        }
+
         int listIndex = stroke - 1;
+
+
         storage.ownedTrucks.Add((storage.availTrucks[listIndex]));
 
-        storage.company.balance = storage.company.balance - storage.availTrucks[listIndex].TruckPrice;
+        storage.company.balance -= storage.availTrucks[listIndex].TruckPrice;
 
         storage.availTrucks.Remove(storage.availTrucks[listIndex]);
-
     }
 }

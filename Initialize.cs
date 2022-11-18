@@ -40,7 +40,7 @@ public static class Initialize
             int perf = TruckPropertiesGenerator.DetermineTruckPerformanceBySize(size);
             int payload = TruckPropertiesGenerator.DetermineMaxPayload(size, type);
             int cons = TruckPropertiesGenerator.DetermineTruckConsumption(type, size, age);
-            double price = TruckPropertiesGenerator.DetermineTruckPrice(age, size, type);
+            double price = TruckPropertiesGenerator.CalculateTruckPrice(age, size, type);
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price);
