@@ -95,7 +95,7 @@ public class Truck
 
         storage.ownedTrucks.Add((storage.availTrucks[listIndex]));
 
-        storage.company.balance -= storage.availTrucks[listIndex].TruckPrice;
+        storage.company.Balance -= storage.availTrucks[listIndex].TruckPrice;
 
         storage.availTrucks.Remove(storage.availTrucks[listIndex]);
     }

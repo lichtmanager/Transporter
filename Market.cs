@@ -1,4 +1,4 @@
-namespace Abgabe_1_2;
+/*namespace Abgabe_1_2;
 
 public class Market
 {
@@ -12,4 +12,5 @@ public class Market
         this.AvailDrivers = drivers;
         this.AvailTenders = tenders;
     }
-}
+}*/
+

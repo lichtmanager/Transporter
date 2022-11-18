@@ -98,12 +98,12 @@ public static class Initialize
         return listOfTenders;
     }
 
-    public static Market InitializeMarket(int numberOfTrucks, int numOfDrivers, int numOfTenders)
+    /*public static Market InitializeMarket(int numberOfTrucks, int numOfDrivers, int numOfTenders)
     {
         Market market = new Market(storage.availTrucks, storage.availDrivers, storage.availTenders);
 
         return market;
-    }
+    }*/
 
     public static List<Good> InitializeGood()
     {
@@ -130,7 +130,8 @@ public static class Initialize
 
         int balance = 50000;
 
-        Company company = new Company(cName, balance, storage.ownedTrucks, storage.ownedDrivers, storage.ownedTenders);
+        Company company = new Company(cName, balance, DateTime.Today, storage.ownedTrucks, storage.ownedDrivers,
+            storage.ownedTenders);
 
         return company;
     }

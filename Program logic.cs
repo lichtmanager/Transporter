@@ -35,12 +35,19 @@ public class GuiLogic
                 TenderSelection();
                 break;
             case 4:
-                Console.WriteLine("beenden");
+                EndDay();
                 break;
             default:
                 Navigation();
                 break;
         }
+    }
+
+    private static void EndDay()
+    {
+        storage.company.Date = storage.company.Date.AddDays(1);
+        ClearConsoleScreen();
+        Navigation();
     }
 
     private static void TruckSelection()
@@ -93,7 +100,7 @@ public class GuiLogic
     {
         if (storage.availTenders.Count > 0)
         {
-            Console.WriteLine("Choose the Tender to employ or return to Navigation with 0");
+            Console.WriteLine("Choose the Tender to accept or return to Navigation with 0");
             Tender.PrintOut(storage.availTenders);
             int stroke = GetUserInput();
             Tender.HandlePurchase(stroke);
@@ -103,7 +110,7 @@ public class GuiLogic
         else
         {
             ClearConsoleScreen();
-            Console.WriteLine("+++++++++++ There are no more Tenders to employ +++++++++++");
+            Console.WriteLine("+++++++++++ There are no more Tenders to accept +++++++++++");
             for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine();
