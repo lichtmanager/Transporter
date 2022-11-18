@@ -98,12 +98,6 @@ public static class Initialize
         return listOfTenders;
     }
 
-    /*public static Market InitializeMarket(int numberOfTrucks, int numOfDrivers, int numOfTenders)
-    {
-        Market market = new Market(storage.availTrucks, storage.availDrivers, storage.availTenders);
-
-        return market;
-    }*/
 
     public static List<Good> InitializeGood()
     {
