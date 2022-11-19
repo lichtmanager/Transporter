@@ -7,10 +7,6 @@ namespace Abgabe_1_2;
 
 public class GuiLogic
 {
-    public static void StartupProcess()
-    {
-    }
-
     public static void Navigation()
     {
         Company.PrintOutCompanyStatus(storage.company);

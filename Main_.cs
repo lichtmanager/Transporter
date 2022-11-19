@@ -25,10 +25,6 @@ public static class Main_
          // Initialize.InitializeNTenders(10);
          */
 
-
-        GuiLogic.StartupProcess();
-
-
         GuiLogic.Navigation();
     }
 }
