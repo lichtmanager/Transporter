@@ -42,7 +42,7 @@ public class Driver
         }
 
         int listIndex = stroke - 1;
-        Storage.ownedDrivers.Add(Storage.availDrivers[listIndex]);
-        Storage.availDrivers.Remove(Storage.availDrivers[listIndex]);
+        StorageController.ownedDrivers.Add(StorageController.availDrivers[listIndex]);
+        StorageController.availDrivers.Remove(StorageController.availDrivers[listIndex]);
     }
 }

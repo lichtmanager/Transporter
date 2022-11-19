@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public static class TruckPropertiesGenerator
+public static class TruckPropertiesController
 {
     public static double CalculateTruckPrice(int age, int size, int type)
     {

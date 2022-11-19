@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public class Storage
+public class StorageController
 {
     public static List<Truck> availTrucks = Initializer.InitializeNTrucks(8);
     public static List<Driver> availDrivers = Initializer.InitializeNDrivers(5);

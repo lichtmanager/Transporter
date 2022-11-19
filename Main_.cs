@@ -6,8 +6,8 @@ public static class Main_
 
     {
         /*Comments
-         // Call NameSelector to test, if a name looks good. 
-         // NameSelector.getUserInput();
+         // Call NameSelectionController to test, if a name looks good. 
+         // NameSelectionController.getUserInput();
  
          // City[] cities = Initializer.InitializeCities();
  
@@ -17,7 +17,7 @@ public static class Main_
          // City.ChooseEnd(cities);
          // City.CalculateAndPrintDistance(cities);
  
-         // DriverGenerator.GenerateProperties();
+         // DriverController.GenerateProperties();
          // Driver.InitializeNDrivers(5);
  
          // Initializer.InitializeNTrucks(5);

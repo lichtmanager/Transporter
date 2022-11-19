@@ -9,7 +9,7 @@ public static class TransporterConsole
 {
     public static void RenderMainMenu()
     {
-        Console.WriteLine(Storage.company.ToString());
+        Console.WriteLine(StorageController.company.ToString());
         // Company.PrintOutStatus(storage.company);
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
@@ -42,19 +42,19 @@ public static class TransporterConsole
 
     public static void EndDay()
     {
-        Storage.company.Date = Storage.company.Date.AddDays(1);
+        StorageController.company.Date = StorageController.company.Date.AddDays(1);
         ClearConsoleScreen();
         RenderMainMenu();
     }
 
     private static void SelectTruck()
     {
-        if (Storage.availTrucks.Count > 0)
+        if (StorageController.availTrucks.Count > 0)
         {
             Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
-            for (int i = 0; i < Storage.availTrucks.Count; i++)
+            for (int i = 0; i < StorageController.availTrucks.Count; i++)
             {
-                Console.WriteLine($"{i + 1}: " + Storage.availTrucks[i]);
+                Console.WriteLine($"{i + 1}: " + StorageController.availTrucks[i]);
             }
 
             int stroke = GetUserInput();
@@ -76,10 +76,10 @@ public static class TransporterConsole
 
     private static void SelectDriver()
     {
-        if (Storage.availDrivers.Count > 0)
+        if (StorageController.availDrivers.Count > 0)
         {
             Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
-            Driver.PrintOut(Storage.availDrivers);
+            Driver.PrintOut(StorageController.availDrivers);
             int stroke = GetUserInput();
             Driver.HandleEmployment(stroke);
             RenderMainMenu();
@@ -99,10 +99,10 @@ public static class TransporterConsole
 
     private static void SelectTender()
     {
-        if (Storage.availTenders.Count > 0)
+        if (StorageController.availTenders.Count > 0)
         {
             Console.WriteLine("Choose the Tender to accept or return to RenderMainMenu with 0");
-            Tender.PrintOut(Storage.availTenders);
+            Tender.PrintOut(StorageController.availTenders);
             int stroke = GetUserInput();
             Tender.HandlePurchase(stroke);
             ClearConsoleScreen();

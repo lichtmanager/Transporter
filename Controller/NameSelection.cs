@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public class NameSelector
+public class NameSelectionController
 {
     public static string GetUserInput()
     {

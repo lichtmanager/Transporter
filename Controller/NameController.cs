@@ -1,6 +1,6 @@
 namespace Abgabe_1_2;
 
-public static class NameGenerator
+public static class NameController
 {
     public static List<string> DivideNamesToList(string allNamesString)
     {

@@ -1,12 +1,12 @@
 namespace Abgabe_1_2;
 
-public static class DriverGenerator
+public static class DriverController
 {
     public static (string driversName, int salary, int workingMode) GenerateProperties()
     {
         var (firstNames, lastNames) = Initializer.LoadNamesFromFile();
 
-        string driversName = NameGenerator.GenerateDriverName(firstNames, lastNames);
+        string driversName = NameController.GenerateDriverName(firstNames, lastNames);
 
         Console.WriteLine(driversName);
 

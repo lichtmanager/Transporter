@@ -7,9 +7,9 @@ public static class Initializer
         string filePath = "/Users/philipplichtmannegger/Development/dotNET/names.txt";
         string allNamesString = File.ReadAllText(@filePath);
 
-        List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
+        List<string> namesList = NameController.DivideNamesToList(allNamesString);
 
-        var (firstNames, lastNames) = NameGenerator.DivideFirstLastName(namesList);
+        var (firstNames, lastNames) = NameController.DivideFirstLastName(namesList);
         return (firstNames, lastNames);
     }
 
@@ -32,14 +32,14 @@ public static class Initializer
         List<Truck> listOfTrucks = new List<Truck>();
         for (int i = 0; i < numberOfTrucksToCreate; i++)
         {
-            int size = TruckPropertiesGenerator.GenerateRandomTruckSize();
-            int type = TruckPropertiesGenerator.GenerateRandomTruckType();
-            int age = TruckPropertiesGenerator.GenerateRandomTruckAge();
-            int loc = TruckPropertiesGenerator.GenerateRandomTruckLocation();
-            int perf = TruckPropertiesGenerator.DetermineTruckPerformanceBySize(size);
-            int payload = TruckPropertiesGenerator.DetermineMaxPayload(size, type);
-            int cons = TruckPropertiesGenerator.DetermineTruckConsumption(type, size, age);
-            double price = TruckPropertiesGenerator.CalculateTruckPrice(age, size, type);
+            int size = TruckPropertiesController.GenerateRandomTruckSize();
+            int type = TruckPropertiesController.GenerateRandomTruckType();
+            int age = TruckPropertiesController.GenerateRandomTruckAge();
+            int loc = TruckPropertiesController.GenerateRandomTruckLocation();
+            int perf = TruckPropertiesController.DetermineTruckPerformanceBySize(size);
+            int payload = TruckPropertiesController.DetermineMaxPayload(size, type);
+            int cons = TruckPropertiesController.DetermineTruckConsumption(type, size, age);
+            double price = TruckPropertiesController.CalculateTruckPrice(age, size, type);
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price);
@@ -58,8 +58,8 @@ public static class Initializer
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
             Driver driverInstance = new Driver(
-                NameGenerator.GenerateDriverName(firstNames, lastNames), DriverGenerator.GenerateSalary(),
-                DriverGenerator.GenerateWorkingMode());
+                NameController.GenerateDriverName(firstNames, lastNames), DriverController.GenerateSalary(),
+                DriverController.GenerateWorkingMode());
             listOfTruckers.Add(driverInstance);
         }
 
@@ -72,22 +72,22 @@ public static class Initializer
         List<Tender> listOfTenders = new List<Tender>();
         for (int i = 0; i < numOfTendersToCreate; i++)
         {
-            Good goodForTender = TenderPropertiesGenerator.ChooseRandomGood();
+            Good goodForTender = TenderPropertiesController.ChooseRandomGood();
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
 
             string startingCity = "";
             string endingCity = "";
 
-            string deliveryDate = TenderPropertiesGenerator.GenerateDeliveryDate(goodForTender);
+            string deliveryDate = TenderPropertiesController.GenerateDeliveryDate(goodForTender);
             double compensation =
-                TenderPropertiesGenerator.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
-            double penalty = TenderPropertiesGenerator.DeterminePenalty(compensation);
+                TenderPropertiesController.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
+            double penalty = TenderPropertiesController.DeterminePenalty(compensation);
 
             do
             {
-                startingCity = TenderPropertiesGenerator.GenerateStartingCity();
-                endingCity = TenderPropertiesGenerator.GenerateEndingCity();
+                startingCity = TenderPropertiesController.GenerateStartingCity();
+                endingCity = TenderPropertiesController.GenerateEndingCity();
             } while (startingCity == endingCity);
 
             listOfTenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
@@ -118,13 +118,14 @@ public static class Initializer
     public static Company InitializeCompany()
     {
         string cName = "Bärchenlogistik";
-        // string cName = NameSelector.getUserInput();
+        // string cName = NameSelectionController.getUserInput();
         //ToDo: remove static name!
 
         int balance = 50000;
 
-        Company company = new Company(cName, balance, DateTime.Today, Storage.ownedTrucks, Storage.ownedDrivers,
-            Storage.ownedTenders);
+        Company company = new Company(cName, balance, DateTime.Today, StorageController.ownedTrucks,
+            StorageController.ownedDrivers,
+            StorageController.ownedTenders);
 
         return company;
     }

@@ -95,10 +95,10 @@ public class Truck
         int listIndex = stroke - 1;
 
 
-        Storage.ownedTrucks.Add((Storage.availTrucks[listIndex]));
+        StorageController.ownedTrucks.Add((StorageController.availTrucks[listIndex]));
 
-        Storage.company.Balance -= Storage.availTrucks[listIndex].TruckPrice;
+        StorageController.company.Balance -= StorageController.availTrucks[listIndex].TruckPrice;
 
-        Storage.availTrucks.Remove(Storage.availTrucks[listIndex]);
+        StorageController.availTrucks.Remove(StorageController.availTrucks[listIndex]);
     }
 }

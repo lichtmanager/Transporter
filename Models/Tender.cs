@@ -17,7 +17,7 @@ public class Tender
     public Tender(Good good, int weight, string startingCity, string endingCity, string date, double compensation,
         double penalty, string deliveryDate)
     {
-        this.Good = TenderPropertiesGenerator.ChooseRandomGood();
+        this.Good = TenderPropertiesController.ChooseRandomGood();
         this.Weight = weight;
         this.StartingCity = startingCity;
         this.EndingCity = endingCity;
@@ -52,8 +52,8 @@ public class Tender
             TransporterConsole.RenderMainMenu();
         }
 
-        Storage.ownedTenders.Add((Storage.availTenders[listIndex]));
+        StorageController.ownedTenders.Add((StorageController.availTenders[listIndex]));
 
-        Storage.availTenders.Remove(Storage.availTenders[listIndex]);
+        StorageController.availTenders.Remove(StorageController.availTenders[listIndex]);
     }
 }

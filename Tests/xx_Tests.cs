@@ -16,8 +16,8 @@ public class Tests
     public void SelectedTruckIsAddedToCompany()
     {
         int stroke = 5;
-        List<Truck> storageTrucks = Storage.availTrucks;
-        List<Truck> boughtTrucks = Storage.ownedTrucks;
+        List<Truck> storageTrucks = StorageController.availTrucks;
+        List<Truck> boughtTrucks = StorageController.ownedTrucks;
         Truck chosenTruck = storageTrucks[stroke - 1];
 
         Truck.HandlePurchase(stroke);
@@ -30,13 +30,13 @@ public class Tests
     {
         int stroke = 3;
 
-        double balanceBeforePurchase = Storage.company.Balance;
+        double balanceBeforePurchase = StorageController.company.Balance;
 
-        double expectedBalanace = 50000 - Storage.availTrucks[stroke - 1].TruckPrice;
+        double expectedBalanace = 50000 - StorageController.availTrucks[stroke - 1].TruckPrice;
 
         Truck.HandlePurchase(stroke);
 
-        double balanceAfterPurchase = Storage.company.Balance;
+        double balanceAfterPurchase = StorageController.company.Balance;
 
         Assert.Equal(balanceAfterPurchase, expectedBalanace);
     }
@@ -45,7 +45,7 @@ public class Tests
     public void TruckIsRemovedFromAvailTrucks()
     {
         var stroke = 5;
-        var storageTrucks = Storage.availTrucks;
+        var storageTrucks = StorageController.availTrucks;
         var chosenTruck = storageTrucks[stroke - 1];
 
         Truck.HandlePurchase(stroke);
@@ -57,8 +57,8 @@ public class Tests
     public void DriverIsRemovedFromAvailDrivers()
     {
         int stroke = 4;
-        List<Driver> availDrivers = Storage.availDrivers;
-        Driver chosenDriver = Storage.availDrivers[stroke - 1];
+        List<Driver> availDrivers = StorageController.availDrivers;
+        Driver chosenDriver = StorageController.availDrivers[stroke - 1];
 
         Driver.HandleEmployment(stroke);
 
@@ -69,8 +69,8 @@ public class Tests
     public void DriverIsAddedToCompany()
     {
         int stroke = 2;
-        List<Driver> employedDrivers = Storage.ownedDrivers;
-        Driver chosenDriver = Storage.availDrivers[stroke - 1];
+        List<Driver> employedDrivers = StorageController.ownedDrivers;
+        Driver chosenDriver = StorageController.availDrivers[stroke - 1];
         Driver.HandleEmployment(stroke);
 
         Assert.Contains(chosenDriver, employedDrivers);
@@ -80,8 +80,8 @@ public class Tests
     public void TenderIsRemovedFromAvailTenders()
     {
         int stroke = 6;
-        List<Tender> availTenders = Storage.availTenders;
-        Tender chosenTender = Storage.availTenders[stroke - 1];
+        List<Tender> availTenders = StorageController.availTenders;
+        Tender chosenTender = StorageController.availTenders[stroke - 1];
 
         Tender.HandlePurchase(stroke);
 
@@ -92,8 +92,8 @@ public class Tests
     public void TenderIsAddedToCompany()
     {
         int stroke = 3;
-        List<Tender> acceptedTenders = Storage.ownedTenders;
-        Tender chosenTender = Storage.availTenders[stroke - 1];
+        List<Tender> acceptedTenders = StorageController.ownedTenders;
+        Tender chosenTender = StorageController.availTenders[stroke - 1];
         Tender.HandlePurchase(stroke);
 
         Assert.Contains(chosenTender, acceptedTenders);

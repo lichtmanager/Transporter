@@ -2,7 +2,7 @@ namespace Abgabe_1_2;
 
 using System.Globalization;
 
-public static class TenderPropertiesGenerator
+public static class TenderPropertiesController
 {
     public static Good ChooseRandomGood()
     {
@@ -24,13 +24,13 @@ public static class TenderPropertiesGenerator
 
     public static string GenerateStartingCity()
     {
-        string startingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
+        string startingCity = Truck.MappedTruckLocation(TruckPropertiesController.GenerateRandomTruckLocation());
         return startingCity;
     }
 
     public static string GenerateEndingCity()
     {
-        string endingCity = Truck.MappedTruckLocation(TruckPropertiesGenerator.GenerateRandomTruckLocation());
+        string endingCity = Truck.MappedTruckLocation(TruckPropertiesController.GenerateRandomTruckLocation());
         return endingCity;
     }
 
