@@ -123,8 +123,8 @@ public static class Initializer
 
         int balance = 50000;
 
-        Company company = new Company(cName, balance, DateTime.Today, storage.ownedTrucks, storage.ownedDrivers,
-            storage.ownedTenders);
+        Company company = new Company(cName, balance, DateTime.Today, Storage.ownedTrucks, Storage.ownedDrivers,
+            Storage.ownedTenders);
 
         return company;
     }
