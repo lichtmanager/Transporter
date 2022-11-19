@@ -99,7 +99,7 @@ public class Tests
 
         Assert.Contains(chosenTender, acceptedTenders);
     }
-
+/*
     [Fact]
     public void DayIsEnded()
     {
@@ -110,5 +110,5 @@ public class Tests
         DateTime nextDay = storage.company.Date;
 
         Assert.Equal<string>(expectedDate.ToShortDateString(), nextDay.ToShortDateString());
-    }
+    }*/
 }
