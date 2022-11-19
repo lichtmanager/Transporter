@@ -60,13 +60,55 @@ public class Tests
         List<Driver> availDrivers = storage.availDrivers;
         Driver chosenDriver = storage.availDrivers[stroke - 1];
 
-        Driver.HandlePurchase(stroke);
+        Driver.HandleEmployment(stroke);
 
         Assert.DoesNotContain(chosenDriver, availDrivers);
     }
 
     [Fact]
-    public void lala()
+    public void DriverIsAddedToCompany()
     {
+        int stroke = 2;
+        List<Driver> employedDrivers = storage.ownedDrivers;
+        Driver chosenDriver = storage.availDrivers[stroke - 1];
+        Driver.HandleEmployment(stroke);
+
+        Assert.Contains(chosenDriver, employedDrivers);
+    }
+
+
+    [Fact]
+    public void TenderIsRemovedFromAvailTenders()
+    {
+        int stroke = 6;
+        List<Tender> availTenders = storage.availTenders;
+        Tender chosenTender = storage.availTenders[stroke - 1];
+
+        Tender.HandlePurchase(stroke);
+
+        Assert.DoesNotContain(chosenTender, availTenders);
+    }
+
+    [Fact]
+    public void TenderIsAddedToCompany()
+    {
+        int stroke = 3;
+        List<Tender> acceptedTenders = storage.ownedTenders;
+        Tender chosenTender = storage.availTenders[stroke - 1];
+        Tender.HandlePurchase(stroke);
+
+        Assert.Contains(chosenTender, acceptedTenders);
+    }
+
+    [Fact]
+    public void DayIsEnded()
+    {
+        DateTime expectedDate = storage.company.Date.AddDays(1);
+
+        GuiLogic.EndDay();
+
+        DateTime nextDay = storage.company.Date;
+
+        Assert.Equal<string>(expectedDate.ToShortDateString(), nextDay.ToShortDateString());
     }
 }

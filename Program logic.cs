@@ -39,7 +39,7 @@ public class GuiLogic
         }
     }
 
-    private static void EndDay()
+    public static void EndDay()
     {
         storage.company.Date = storage.company.Date.AddDays(1);
         ClearConsoleScreen();
@@ -76,7 +76,7 @@ public class GuiLogic
             Console.WriteLine("Choose the Driver to employ or return to Navigation with 0");
             Driver.PrintOut(storage.availDrivers);
             int stroke = GetUserInput();
-            Driver.HandlePurchase(stroke);
+            Driver.HandleEmployment(stroke);
             Navigation();
         }
         else

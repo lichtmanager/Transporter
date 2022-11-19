@@ -36,22 +36,13 @@ public class Driver
 
     public static void HandleEmployment(int stroke)
     {
-        int listIndex = stroke - 1;
-        storage.ownedDrivers.Add(storage.availDrivers[listIndex]);
-        storage.availDrivers.Remove(storage.availDrivers[listIndex]);
-    }
-
-    public static void HandlePurchase(int stroke)
-    {
         if (stroke == 0)
         {
             GuiLogic.Navigation();
         }
 
         int listIndex = stroke - 1;
-
         storage.ownedDrivers.Add(storage.availDrivers[listIndex]);
-
         storage.availDrivers.Remove(storage.availDrivers[listIndex]);
     }
 }
