@@ -44,9 +44,9 @@ public class Tests
     [Fact]
     public void TruckIsRemovedFromAvailTrucks()
     {
-        int stroke = 5;
-        List<Truck> storageTrucks = storage.availTrucks;
-        Truck chosenTruck = storageTrucks[stroke - 1];
+        var stroke = 5;
+        var storageTrucks = storage.availTrucks;
+        var chosenTruck = storageTrucks[stroke - 1];
 
         Truck.HandlePurchase(stroke);
 
@@ -76,7 +76,6 @@ public class Tests
         Assert.Contains(chosenDriver, employedDrivers);
     }
 
-
     [Fact]
     public void TenderIsRemovedFromAvailTenders()
     {
@@ -105,7 +104,7 @@ public class Tests
     {
         DateTime expectedDate = storage.company.Date.AddDays(1);
 
-        GuiLogic.EndDay();
+        TransporterConsole.EndDay();
 
         DateTime nextDay = storage.company.Date;
 

@@ -4,7 +4,7 @@ public static class DriverGenerator
 {
     public static (string driversName, int salary, int workingMode) GenerateProperties()
     {
-        var (firstNames, lastNames) = Initialize.LoadNamesFromFile();
+        var (firstNames, lastNames) = Initializer.LoadNamesFromFile();
 
         string driversName = NameGenerator.GenerateDriverName(firstNames, lastNames);
 

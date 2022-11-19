@@ -1,12 +1,11 @@
 namespace Abgabe_1_2;
 
-public static class Initialize
+public static class Initializer
 {
     public static (List<string> firstNames, List<string> lastNames) LoadNamesFromFile()
     {
-        string allNamesString =
-            File.ReadAllText(
-                @"/Users/philipplichtmannegger/Development/dotNET/names.txt");
+        string filePath = "/Users/philipplichtmannegger/Development/dotNET/names.txt";
+        string allNamesString = File.ReadAllText(@filePath);
 
         List<string> namesList = NameGenerator.DivideNamesToList(allNamesString);
 
@@ -54,7 +53,7 @@ public static class Initialize
     public static List<Driver> InitializeNDrivers(int numOfDriversToCreate)
     {
         List<Driver> listOfTruckers = new List<Driver>();
-        var (firstNames, lastNames) = Initialize.LoadNamesFromFile();
+        var (firstNames, lastNames) = Initializer.LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {
@@ -119,7 +118,7 @@ public static class Initialize
     public static Company InitializeCompany()
     {
         string cName = "Bärchenlogistik";
-        // string cName = NameHelper.NameSelection();
+        // string cName = NameSelector.getUserInput();
         //ToDo: remove static name!
 
         int balance = 50000;

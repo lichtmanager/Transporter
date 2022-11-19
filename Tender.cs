@@ -49,7 +49,7 @@ public class Tender
 
         if (stroke == 0)
         {
-            GuiLogic.Navigation();
+            TransporterConsole.RenderMainMenu();
         }
 
         storage.ownedTenders.Add((storage.availTenders[listIndex]));

@@ -6,10 +6,10 @@ public static class Main_
 
     {
         /*Comments
-         // Call NameHelper to test, if a name looks good. 
-         // NameHelper.NameSelection();
+         // Call NameSelector to test, if a name looks good. 
+         // NameSelector.getUserInput();
  
-         // City[] cities = Initialize.InitializeCities();
+         // City[] cities = Initializer.InitializeCities();
  
          // City.PrintAllCities(cities);
          // City.ChooseCity(cities);
@@ -20,11 +20,11 @@ public static class Main_
          // DriverGenerator.GenerateProperties();
          // Driver.InitializeNDrivers(5);
  
-         // Initialize.InitializeNTrucks(5);
+         // Initializer.InitializeNTrucks(5);
  
-         // Initialize.InitializeNTenders(10);
+         // Initializer.InitializeNTenders(10);
          */
 
-        GuiLogic.Navigation();
+        TransporterConsole.RenderMainMenu();
     }
 }

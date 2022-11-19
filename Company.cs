@@ -22,12 +22,11 @@ public class Company
         Date = date;
     }
 
-
-    public static void PrintOutCompanyStatus(Company company)
+    //ToDo toStrings in anderen Klassen implementieren
+    public override string ToString()
     {
-        Console.WriteLine(
-            $"{company.CName} | {company.Balance} EUR | {company.Date.ToShortDateString()} | {company.AvailTrucks.Count} Trucks | " +
-            $"{company.OwnedDrivers.Count} Drivers | {company.OwnedTenders.Count} Tenders");
-        Console.WriteLine();
+        return (
+            $"{CName} | {Balance} EUR | {Date.ToShortDateString()} | {AvailTrucks.Count} Trucks | " +
+            $"{OwnedDrivers.Count} Drivers | {OwnedTenders.Count} Tenders");
     }
 }

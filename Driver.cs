@@ -38,7 +38,7 @@ public class Driver
     {
         if (stroke == 0)
         {
-            GuiLogic.Navigation();
+            TransporterConsole.RenderMainMenu();
         }
 
         int listIndex = stroke - 1;

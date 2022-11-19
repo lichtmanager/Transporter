@@ -5,14 +5,15 @@ using ConsoleTables;
 
 namespace Abgabe_1_2;
 
-public class GuiLogic
+public static class TransporterConsole
 {
-    public static void Navigation()
+    public static void RenderMainMenu()
     {
-        Company.PrintOutCompanyStatus(storage.company);
+        Console.WriteLine(storage.company.ToString());
+        // Company.PrintOutStatus(storage.company);
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
-        //Market market = Initialize.InitializeMarket(8, 5, 8);
+        //Market market = Initializer.InitializeMarket(8, 5, 8);
 
         DetermineActionOnNavigationInput(stroke);
     }
@@ -22,19 +23,19 @@ public class GuiLogic
         switch (stroke)
         {
             case 1:
-                TruckSelection();
+                SelectTruck();
                 break;
             case 2:
-                DriverSelection();
+                SelectDriver();
                 break;
             case 3:
-                TenderSelection();
+                SelectTender();
                 break;
             case 4:
                 EndDay();
                 break;
             default:
-                Navigation();
+                RenderMainMenu();
                 break;
         }
     }
@@ -43,18 +44,18 @@ public class GuiLogic
     {
         storage.company.Date = storage.company.Date.AddDays(1);
         ClearConsoleScreen();
-        Navigation();
+        RenderMainMenu();
     }
 
-    private static void TruckSelection()
+    private static void SelectTruck()
     {
         if (storage.availTrucks.Count > 0)
         {
-            Console.WriteLine("Choose the truck to buy or return to Navigation with 0");
+            Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
             Truck.PrintOut(storage.availTrucks);
             int stroke = GetUserInput();
             Truck.HandlePurchase(stroke);
-            Navigation();
+            RenderMainMenu();
         }
         else
         {
@@ -65,19 +66,19 @@ public class GuiLogic
                 Console.WriteLine();
             }
 
-            Navigation();
+            RenderMainMenu();
         }
     }
 
-    private static void DriverSelection()
+    private static void SelectDriver()
     {
         if (storage.availDrivers.Count > 0)
         {
-            Console.WriteLine("Choose the Driver to employ or return to Navigation with 0");
+            Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
             Driver.PrintOut(storage.availDrivers);
             int stroke = GetUserInput();
             Driver.HandleEmployment(stroke);
-            Navigation();
+            RenderMainMenu();
         }
         else
         {
@@ -88,20 +89,20 @@ public class GuiLogic
                 Console.WriteLine();
             }
 
-            Navigation();
+            RenderMainMenu();
         }
     }
 
-    private static void TenderSelection()
+    private static void SelectTender()
     {
         if (storage.availTenders.Count > 0)
         {
-            Console.WriteLine("Choose the Tender to accept or return to Navigation with 0");
+            Console.WriteLine("Choose the Tender to accept or return to RenderMainMenu with 0");
             Tender.PrintOut(storage.availTenders);
             int stroke = GetUserInput();
             Tender.HandlePurchase(stroke);
             ClearConsoleScreen();
-            Navigation();
+            RenderMainMenu();
         }
         else
         {
@@ -112,7 +113,7 @@ public class GuiLogic
                 Console.WriteLine();
             }
 
-            Navigation();
+            RenderMainMenu();
         }
     }
 

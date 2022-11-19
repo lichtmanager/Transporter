@@ -57,20 +57,15 @@ public class Truck
 
     private static string MappedTruckAge(int randomTruckAge)
     {
-        string ageString;
         if (randomTruckAge == 0)
         {
-            ageString = "- neu -";
-            return ageString;
+            return "- neu -";
         }
-        else
-        {
-            ageString = $"{randomTruckAge} Jahre";
 
-            return ageString;
-        }
+        return $"{randomTruckAge} Jahre";
     }
 
+// ToDo ToString implementieren
     public static void PrintOut(List<Truck> listOfTrucks)
     {
         for (int i = 0; i < listOfTrucks.Count; i++)
@@ -87,7 +82,7 @@ public class Truck
     {
         if (stroke == 0)
         {
-            GuiLogic.Navigation();
+            TransporterConsole.RenderMainMenu();
         }
 
         int listIndex = stroke - 1;

@@ -1,8 +1,8 @@
 namespace Abgabe_1_2;
 
-public class NameHelper
+public class NameSelector
 {
-    public static string NameSelection()
+    public static string GetUserInput()
     {
         Console.Write("What's your company name? ");
 
