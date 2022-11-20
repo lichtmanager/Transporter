@@ -18,16 +18,16 @@ public class City
     {
         for (var i = 0; i < cities.Length; i++)
         {
-            Console.WriteLine((i + 1) + " " + cities[i].CityName);
+            System.Console.WriteLine((i + 1) + " " + cities[i].CityName);
         }
     }
 
     private static City GetUserInputForCitySelection(City[] cities)
     {
-        string? input = Console.ReadLine();
+        string? input = System.Console.ReadLine();
         if (string.IsNullOrEmpty(input))
         {
-            Console.WriteLine("is empty, try again!: ");
+            System.Console.WriteLine("is empty, try again!: ");
             return GetUserInputForCitySelection(cities);
         }
         else
@@ -41,14 +41,14 @@ public class City
                 }
                 else
                 {
-                    Console.Write(
+                    System.Console.Write(
                         $"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length - 1}): ");
                     return GetUserInputForCitySelection(cities);
                 }
             }
             catch (Exception e)
             {
-                Console.Write(
+                System.Console.Write(
                     $"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length - 1}): ");
                 return GetUserInputForCitySelection(cities);
             }
@@ -57,30 +57,30 @@ public class City
 
     public static void ChooseCity(City[] cities)
     {
-        Console.WriteLine("Geben Sie die entsprechende Zahl für Ihren Wunschort ein: ");
+        System.Console.WriteLine("Geben Sie die entsprechende Zahl für Ihren Wunschort ein: ");
         GetUserInputForCitySelection(cities);
     }
 
     private static City ChooseStartCity(City[] cities)
     {
-        Console.WriteLine("Wählen Sie den Startort: ");
+        System.Console.WriteLine("Wählen Sie den Startort: ");
 
         return GetUserInputForCitySelection(cities);
     }
 
     private static City ChooseEndCity(City[] cities)
     {
-        Console.WriteLine("Wählen Sie den Zielort: ");
+        System.Console.WriteLine("Wählen Sie den Zielort: ");
 
         return GetUserInputForCitySelection(cities);
     }
 
     public static void PrintStartEnd(City[] cities)
     {
-        Console.WriteLine(ChooseStartCity(cities).CityName);
-        Console.WriteLine(ChooseEndCity(cities).CityName);
+        System.Console.WriteLine(ChooseStartCity(cities).CityName);
+        System.Console.WriteLine(ChooseEndCity(cities).CityName);
     }
-    
+
     public static void CalculateAndPrintDistance(City[] cities)
     {
         City startCity = ChooseStartCity(cities);
@@ -89,6 +89,6 @@ public class City
         int distance = (int)Math.Sqrt(Math.Pow(startCity.Northing - endCity.Northing, 2) +
                                       Math.Pow(startCity.Easting - endCity.Easting, 2));
 
-        Console.WriteLine($"Die Distanz beträgt: {distance / 1000} km");
+        System.Console.WriteLine($"Die Distanz beträgt: {distance / 1000} km");
     }
 }

@@ -8,7 +8,7 @@ public static class DriverController
 
         string driversName = NameController.GenerateDriverName(firstNames, lastNames);
 
-        Console.WriteLine(driversName);
+        System.Console.WriteLine(driversName);
 
         int salary = GenerateSalary();
         int workingMode = GenerateWorkingMode();

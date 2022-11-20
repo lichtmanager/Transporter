@@ -1,3 +1,5 @@
+using ConsoleTables;
+
 namespace Abgabe_1_2;
 
 public class Driver
@@ -14,15 +16,22 @@ public class Driver
         this.WorkingMode = randomWorkingMode;
     }
 
-    public static void PrintOut(List<Driver> listOfTruckers)
+    public static void PrintOut(List<Driver> listOfDrivers)
     {
-        for (int i = 0; i < listOfTruckers.Count; i++)
+        var table = new ConsoleTable("#", "Name", "Salary", "WorkingMode");
+        for (int i = 0; i < listOfDrivers.Count; i++)
         {
-            Console.WriteLine(
-                $"{i + 1}: {listOfTruckers[i].TruckerName}\t{listOfTruckers[i].Salary.ToString()}€" +
-                $"\t{MappedWorkingMode(listOfTruckers[i].WorkingMode)}");
+            table.AddRow(
+                $"{i + 1}",
+                $"{listOfDrivers[i].TruckerName}",
+                $"{listOfDrivers[i].Salary:C}",
+                $"{MappedWorkingMode(listOfDrivers[i].WorkingMode)}");
         }
+
+        table.Write();
+        Console.WriteLine();
     }
+
 
     private static string MappedWorkingMode(int workingMode)
     {
@@ -38,7 +47,7 @@ public class Driver
     {
         if (stroke == 0)
         {
-            TransporterConsole.RenderMainMenu();
+            BusinessLogic.RenderMainMenu();
         }
 
         int listIndex = stroke - 1;

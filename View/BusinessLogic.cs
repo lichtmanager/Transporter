@@ -5,21 +5,20 @@ using ConsoleTables;
 
 namespace Abgabe_1_2;
 
-public static class TransporterConsole
+public static class BusinessLogic
 {
     public static void RenderMainMenu()
     {
+        Console.WriteLine("\n");
         Console.WriteLine(StorageController.company.ToString());
-        // Company.PrintOutStatus(storage.company);
         PrintOutAvailableNavOptions();
         var stroke = GetUserInput();
-        //Market market = Initializer.InitializeMarket(8, 5, 8);
-
         DetermineActionOnNavigationInput(stroke);
     }
 
     private static void DetermineActionOnNavigationInput(int stroke)
     {
+        Console.WriteLine("\n");
         switch (stroke)
         {
             case 1:
@@ -51,23 +50,23 @@ public static class TransporterConsole
     {
         if (StorageController.availTrucks.Count > 0)
         {
+            Console.WriteLine("Trucks");
             Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
-            for (int i = 0; i < StorageController.availTrucks.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}: " + StorageController.availTrucks[i]);
-            }
+
+            Truck.PrintOut(StorageController.availTrucks);
 
             int stroke = GetUserInput();
             Truck.HandlePurchase(stroke);
+            ClearConsoleScreen();
             RenderMainMenu();
         }
         else
         {
             ClearConsoleScreen();
-            Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
+            System.Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine();
+                System.Console.WriteLine();
             }
 
             RenderMainMenu();
@@ -76,21 +75,23 @@ public static class TransporterConsole
 
     private static void SelectDriver()
     {
+        Console.WriteLine("Drivers");
         if (StorageController.availDrivers.Count > 0)
         {
-            Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
+            System.Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
             Driver.PrintOut(StorageController.availDrivers);
             int stroke = GetUserInput();
             Driver.HandleEmployment(stroke);
+            ClearConsoleScreen();
             RenderMainMenu();
         }
         else
         {
             ClearConsoleScreen();
-            Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
+            System.Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine();
+                System.Console.WriteLine();
             }
 
             RenderMainMenu();
@@ -99,9 +100,10 @@ public static class TransporterConsole
 
     private static void SelectTender()
     {
+        Console.WriteLine("Tender");
         if (StorageController.availTenders.Count > 0)
         {
-            Console.WriteLine("Choose the Tender to accept or return to RenderMainMenu with 0");
+            System.Console.WriteLine("Choose the Tender to accept or return to RenderMainMenu with 0");
             Tender.PrintOut(StorageController.availTenders);
             int stroke = GetUserInput();
             Tender.HandlePurchase(stroke);
@@ -111,10 +113,10 @@ public static class TransporterConsole
         else
         {
             ClearConsoleScreen();
-            Console.WriteLine("+++++++++++ There are no more Tenders to accept +++++++++++");
+            System.Console.WriteLine("+++++++++++ There are no more Tenders to accept +++++++++++");
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine();
+                System.Console.WriteLine();
             }
 
             RenderMainMenu();
@@ -125,12 +127,11 @@ public static class TransporterConsole
     {
         Console.Write("1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n");
         Console.Write("Please choose in order proceed and hit the equivalent number: ");
-        Console.WriteLine();
     }
 
     private static int GetUserInput()
     {
-        var userInput = Console.ReadKey(true);
+        var userInput = System.Console.ReadKey(true);
         try
         {
             int stroke = int.Parse(userInput.KeyChar.ToString());
@@ -138,7 +139,8 @@ public static class TransporterConsole
         }
         catch (Exception e)
         {
-            Console.WriteLine("An error occured. You might have not pressed a number. Please hit a number key: ");
+            System.Console.WriteLine(
+                "An error occured. You might have not pressed a number. Please hit a number key: ");
             GetUserInput();
             throw;
         }
@@ -148,7 +150,7 @@ public static class TransporterConsole
     {
         for (int i = 0; i < 20; i++)
         {
-            Console.WriteLine();
+            System.Console.WriteLine();
         }
     }
 }

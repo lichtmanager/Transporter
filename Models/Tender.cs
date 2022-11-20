@@ -34,13 +34,13 @@ public class Tender
         for (int i = 0; i < tenders.Count; i++)
         {
             table.AddRow($"{i + 1}", $"{tenders[i].Good.GoodsName}", $"{tenders[i].Good.ReqTruckForTransport}",
-                $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight.ToString()}t",
-                $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation.ToString(CultureInfo.CurrentCulture)}€",
-                $"{tenders[i].Penalty.ToString(CultureInfo.CurrentCulture)}€");
+                $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight:F1}t",
+                $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C}",
+                $"{tenders[i].Penalty:C}");
         }
 
         table.Write();
-        Console.WriteLine();
+        System.Console.WriteLine();
     }
 
     public static void HandlePurchase(int stroke)
@@ -49,7 +49,7 @@ public class Tender
 
         if (stroke == 0)
         {
-            TransporterConsole.RenderMainMenu();
+            BusinessLogic.RenderMainMenu();
         }
 
         StorageController.ownedTenders.Add((StorageController.availTenders[listIndex]));

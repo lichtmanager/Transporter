@@ -1,5 +1,7 @@
 using System.Collections.Concurrent;
+using System.Globalization;
 using System.Reflection;
+using ConsoleTables;
 
 namespace Abgabe_1_2;
 
@@ -85,11 +87,31 @@ public class Truck
             $"   \t Preis: {TruckPrice:0.##}€";
     }
 
+    public static void PrintOut(List<Truck> trucks)
+    {
+        var table = new ConsoleTable("#", "Type", "Age", "Location", "Performane", "Payload",
+            "Consumption", "Price");
+        for (int i = 0; i < trucks.Count; i++)
+        {
+            table.AddRow($"{i + 1}",
+                $"{MappedTruckType(trucks[i].TruckType)}",
+                $"{MappedTruckAge(trucks[i].TruckAge)}",
+                $"{MappedTruckLocation(trucks[i].TruckLocation)}",
+                $"{trucks[i].TruckPerformance} hp",
+                $"{trucks[i].TruckMaxPayload.ToString()}t",
+                $"{trucks[i].TruckConsumption} l/100km",
+                $"{trucks[i].TruckPrice:C}");
+        }
+
+        table.Write();
+        System.Console.WriteLine();
+    }
+
     public static void HandlePurchase(int stroke)
     {
         if (stroke == 0)
         {
-            TransporterConsole.RenderMainMenu();
+            BusinessLogic.RenderMainMenu();
         }
 
         int listIndex = stroke - 1;
