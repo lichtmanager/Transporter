@@ -50,8 +50,17 @@ public class Driver
             BusinessLogic.RenderMainMenu();
         }
 
-        int listIndex = stroke - 1;
-        StorageController.ownedDrivers.Add(StorageController.availDrivers[listIndex]);
-        StorageController.availDrivers.Remove(StorageController.availDrivers[listIndex]);
+        int indexForList = stroke - 1;
+
+        if (indexForList >= StorageController.availDrivers.Count)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
+            BusinessLogic.RenderMainMenu();
+        }
+
+        StorageController.ownedDrivers.Add(StorageController.availDrivers[indexForList]);
+        StorageController.availDrivers.Remove(StorageController.availDrivers[indexForList]);
     }
 }

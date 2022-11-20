@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Abgabe_1_2;
+namespace Abgabe_1_2.Tests;
 
 public class TenderTest
 {

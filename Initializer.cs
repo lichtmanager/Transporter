@@ -80,7 +80,7 @@ public static class Initializer
             string endingCity = "";
 
             string deliveryDate = TenderPropertiesController.GenerateDeliveryDate(goodForTender);
-            double compensation =
+            int compensation =
                 TenderPropertiesController.DetermineCompensation(goodForTender, rndWeight, deliveryDate);
             double penalty = TenderPropertiesController.DeterminePenalty(compensation);
 

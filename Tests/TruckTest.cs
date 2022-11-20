@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Abgabe_1_2;
+namespace Abgabe_1_2.Tests;
 
 public class TruckTest
 {
@@ -22,7 +22,6 @@ public class TruckTest
     {
         int stroke = 3;
 
-        double balanceBeforePurchase = StorageController.company.Balance;
 
         double expectedBalanace = 50000 - StorageController.availTrucks[stroke - 1].TruckPrice;
 
@@ -44,6 +43,4 @@ public class TruckTest
 
         Assert.DoesNotContain(chosenTruck, storageTrucks);
     }
-
-    //ToDo truckAge mit -1 testen
 }

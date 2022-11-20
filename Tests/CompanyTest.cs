@@ -1,7 +1,7 @@
 using Xunit;
-using Xunit.Sdk;
 
-namespace Abgabe_1_2;
+
+namespace Abgabe_1_2.Tests;
 
 public class CompanyTest
 {
@@ -14,8 +14,6 @@ public class CompanyTest
 
         DateTime nextDay = StorageController.company.Date;
 
-        //Assert.Equal(expectedDate, nextDay);
-        Assert.True(expectedDate.Equals(nextDay));
-        // Assert.Matches(expectedDate.ToShortDateString(), nextDay.ToShortDateString());
+        Assert.Equal(expectedDate, nextDay);
     }
 }

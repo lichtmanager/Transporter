@@ -35,22 +35,31 @@ public class Tender
         {
             table.AddRow($"{i + 1}", $"{tenders[i].Good.GoodsName}", $"{tenders[i].Good.ReqTruckForTransport}",
                 $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight:F1}t",
-                $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C}",
-                $"{tenders[i].Penalty:C}");
+                $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C0}",
+                $"{tenders[i].Penalty:C0}");
         }
 
         table.Write();
-        System.Console.WriteLine();
+        Console.WriteLine();
     }
 
     public static void HandlePurchase(int stroke)
     {
-        int listIndex = stroke - 1;
-
         if (stroke == 0)
         {
             BusinessLogic.RenderMainMenu();
         }
+
+        int listIndex = stroke - 1;
+
+        if (listIndex >= StorageController.availTenders.Count)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
+            BusinessLogic.RenderMainMenu();
+        }
+
 
         StorageController.ownedTenders.Add((StorageController.availTenders[listIndex]));
 

@@ -34,14 +34,14 @@ public static class TenderPropertiesController
         return endingCity;
     }
 
-    public static double DetermineCompensation(Good goodForTender, int rndWeight, string deliveryDate)
+    public static int DetermineCompensation(Good goodForTender, int rndWeight, string deliveryDate)
     {
         var days = ReconstructDays(deliveryDate);
 
 
         Random rnd = new Random();
-        double bonusFactor = 1 + (0.2 + days / goodForTender.MaxDeliveryDays) * rnd.Next(0, 2);
-        double compensation = goodForTender.MinPricePerTon * rndWeight * bonusFactor;
+        double bonusFactor = 1 + (0.2 + days / goodForTender.MaxDeliveryDays) * rnd.NextDouble();
+        int compensation = (int)(goodForTender.MinPricePerTon * rndWeight * bonusFactor);
 
         return compensation;
     }
@@ -54,10 +54,10 @@ public static class TenderPropertiesController
         return days;
     }
 
-    public static double DeterminePenalty(double compensation)
+    public static int DeterminePenalty(int compensation)
     {
         Random rnd = new Random();
-        double penalty = rnd.Next(50, 201) * compensation / 100;
+        int penalty = rnd.Next(50, 201) * compensation / 100;
 
         return penalty;
     }
