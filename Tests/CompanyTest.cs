@@ -14,7 +14,8 @@ public class CompanyTest
 
         DateTime nextDay = StorageController.company.Date;
 
-        Assert.Equal(expectedDate.ToShortDateString(), nextDay.ToShortDateString());
+        //Assert.Equal(expectedDate, nextDay);
+        Assert.True(expectedDate.Equals(nextDay));
         // Assert.Matches(expectedDate.ToShortDateString(), nextDay.ToShortDateString());
     }
 }
