@@ -120,7 +120,6 @@ public static class Initializer
 
     public static Company InitializeCompany()
     {
-        //  string cName = "Bärchenlogistik";
         string cName = NameSelectionController.GetUserInput();
 
 
