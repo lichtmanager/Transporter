@@ -1,4 +1,4 @@
-namespace Abgabe_1_2;
+namespace Transporter.Controller;
 
 public class NameSelectionController
 {

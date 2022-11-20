@@ -1,6 +1,9 @@
+using Transporter.Controller;
+using Transporter.Models;
+using Transporter.View;
 using Xunit;
 
-namespace Abgabe_1_2.Tests;
+namespace Transporter.Tests;
 
 public class DriverTest
 {
@@ -11,7 +14,7 @@ public class DriverTest
         List<Driver> availDrivers = StorageController.availDrivers;
         Driver chosenDriver = StorageController.availDrivers[stroke - 1];
 
-        Driver.HandleEmployment(stroke);
+        BusinessLogic.EmployDriver(stroke);
 
         Assert.DoesNotContain(chosenDriver, availDrivers);
     }
@@ -22,7 +25,7 @@ public class DriverTest
         int stroke = 2;
         List<Driver> employedDrivers = StorageController.ownedDrivers;
         Driver chosenDriver = StorageController.availDrivers[stroke - 1];
-        Driver.HandleEmployment(stroke);
+        BusinessLogic.EmployDriver(stroke);
 
         Assert.Contains(chosenDriver, employedDrivers);
     }

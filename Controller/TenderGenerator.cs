@@ -1,6 +1,7 @@
-namespace Abgabe_1_2;
-
 using System.Globalization;
+using Transporter.Models;
+
+namespace Transporter.Controller;
 
 public static class TenderPropertiesController
 {

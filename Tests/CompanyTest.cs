@@ -1,7 +1,9 @@
+using Transporter.Controller;
+using Transporter.View;
 using Xunit;
 
 
-namespace Abgabe_1_2.Tests;
+namespace Transporter.Tests;
 
 public class CompanyTest
 {

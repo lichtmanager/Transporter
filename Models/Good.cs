@@ -1,6 +1,4 @@
-using System.Runtime.CompilerServices;
-
-namespace Abgabe_1_2;
+namespace Transporter.Models;
 
 public class Good
 {

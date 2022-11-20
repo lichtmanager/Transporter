@@ -1,4 +1,6 @@
-namespace Abgabe_1_2;
+using Transporter.Models;
+
+namespace Transporter.Controller;
 
 public class StorageController
 {

@@ -1,10 +1,8 @@
-using System.Collections.Concurrent;
-using System.Globalization;
-using System.Reflection;
 using ConsoleTables;
-using Xunit.Sdk;
+using Transporter.Controller;
+using Transporter.View;
 
-namespace Abgabe_1_2;
+namespace Transporter.Models;
 
 public class Truck
 {
@@ -106,28 +104,5 @@ public class Truck
 
         table.Write();
         Console.WriteLine();
-    }
-
-    public static void HandlePurchase(int stroke)
-    {
-        int indexForList = stroke - 1;
-        if (stroke == 0)
-        {
-            BusinessLogic.RenderMainMenu();
-        }
-
-        if (indexForList >= StorageController.availTrucks.Count)
-        {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-            BusinessLogic.RenderMainMenu();
-        }
-
-        StorageController.ownedTrucks.Add((StorageController.availTrucks[indexForList]));
-
-        StorageController.company.Balance -= StorageController.availTrucks[indexForList].TruckPrice;
-
-        StorageController.availTrucks.Remove(StorageController.availTrucks[indexForList]);
     }
 }

@@ -1,7 +1,8 @@
-using System.Globalization;
 using ConsoleTables;
+using Transporter.Controller;
+using Transporter.View;
 
-namespace Abgabe_1_2;
+namespace Transporter.Models;
 
 public class Tender
 {
@@ -41,28 +42,5 @@ public class Tender
 
         table.Write();
         Console.WriteLine();
-    }
-
-    public static void HandlePurchase(int stroke)
-    {
-        if (stroke == 0)
-        {
-            BusinessLogic.RenderMainMenu();
-        }
-
-        int listIndex = stroke - 1;
-
-        if (listIndex >= StorageController.availTenders.Count)
-        {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-            BusinessLogic.RenderMainMenu();
-        }
-
-
-        StorageController.ownedTenders.Add((StorageController.availTenders[listIndex]));
-
-        StorageController.availTenders.Remove(StorageController.availTenders[listIndex]);
     }
 }

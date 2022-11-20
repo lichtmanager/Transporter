@@ -1,4 +1,6 @@
-namespace Abgabe_1_2;
+using Transporter.View;
+
+namespace Transporter;
 
 public static class Main_
 {

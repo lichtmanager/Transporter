@@ -1,6 +1,9 @@
+using Transporter.Controller;
+using Transporter.Models;
+using Transporter.View;
 using Xunit;
 
-namespace Abgabe_1_2.Tests;
+namespace Transporter.Tests;
 
 public class TenderTest
 {
@@ -11,7 +14,7 @@ public class TenderTest
         List<Tender> availTenders = StorageController.availTenders;
         Tender chosenTender = StorageController.availTenders[stroke - 1];
 
-        Tender.HandlePurchase(stroke);
+        BusinessLogic.AcceptTender(stroke);
 
         Assert.DoesNotContain(chosenTender, availTenders);
     }
@@ -22,7 +25,7 @@ public class TenderTest
         int stroke = 3;
         List<Tender> acceptedTenders = StorageController.ownedTenders;
         Tender chosenTender = StorageController.availTenders[stroke - 1];
-        Tender.HandlePurchase(stroke);
+        BusinessLogic.AcceptTender(stroke);
 
         Assert.Contains(chosenTender, acceptedTenders);
     }

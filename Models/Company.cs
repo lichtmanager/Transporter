@@ -1,6 +1,4 @@
-using System.Runtime.Serialization;
-
-namespace Abgabe_1_2;
+namespace Transporter.Models;
 
 public class Company
 {
@@ -26,7 +24,7 @@ public class Company
     public override string ToString()
     {
         return (
-            $"{CName} | {Balance} EUR | {Date.ToShortDateString()} | {AvailTrucks.Count} Trucks | " +
+            $"{CName} | {Balance:C0} | {Date.ToShortDateString()} | {AvailTrucks.Count} Trucks | " +
             $"{OwnedDrivers.Count} Drivers | {OwnedTenders.Count} Tenders");
     }
 }

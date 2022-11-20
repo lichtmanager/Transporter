@@ -1,6 +1,9 @@
+using Transporter.Controller;
+using Transporter.Models;
+using Transporter.View;
 using Xunit;
 
-namespace Abgabe_1_2.Tests;
+namespace Transporter.Tests;
 
 public class TruckTest
 {
@@ -12,7 +15,7 @@ public class TruckTest
         List<Truck> boughtTrucks = StorageController.ownedTrucks;
         Truck chosenTruck = storageTrucks[stroke - 1];
 
-        Truck.HandlePurchase(stroke);
+        BusinessLogic.PurchaseTruck(stroke);
 
         Assert.Contains(chosenTruck, boughtTrucks);
     }
@@ -25,7 +28,7 @@ public class TruckTest
 
         double expectedBalanace = 50000 - StorageController.availTrucks[stroke - 1].TruckPrice;
 
-        Truck.HandlePurchase(stroke);
+        BusinessLogic.PurchaseTruck(stroke);
 
         double balanceAfterPurchase = StorageController.company.Balance;
 
@@ -39,7 +42,7 @@ public class TruckTest
         var storageTrucks = StorageController.availTrucks;
         var chosenTruck = storageTrucks[stroke - 1];
 
-        Truck.HandlePurchase(stroke);
+        BusinessLogic.PurchaseTruck(stroke);
 
         Assert.DoesNotContain(chosenTruck, storageTrucks);
     }

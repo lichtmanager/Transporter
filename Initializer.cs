@@ -1,4 +1,7 @@
-namespace Abgabe_1_2;
+using Transporter.Controller;
+using Transporter.Models;
+
+namespace Transporter;
 
 public static class Initializer
 {
@@ -117,9 +120,9 @@ public static class Initializer
 
     public static Company InitializeCompany()
     {
-        string cName = "Bärchenlogistik";
-        // string cName = NameSelectionController.getUserInput();
-        //ToDo: remove static name!
+        //  string cName = "Bärchenlogistik";
+        string cName = NameSelectionController.GetUserInput();
+
 
         int balance = 50000;
 
