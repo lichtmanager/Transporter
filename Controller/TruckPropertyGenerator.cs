@@ -18,6 +18,7 @@ public static class TruckPropertiesController
         {
             case 0:
                 basePrice = 25000;
+
                 return price = basePrice * priceFactor;
             case 1:
                 basePrice = 60000;

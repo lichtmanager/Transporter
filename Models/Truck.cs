@@ -30,7 +30,7 @@ public class Truck
     }
 
 
-    private static string MappedTruckType(int randomTruckType)
+    internal static string MappedTruckType(int randomTruckType)
     {
         List<string> truckTypesList = new List<string>()
             { "Kühllastwagen", "Pritschenwagen", "Tanklaster" };
@@ -57,7 +57,7 @@ public class Truck
         return size;
     }
 
-    private static string MappedTruckAge(int randomTruckAge)
+    internal static string MappedTruckAge(int randomTruckAge)
     {
         if (randomTruckAge < 0)
         {
@@ -84,25 +84,5 @@ public class Truck
             $" Standort: {MappedTruckLocation(TruckLocation)}  \t Perf: {TruckPerformance.ToString()} " +
             $"  \t max. Load: {TruckMaxPayload.ToString()}   \t Cons:{TruckConsumption.ToString()}" +
             $"   \t Preis: {TruckPrice:0.##}€";
-    }
-
-    public static void PrintOut(List<Truck> trucks)
-    {
-        var table = new ConsoleTable("#", "Type", "Age", "Location", "Performane", "Payload",
-            "Consumption", "Price");
-        for (int i = 0; i < trucks.Count; i++)
-        {
-            table.AddRow($"{i + 1}",
-                $"{MappedTruckType(trucks[i].TruckType)}",
-                $"{MappedTruckAge(trucks[i].TruckAge)}",
-                $"{MappedTruckLocation(trucks[i].TruckLocation)}",
-                $"{trucks[i].TruckPerformance} hp",
-                $"{trucks[i].TruckMaxPayload.ToString()}t",
-                $"{trucks[i].TruckConsumption} l/100km",
-                $"{trucks[i].TruckPrice:C}");
-        }
-
-        table.Write();
-        Console.WriteLine();
     }
 }

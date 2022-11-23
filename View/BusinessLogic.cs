@@ -7,12 +7,14 @@ public static class BusinessLogic
 {
     public static void RenderMainMenu()
     {
-        Console.WriteLine("\n");
-        Console.WriteLine(StorageController.company.ToString());
-        PrintOutAvailableNavOptions();
-        var stroke = GetUserInput();
-        DetermineActionOnMenuInput(stroke);
-        RenderMainMenu();
+        do
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine(StorageController.company.ToString());
+            PrintOutAvailableNavOptions();
+            var stroke = GetUserInput();
+            DetermineActionOnMenuInput(stroke);
+        } while (true);
     }
 
     private static void DetermineActionOnMenuInput(int stroke)
@@ -50,7 +52,7 @@ public static class BusinessLogic
         if (StorageController.availTrucks.Count > 0)
         {
             Console.WriteLine("Trucks");
-            Truck.PrintOut(StorageController.availTrucks);
+            ConsolePrintOuts.PrintOut(StorageController.availTrucks);
             Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
 
             int stroke = GetUserInput();
@@ -60,13 +62,7 @@ public static class BusinessLogic
         else
         {
             ClearConsoleScreen();
-            System.Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
-            for (int i = 0; i < 5; i++)
-            {
-                System.Console.WriteLine();
-            }
-
-            RenderMainMenu();
+            Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
         }
     }
 
@@ -75,23 +71,16 @@ public static class BusinessLogic
         Console.WriteLine("Drivers");
         if (StorageController.availDrivers.Count > 0)
         {
-            Driver.PrintOut(StorageController.availDrivers);
+            ConsolePrintOuts.PrintOut(StorageController.availDrivers);
             Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
             int stroke = GetUserInput();
             EmployDriver(stroke);
             ClearConsoleScreen();
-            RenderMainMenu();
         }
         else
         {
             ClearConsoleScreen();
-            System.Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
-            for (int i = 0; i < 5; i++)
-            {
-                System.Console.WriteLine();
-            }
-
-            RenderMainMenu();
+            Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
         }
     }
 
@@ -100,23 +89,16 @@ public static class BusinessLogic
         Console.WriteLine("Tender");
         if (StorageController.availTenders.Count > 0)
         {
-            Tender.PrintOut(StorageController.availTenders);
-            Console.WriteLine("Choose the Tender to accept or return to RenderMainMenu with 0");
+            ConsolePrintOuts.PrintOut(StorageController.availTenders);
+            Console.WriteLine("Choose the Tender to accept or return to the main menu with 0");
             int stroke = GetUserInput();
             AcceptTender(stroke);
             ClearConsoleScreen();
-            RenderMainMenu();
         }
         else
         {
             ClearConsoleScreen();
             Console.WriteLine("+++++++++++ There are no more Tenders to accept +++++++++++");
-            for (int i = 0; i < 5; i++)
-            {
-                System.Console.WriteLine();
-            }
-
-            RenderMainMenu();
         }
     }
 
@@ -134,16 +116,16 @@ public static class BusinessLogic
             int stroke = int.Parse(userInput.KeyChar.ToString());
             return stroke;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Console.WriteLine(
                 "An error occured. You might have not pressed a number. Please hit a number key: ");
-            GetUserInput();
+            RenderMainMenu();
             throw;
         }
     }
 
-    public static void ClearConsoleScreen()
+    private static void ClearConsoleScreen()
     {
         for (int i = 0; i < 20; i++)
         {
@@ -151,21 +133,15 @@ public static class BusinessLogic
         }
     }
 
-
     public static void PurchaseTruck(int stroke)
     {
         int indexForList = stroke - 1;
-        if (stroke == 0)
-        {
-            BusinessLogic.RenderMainMenu();
-        }
+        CheckIfStrokeIsZero(stroke);
 
         if (indexForList >= StorageController.availTrucks.Count)
         {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-            BusinessLogic.RenderMainMenu();
+            DisplayOutOfRangeMessage();
+            RenderMainMenu();
         }
 
         StorageController.ownedTrucks.Add((StorageController.availTrucks[indexForList]));
@@ -177,19 +153,14 @@ public static class BusinessLogic
 
     public static void AcceptTender(int stroke)
     {
-        if (stroke == 0)
-        {
-            BusinessLogic.RenderMainMenu();
-        }
+        CheckIfStrokeIsZero(stroke);
 
         int listIndex = stroke - 1;
 
         if (listIndex >= StorageController.availTenders.Count)
         {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-            BusinessLogic.RenderMainMenu();
+            DisplayOutOfRangeMessage();
+            RenderMainMenu();
         }
 
 
@@ -200,22 +171,33 @@ public static class BusinessLogic
 
     public static void EmployDriver(int stroke)
     {
-        if (stroke == 0)
-        {
-            BusinessLogic.RenderMainMenu();
-        }
+        CheckIfStrokeIsZero(stroke);
 
         int indexForList = stroke - 1;
 
         if (indexForList >= StorageController.availDrivers.Count)
         {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-            BusinessLogic.RenderMainMenu();
+            DisplayOutOfRangeMessage();
+            RenderMainMenu();
         }
 
         StorageController.ownedDrivers.Add(StorageController.availDrivers[indexForList]);
         StorageController.availDrivers.Remove(StorageController.availDrivers[indexForList]);
+    }
+
+    private static void CheckIfStrokeIsZero(int stroke)
+    {
+        if (stroke == 0)
+        {
+            ClearConsoleScreen();
+            RenderMainMenu();
+        }
+    }
+
+    private static void DisplayOutOfRangeMessage()
+    {
+        ClearConsoleScreen();
+        Console.WriteLine(
+            "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
     }
 }

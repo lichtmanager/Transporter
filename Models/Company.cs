@@ -20,7 +20,6 @@ public class Company
         Date = date;
     }
 
-    //ToDo toStrings in anderen Klassen implementieren
     public override string ToString()
     {
         return (

@@ -2,7 +2,7 @@ namespace Transporter.Models;
 
 public class City
 {
-    private string CityName { get; }
+    public string CityName { get; }
     private int Easting { get; }
     private int Northing { get; }
 
@@ -14,13 +14,6 @@ public class City
         this.Northing = northing;
     }
 
-    public static void PrintAllCities(City[] cities)
-    {
-        for (var i = 0; i < cities.Length; i++)
-        {
-            System.Console.WriteLine((i + 1) + " " + cities[i].CityName);
-        }
-    }
 
     private static City GetUserInputForCitySelection(City[] cities)
     {
@@ -46,7 +39,7 @@ public class City
                     return GetUserInputForCitySelection(cities);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 System.Console.Write(
                     $"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length - 1}): ");
@@ -61,24 +54,18 @@ public class City
         GetUserInputForCitySelection(cities);
     }
 
-    private static City ChooseStartCity(City[] cities)
+    public static City ChooseStartCity(City[] cities)
     {
         System.Console.WriteLine("Wählen Sie den Startort: ");
 
         return GetUserInputForCitySelection(cities);
     }
 
-    private static City ChooseEndCity(City[] cities)
+    internal static City ChooseEndCity(City[] cities)
     {
         System.Console.WriteLine("Wählen Sie den Zielort: ");
 
         return GetUserInputForCitySelection(cities);
-    }
-
-    public static void PrintStartEnd(City[] cities)
-    {
-        System.Console.WriteLine(ChooseStartCity(cities).CityName);
-        System.Console.WriteLine(ChooseEndCity(cities).CityName);
     }
 
     public static void CalculateAndPrintDistance(City[] cities)
