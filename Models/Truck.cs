@@ -15,11 +15,11 @@ public class Truck
     public int TruckConsumption;
     public double TruckPrice;
     public Driver? TruckDriver;
-    public Status State;
+    public Status TruckState;
 
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
-        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState)
+        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckTruckState)
     {
         TruckType = truckType;
         TruckAge = truckAge;
@@ -30,14 +30,14 @@ public class Truck
         TruckConsumption = truckConsumption;
         TruckPrice = truckPrice;
         TruckDriver = truckDriver;
-        State = truckState;
+        TruckState = truckTruckState;
     }
 
     public enum Status
     {
-        Free,
-        Transferring,
+        Available,
         Moving,
+        Booked,
         Returning
     }
 

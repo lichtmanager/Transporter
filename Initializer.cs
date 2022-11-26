@@ -43,7 +43,7 @@ public static class Initializer
             int payload = TruckPropertiesController.DetermineMaxPayload(size, type);
             int cons = TruckPropertiesController.DetermineTruckConsumption(type, size, age);
             double price = TruckPropertiesController.CalculateTruckPrice(age, size, type);
-            Truck.Status state = Truck.Status.Free;
+            Truck.Status state = Truck.Status.Available;
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price,
