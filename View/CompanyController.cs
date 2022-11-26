@@ -27,7 +27,7 @@ public class CompanyController
                 SelectTruckAndDriverForAssignment();
                 break;
             case 2:
-                UnassignDriverFromTruck();
+                SelectTruckAndDriverForUnassignment();
                 break;
             case 3:
                 AssignTenderToTruck();
@@ -62,8 +62,22 @@ public class CompanyController
         CheckPreconditionsForTruckDriverAssignment();
 
         int strokeForTruck = GetUserInputForTruck();
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Truck already has a driver. Consider removing it first. ++++++++++++++");
+            GetUserInputForTruck();
+        }
 
         var strokeForDriver = GetUserInputForDriver(strokeForTruck);
+        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Driver already is assigned to a Truck. Consider removing it first. ++++++++++++++");
+            GetUserInputForTruck();
+        }
 
         AssignDriverToTruck(strokeForTruck, strokeForDriver);
 
@@ -74,16 +88,15 @@ public class CompanyController
     {
         Console.WriteLine("Employed Drivers");
         ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
-        Console.WriteLine("Choose a free Driver");
+        Console.WriteLine(
+            "Choose a Driver to/from which you would like to (un)assign a Truck or return to Company Actions with 0");
         int strokeForDriver = BusinessLogic.GetUserInput();
 
-        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
+        if (strokeForDriver == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "++++++++++++++ The Driver already is assigned to a Truck. Consider removing it first. ++++++++++++++");
-            GetUserInputForTruck();
+            RenderMenu();
         }
+
 
         return strokeForDriver;
     }
@@ -93,16 +106,12 @@ public class CompanyController
         Console.WriteLine("Owned Trucks");
         ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
         Console.WriteLine(
-            "Choose a truck to which you would like to assign a driver to or return to Company Actions with 0");
+            "Choose a truck to which you would like to (un)assign a driver to or return to Company Actions with 0");
 
         int strokeForTruck = BusinessLogic.GetUserInput();
-
-        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
+        if (strokeForTruck == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "++++++++++++++ The Truck already has a driver. Consider removing it first. ++++++++++++++");
-            GetUserInputForTruck();
+            RenderMenu();
         }
 
         return strokeForTruck;
@@ -132,10 +141,50 @@ public class CompanyController
 
         StorageController.OwnedTrucks[indexForTruckList].TruckDriver =
             StorageController.EmployedDrivers[indexForDriverList];
+        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck =
+            StorageController.OwnedTrucks[indexForTruckList];
     }
 
-    private static void UnassignDriverFromTruck()
+    private static void UnassignDriverFromTruck(int strokeForTruck, int strokeForDriver)
     {
+        int indexForTruckList = strokeForTruck - 1;
+        int indexForDriverList = strokeForDriver - 1;
+
+        StorageController.OwnedTrucks[indexForTruckList].TruckDriver = null;
+        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
+    }
+
+    private static void SelectTruckAndDriverForUnassignment()
+    {
+        CheckPreconditionsForTruckDriverAssignment();
+
+        int strokeForTruck = GetUserInputForTruck();
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckState != Truck.Status.Available)
+        {
+            Console.WriteLine(
+                "++++++++++++++ The Truck you chose is not available for this action. Try again when the Status of the Truck is <Available>. ++++++++++++++");
+        }
+
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver is null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Truck doesn't have a driver. ++++++++++++++");
+            GetUserInputForTruck();
+        }
+
+        var strokeForDriver = GetUserInputForDriver(strokeForTruck);
+        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Driver isn't assigned to a Truck. ++++++++++++++");
+            GetUserInputForTruck();
+        }
+
+        UnassignDriverFromTruck(strokeForTruck, strokeForDriver);
+
+        BusinessLogic.ClearConsoleScreen();
     }
 
     private static void AssignTenderToTruck()

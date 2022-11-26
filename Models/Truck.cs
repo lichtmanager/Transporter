@@ -41,11 +41,18 @@ public class Truck
         Returning
     }
 
-    internal static string MappedTruckType(int randomTruckType)
+    internal static string MappedTruckType(int? randomTruckType)
     {
+        if (randomTruckType is null)
+        {
+            return "";
+        }
+
         List<string> truckTypesList = new List<string>()
             { "Kühllastwagen", "Pritschenwagen", "Tanklaster" };
-        string mappedTruckType = truckTypesList[randomTruckType];
+
+        string mappedTruckType = truckTypesList[(int)randomTruckType];
+
 
         return mappedTruckType;
     }

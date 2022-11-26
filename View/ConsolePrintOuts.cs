@@ -30,7 +30,7 @@ public class ConsolePrintOuts
                 $"{listOfDrivers[i].TruckerName}",
                 $"{listOfDrivers[i].Salary:C}",
                 $"{Driver.MappedWorkingMode(listOfDrivers[i].WorkingMode)}",
-                $"{listOfDrivers[i].AssignedTruck} ");
+                $"{Truck.MappedTruckType(listOfDrivers[i].AssignedTruck?.TruckType)} {listOfDrivers[i].AssignedTruck?.TruckAge}");
         }
 
         table.Write();
