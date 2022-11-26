@@ -10,11 +10,11 @@ public class CompanyTest
     [Fact]
     public void DayIsEnded()
     {
-        DateTime expectedDate = StorageController.company.Date.AddDays(1);
+        DateTime expectedDate = StorageController.Company.Date.AddDays(1);
 
         BusinessLogic.EndDay();
 
-        DateTime nextDay = StorageController.company.Date;
+        DateTime nextDay = StorageController.Company.Date;
 
         Assert.Equal(expectedDate, nextDay);
     }

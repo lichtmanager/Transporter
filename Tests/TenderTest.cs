@@ -11,8 +11,8 @@ public class TenderTest
     public void TenderIsRemovedFromAvailTenders()
     {
         int stroke = 6;
-        List<Tender> availTenders = StorageController.availTenders;
-        Tender chosenTender = StorageController.availTenders[stroke - 1];
+        List<Tender> availTenders = StorageController.AvailTenders;
+        Tender chosenTender = StorageController.AvailTenders[stroke - 1];
 
         BusinessLogic.AcceptTender(stroke);
 
@@ -23,8 +23,8 @@ public class TenderTest
     public void TenderIsAddedToCompany()
     {
         int stroke = 3;
-        List<Tender> acceptedTenders = StorageController.acceptedTenders;
-        Tender chosenTender = StorageController.availTenders[stroke - 1];
+        List<Tender> acceptedTenders = StorageController.AcceptedTenders;
+        Tender chosenTender = StorageController.AvailTenders[stroke - 1];
         BusinessLogic.AcceptTender(stroke);
 
         Assert.Contains(chosenTender, acceptedTenders);

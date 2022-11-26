@@ -11,7 +11,7 @@ public class CompanyController
         while (true)
         {
             Console.WriteLine("\n");
-            Console.WriteLine(StorageController.company.ToString());
+            Console.WriteLine(StorageController.Company.ToString());
             PrintOutAvailableNavOptions();
             var stroke = BusinessLogic.GetUserInput();
             DetermineActionOnMenuInput(stroke);
@@ -33,10 +33,10 @@ public class CompanyController
                 AssignTenderToTruck();
                 break;
             case 4:
-                ConsolePrintOuts.PrintOut(StorageController.ownedTrucks);
+                ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
                 break;
             case 5:
-                ConsolePrintOuts.PrintOut(StorageController.employedDrivers);
+                ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
                 break;
             case 0:
                 BusinessLogic.RenderMainMenu();
@@ -73,9 +73,17 @@ public class CompanyController
     private static int GetUserInputForDriver(int strokeForTruck)
     {
         Console.WriteLine("Employed Drivers");
-        ConsolePrintOuts.PrintOut(StorageController.employedDrivers);
+        ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
         Console.WriteLine("Choose a free Driver");
         int strokeForDriver = BusinessLogic.GetUserInput();
+
+        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Driver already is assigned to a Truck. Consider removing it first. ++++++++++++++");
+            GetUserInputForTruck();
+        }
 
         return strokeForDriver;
     }
@@ -83,13 +91,13 @@ public class CompanyController
     private static int GetUserInputForTruck()
     {
         Console.WriteLine("Owned Trucks");
-        ConsolePrintOuts.PrintOut(StorageController.ownedTrucks);
+        ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
         Console.WriteLine(
             "Choose a truck to which you would like to assign a driver to or return to Company Actions with 0");
 
         int strokeForTruck = BusinessLogic.GetUserInput();
 
-        if (StorageController.ownedTrucks[strokeForTruck - 1].TruckDriver != null)
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
@@ -102,14 +110,14 @@ public class CompanyController
 
     private static void CheckPreconditionsForTruckDriverAssignment()
     {
-        if (StorageController.ownedTrucks.Count == 0)
+        if (StorageController.OwnedTrucks.Count == 0)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't own any trucks+++++++++++");
             RenderMenu();
         }
 
-        if (StorageController.employedDrivers.Count == 0)
+        if (StorageController.EmployedDrivers.Count == 0)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't have any employed drivers +++++++++++");
@@ -122,8 +130,8 @@ public class CompanyController
         int indexForTruckList = strokeForTruck - 1;
         int indexForDriverList = strokeForDriver - 1;
 
-        StorageController.ownedTrucks[indexForTruckList].TruckDriver =
-            StorageController.employedDrivers[indexForDriverList];
+        StorageController.OwnedTrucks[indexForTruckList].TruckDriver =
+            StorageController.EmployedDrivers[indexForDriverList];
     }
 
     private static void UnassignDriverFromTruck()

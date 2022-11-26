@@ -12,7 +12,7 @@ public static class BusinessLogic
         do
         {
             Console.WriteLine("\n");
-            Console.WriteLine(StorageController.company.ToString());
+            Console.WriteLine(StorageController.Company.ToString());
             PrintOutAvailableNavOptions();
             var stroke = GetUserInput();
             DetermineActionOnMenuInput(stroke);
@@ -59,16 +59,16 @@ public static class BusinessLogic
 
     public static void EndDay()
     {
-        StorageController.company.Date = StorageController.company.Date.AddDays(1);
+        StorageController.Company.Date = StorageController.Company.Date.AddDays(1);
         ClearConsoleScreen();
     }
 
     private static void SelectTruck()
     {
-        if (StorageController.availTrucks.Count > 0)
+        if (StorageController.AvailTrucks.Count > 0)
         {
             Console.WriteLine("Trucks");
-            ConsolePrintOuts.PrintOut(StorageController.availTrucks);
+            ConsolePrintOuts.PrintOut(StorageController.AvailTrucks);
             Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
 
             int stroke = GetUserInput();
@@ -85,9 +85,9 @@ public static class BusinessLogic
     private static void SelectDriver()
     {
         Console.WriteLine("Drivers");
-        if (StorageController.availDrivers.Count > 0)
+        if (StorageController.AvailDrivers.Count > 0)
         {
-            ConsolePrintOuts.PrintOut(StorageController.availDrivers);
+            ConsolePrintOuts.PrintOut(StorageController.AvailDrivers);
             Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
             int stroke = GetUserInput();
             EmployDriver(stroke);
@@ -103,9 +103,9 @@ public static class BusinessLogic
     private static void SelectTender()
     {
         Console.WriteLine("Tender");
-        if (StorageController.availTenders.Count > 0)
+        if (StorageController.AvailTenders.Count > 0)
         {
-            ConsolePrintOuts.PrintOut(StorageController.availTenders);
+            ConsolePrintOuts.PrintOut(StorageController.AvailTenders);
             Console.WriteLine("Choose the Tender to accept or return to the main menu with 0");
             int stroke = GetUserInput();
             AcceptTender(stroke);
@@ -140,17 +140,17 @@ public static class BusinessLogic
         int indexForList = stroke - 1;
         CheckIfStrokeIsZero(stroke);
 
-        if (indexForList >= StorageController.availTrucks.Count)
+        if (indexForList >= StorageController.AvailTrucks.Count)
         {
             DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
-        StorageController.ownedTrucks.Add((StorageController.availTrucks[indexForList]));
+        StorageController.OwnedTrucks.Add((StorageController.AvailTrucks[indexForList]));
 
-        StorageController.company.Balance -= StorageController.availTrucks[indexForList].TruckPrice;
+        StorageController.Company.Balance -= StorageController.AvailTrucks[indexForList].TruckPrice;
 
-        StorageController.availTrucks.Remove(StorageController.availTrucks[indexForList]);
+        StorageController.AvailTrucks.Remove(StorageController.AvailTrucks[indexForList]);
     }
 
     public static void AcceptTender(int stroke)
@@ -159,16 +159,16 @@ public static class BusinessLogic
 
         int listIndex = stroke - 1;
 
-        if (listIndex >= StorageController.availTenders.Count)
+        if (listIndex >= StorageController.AvailTenders.Count)
         {
             DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
 
-        StorageController.acceptedTenders.Add((StorageController.availTenders[listIndex]));
+        StorageController.AcceptedTenders.Add((StorageController.AvailTenders[listIndex]));
 
-        StorageController.availTenders.Remove(StorageController.availTenders[listIndex]);
+        StorageController.AvailTenders.Remove(StorageController.AvailTenders[listIndex]);
     }
 
     public static void EmployDriver(int stroke)
@@ -177,14 +177,14 @@ public static class BusinessLogic
 
         int indexForList = stroke - 1;
 
-        if (indexForList >= StorageController.availDrivers.Count)
+        if (indexForList >= StorageController.AvailDrivers.Count)
         {
             DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
-        StorageController.employedDrivers.Add(StorageController.availDrivers[indexForList]);
-        StorageController.availDrivers.Remove(StorageController.availDrivers[indexForList]);
+        StorageController.EmployedDrivers.Add(StorageController.AvailDrivers[indexForList]);
+        StorageController.AvailDrivers.Remove(StorageController.AvailDrivers[indexForList]);
     }
 
     // -------------------------------------------------------------------------------------------

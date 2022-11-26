@@ -11,8 +11,8 @@ public class DriverTest
     public void DriverIsRemovedFromAvailDrivers()
     {
         int stroke = 4;
-        List<Driver> availDrivers = StorageController.availDrivers;
-        Driver chosenDriver = StorageController.availDrivers[stroke - 1];
+        List<Driver> availDrivers = StorageController.AvailDrivers;
+        Driver chosenDriver = StorageController.AvailDrivers[stroke - 1];
 
         BusinessLogic.EmployDriver(stroke);
 
@@ -23,8 +23,8 @@ public class DriverTest
     public void DriverIsAddedToCompany()
     {
         int stroke = 2;
-        List<Driver> employedDrivers = StorageController.employedDrivers;
-        Driver chosenDriver = StorageController.availDrivers[stroke - 1];
+        List<Driver> employedDrivers = StorageController.EmployedDrivers;
+        Driver chosenDriver = StorageController.AvailDrivers[stroke - 1];
         BusinessLogic.EmployDriver(stroke);
 
         Assert.Contains(chosenDriver, employedDrivers);

@@ -64,7 +64,7 @@ public static class Initializer
         {
             Driver driverInstance = new Driver(
                 NameController.GenerateDriverName(firstNames, lastNames), DriverController.GenerateSalary(),
-                DriverController.GenerateWorkingMode());
+                DriverController.GenerateWorkingMode(), null);
             listOfTruckers.Add(driverInstance);
         }
 
@@ -127,9 +127,9 @@ public static class Initializer
 
         int balance = 50000;
 
-        Company company = new Company(cName, balance, DateTime.Today, StorageController.ownedTrucks,
-            StorageController.employedDrivers,
-            StorageController.acceptedTenders);
+        Company company = new Company(cName, balance, DateTime.Today, StorageController.OwnedTrucks,
+            StorageController.EmployedDrivers,
+            StorageController.AcceptedTenders);
 
         return company;
     }

@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using ConsoleTables;
 using Transporter.Controller;
 using Transporter.View;
@@ -10,12 +11,15 @@ public class Driver
     internal int Salary { get; }
     internal int WorkingMode { get; }
 
+    internal Truck? AssignedTruck;
 
-    public Driver(string truckerName, int salary, int randomWorkingMode)
+
+    public Driver(string truckerName, int salary, int randomWorkingMode, Truck? assignedTruck)
     {
-        this.TruckerName = truckerName;
-        this.Salary = salary;
-        this.WorkingMode = randomWorkingMode;
+        TruckerName = truckerName;
+        Salary = salary;
+        WorkingMode = randomWorkingMode;
+        AssignedTruck = assignedTruck;
     }
 
     internal static string MappedWorkingMode(int workingMode)

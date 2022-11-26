@@ -11,8 +11,8 @@ public class TruckTest
     public void SelectedTruckIsAddedToCompany()
     {
         int stroke = 5;
-        List<Truck> storageTrucks = StorageController.availTrucks;
-        List<Truck> boughtTrucks = StorageController.ownedTrucks;
+        List<Truck> storageTrucks = StorageController.AvailTrucks;
+        List<Truck> boughtTrucks = StorageController.OwnedTrucks;
         Truck chosenTruck = storageTrucks[stroke - 1];
 
         BusinessLogic.PurchaseTruck(stroke);
@@ -26,11 +26,11 @@ public class TruckTest
         int stroke = 3;
 
 
-        double expectedBalanace = 50000 - StorageController.availTrucks[stroke - 1].TruckPrice;
+        double expectedBalanace = 50000 - StorageController.AvailTrucks[stroke - 1].TruckPrice;
 
         BusinessLogic.PurchaseTruck(stroke);
 
-        double balanceAfterPurchase = StorageController.company.Balance;
+        double balanceAfterPurchase = StorageController.Company.Balance;
 
         Assert.Equal(balanceAfterPurchase, expectedBalanace);
     }
@@ -39,7 +39,7 @@ public class TruckTest
     public void TruckIsRemovedFromAvailTrucks()
     {
         var stroke = 5;
-        var storageTrucks = StorageController.availTrucks;
+        var storageTrucks = StorageController.AvailTrucks;
         var chosenTruck = storageTrucks[stroke - 1];
 
         BusinessLogic.PurchaseTruck(stroke);

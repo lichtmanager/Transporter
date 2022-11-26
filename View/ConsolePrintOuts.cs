@@ -1,4 +1,5 @@
 using ConsoleTables;
+using Transporter.Controller;
 using Transporter.Models;
 
 namespace Transporter.View;
@@ -21,14 +22,15 @@ public class ConsolePrintOuts
 
     public static void PrintOut(List<Driver> listOfDrivers)
     {
-        var table = new ConsoleTable("#", "Name", "Salary", "WorkingMode");
+        var table = new ConsoleTable("#", "Name", "Salary", "WorkingMode", "Assigned Truck");
         for (int i = 0; i < listOfDrivers.Count; i++)
         {
             table.AddRow(
                 $"{i + 1}",
                 $"{listOfDrivers[i].TruckerName}",
                 $"{listOfDrivers[i].Salary:C}",
-                $"{Driver.MappedWorkingMode(listOfDrivers[i].WorkingMode)}");
+                $"{Driver.MappedWorkingMode(listOfDrivers[i].WorkingMode)}",
+                $"{listOfDrivers[i].AssignedTruck} ");
         }
 
         table.Write();
