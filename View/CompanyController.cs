@@ -38,6 +38,9 @@ public class CompanyController
             case 5:
                 ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
                 break;
+            case 6:
+                GetUserInputForTruckDestination();
+                break;
             case 0:
                 BusinessLogic.RenderMainMenu();
                 break;
@@ -53,9 +56,11 @@ public class CompanyController
         //ToDo Hieraus könnte man enums machen!?
         Console.Write(
             "1. Assign Driver to Truck \n2. Unassing driver from truck " +
-            "\n3. Assing Tender to Truck \n4. Show bought Trucks \n5. Show emplyed Drivers \n0. Return to Main Menu \n\n");
+            "\n3. Assing Tender to Truck \n4. Show bought Trucks \n5. Show emplyed Drivers \n6. Move Truck to location \n0. Return to Main Menu \n\n");
         Console.Write("Please choose in order proceed and hit the equivalent number: ");
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
 
     private static void SelectTruckAndDriverForAssignment()
     {
@@ -106,7 +111,7 @@ public class CompanyController
         Console.WriteLine("Owned Trucks");
         ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
         Console.WriteLine(
-            "Choose a truck to which you would like to (un)assign a driver to or return to Company Actions with 0");
+            "Choose a truck or return to Company Actions with 0");
 
         int strokeForTruck = BusinessLogic.GetUserInput();
         if (strokeForTruck == 0)
@@ -189,5 +194,44 @@ public class CompanyController
 
     private static void AssignTenderToTruck()
     {
+    }
+
+    private static void GetUserInputForTruckDestination()
+    {
+        if (StorageController.OwnedTrucks.Count == 0)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ You don't own any trucks you could move. +++++++++++");
+            RenderMenu();
+        }
+
+
+        int strokeForTruck = GetUserInputForTruck();
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckState != Truck.Status.Available)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "+++++++++++ The Truck you chose is not up for disposal. +++++++++++");
+            RenderMenu();
+        }
+
+        int strokeForCity = GetUserInputForCity();
+
+        StorageController.OwnedTrucks[strokeForTruck - 1].Destination = StorageController.Cities[strokeForCity - 1];
+    }
+
+    private static int GetUserInputForCity()
+    {
+        Console.WriteLine();
+        ConsolePrintOuts.PrintCities(StorageController.Cities);
+        Console.WriteLine("Choose the City the truck should move to or return to Company actions with 0");
+
+        int strokeForCity = BusinessLogic.GetUserInput();
+        if (strokeForCity == 0)
+        {
+            RenderMenu();
+        }
+
+        return strokeForCity;
     }
 }

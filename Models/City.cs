@@ -17,34 +17,33 @@ public class City
 
     private static City GetUserInputForCitySelection(City[] cities)
     {
-        string? input = System.Console.ReadLine();
+        string? input = Console.ReadLine();
         if (string.IsNullOrEmpty(input))
         {
-            System.Console.WriteLine("is empty, try again!: ");
+            Console.WriteLine("is empty, try again!: ");
             return GetUserInputForCitySelection(cities);
         }
-        else
+
+
+        try
         {
-            try
+            int desiredCity = Convert.ToInt16(input);
+            if (desiredCity >= 1 && desiredCity < cities.Length)
             {
-                int desiredCity = Convert.ToInt16(input);
-                if (desiredCity >= 1 && desiredCity < cities.Length)
-                {
-                    return cities[desiredCity - 1];
-                }
-                else
-                {
-                    System.Console.Write(
-                        $"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length - 1}): ");
-                    return GetUserInputForCitySelection(cities);
-                }
+                return cities[desiredCity - 1];
             }
-            catch (Exception)
+            else
             {
-                System.Console.Write(
-                    $"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length - 1}): ");
+                Console.Write(
+                    $"<{input}> not in the possible list of options. --> Please choose from the given range (1 - {cities.Length - 1}): ");
                 return GetUserInputForCitySelection(cities);
             }
+        }
+        catch (Exception)
+        {
+            Console.Write(
+                $"Wrong Input <{input}>. Did you maybe use a letter instead of a number? \nPlease choose from the given range (1 - {cities.Length - 1}): ");
+            return GetUserInputForCitySelection(cities);
         }
     }
 

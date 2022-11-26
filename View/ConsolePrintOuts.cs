@@ -6,11 +6,11 @@ namespace Transporter.View;
 
 public class ConsolePrintOuts
 {
-    public static void PrintAllCities(City[] cities)
+    public static void PrintCities(City[] cities)
     {
         for (var i = 0; i < cities.Length; i++)
         {
-            System.Console.WriteLine((i + 1) + " " + cities[i].CityName);
+            Console.WriteLine((i + 1) + " " + cities[i].CityName);
         }
     }
 
@@ -20,17 +20,17 @@ public class ConsolePrintOuts
         System.Console.WriteLine(City.ChooseEndCity(cities).CityName);
     }
 
-    public static void PrintOut(List<Driver> listOfDrivers)
+    public static void PrintOut(List<Driver> drivers)
     {
         var table = new ConsoleTable("#", "Name", "Salary", "WorkingMode", "Assigned Truck");
-        for (int i = 0; i < listOfDrivers.Count; i++)
+        for (int i = 0; i < drivers.Count; i++)
         {
             table.AddRow(
                 $"{i + 1}",
-                $"{listOfDrivers[i].TruckerName}",
-                $"{listOfDrivers[i].Salary:C}",
-                $"{Driver.MappedWorkingMode(listOfDrivers[i].WorkingMode)}",
-                $"{Truck.MappedTruckType(listOfDrivers[i].AssignedTruck?.TruckType)} {listOfDrivers[i].AssignedTruck?.TruckAge}");
+                $"{drivers[i].TruckerName}",
+                $"{drivers[i].Salary:C}",
+                $"{Driver.MappedWorkingMode(drivers[i].WorkingMode)}",
+                $"{Truck.MappedTruckType(drivers[i].AssignedTruck?.TruckType)} {drivers[i].AssignedTruck?.TruckAge}");
         }
 
         table.Write();
@@ -56,7 +56,7 @@ public class ConsolePrintOuts
 
     public static void PrintOut(List<Truck> trucks)
     {
-        var table = new ConsoleTable("#", "Type", "Age", "Location", "Performane", "Payload",
+        var table = new ConsoleTable("#", "Type", "Age", "Location", "Destination", "Performance", "Payload",
             "Consumption", "Price", "Driver", "Status");
         for (int i = 0; i < trucks.Count; i++)
         {
@@ -64,6 +64,7 @@ public class ConsolePrintOuts
                 $"{Truck.MappedTruckType(trucks[i].TruckType)}",
                 $"{Truck.MappedTruckAge(trucks[i].TruckAge)}",
                 $"{Truck.MappedTruckLocation(trucks[i].TruckLocation)}",
+                $"{trucks[i].Destination.CityName}",
                 $"{trucks[i].TruckPerformance} hp",
                 $"{trucks[i].TruckMaxPayload.ToString()}t",
                 $"{trucks[i].TruckConsumption} l/100km",

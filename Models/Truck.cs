@@ -16,10 +16,12 @@ public class Truck
     public double TruckPrice;
     public Driver? TruckDriver;
     public Status TruckState;
+    public City Destination;
 
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
-        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckTruckState)
+        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckTruckState,
+        City destination)
     {
         TruckType = truckType;
         TruckAge = truckAge;
@@ -31,6 +33,7 @@ public class Truck
         TruckPrice = truckPrice;
         TruckDriver = truckDriver;
         TruckState = truckTruckState;
+        Destination = destination;
     }
 
     public enum Status
@@ -57,11 +60,16 @@ public class Truck
         return mappedTruckType;
     }
 
-    public static string MappedTruckLocation(int randomTruckLocation)
+    public static string MappedTruckLocation(int? truckLocation)
     {
+        if (truckLocation is null)
+        {
+            return "";
+        }
+
         List<string> availableCities = new List<string>()
             { "Amsterdam", "Berlin", "Esslingen", "Rom", "Lissabon", "Istanbul", "Aarhus", "Tallinn" };
-        string loc = availableCities[randomTruckLocation];
+        string loc = availableCities[(int)truckLocation];
 
         return loc;
     }

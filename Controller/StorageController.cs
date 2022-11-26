@@ -13,4 +13,5 @@ public static class StorageController
     public static List<Tender> AcceptedTenders = new List<Tender>();
 
     public static Company Company = Initializer.InitializeCompany();
+    public static City[] Cities = Initializer.InitializeCities();
 }

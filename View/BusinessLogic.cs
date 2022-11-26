@@ -187,7 +187,7 @@ public static class BusinessLogic
         StorageController.AvailDrivers.Remove(StorageController.AvailDrivers[indexForList]);
     }
 
-    // -------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
     public static void ClearConsoleScreen()
     {
         for (int i = 0; i < 20; i++)

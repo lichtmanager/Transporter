@@ -13,7 +13,7 @@ public static class Main_
  
          // City[] cities = Initializer.InitializeCities();
  
-         // City.PrintAllCities(cities);
+         // City.PrintCities(cities);
          // City.ChooseCity(cities);
          // City.ChooseStart(cities);
          // City.ChooseEnd(cities);

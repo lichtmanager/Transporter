@@ -47,7 +47,7 @@ public static class Initializer
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price,
-                null, state);
+                null, state, null);
 
             listOfTrucks.Add(truck);
         }
@@ -122,8 +122,9 @@ public static class Initializer
 
     public static Company InitializeCompany()
     {
-        string cName = NameSelectionController.GetUserInput();
-
+        // string cName = NameSelectionController.GetUserInput();
+        //ToDo: Remove static name before submitting T7
+        string cName = "Bärchenlogistik";
 
         int balance = 50000;
 
