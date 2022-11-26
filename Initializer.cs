@@ -43,9 +43,11 @@ public static class Initializer
             int payload = TruckPropertiesController.DetermineMaxPayload(size, type);
             int cons = TruckPropertiesController.DetermineTruckConsumption(type, size, age);
             double price = TruckPropertiesController.CalculateTruckPrice(age, size, type);
+            Truck.Status state = Truck.Status.Free;
 
             Truck truck = new Truck(
-                type, age, loc, size, perf, payload, cons, price);
+                type, age, loc, size, perf, payload, cons, price,
+                null, state);
 
             listOfTrucks.Add(truck);
         }
@@ -126,8 +128,8 @@ public static class Initializer
         int balance = 50000;
 
         Company company = new Company(cName, balance, DateTime.Today, StorageController.ownedTrucks,
-            StorageController.ownedDrivers,
-            StorageController.ownedTenders);
+            StorageController.employedDrivers,
+            StorageController.acceptedTenders);
 
         return company;
     }

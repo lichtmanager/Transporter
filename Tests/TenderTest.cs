@@ -23,7 +23,7 @@ public class TenderTest
     public void TenderIsAddedToCompany()
     {
         int stroke = 3;
-        List<Tender> acceptedTenders = StorageController.ownedTenders;
+        List<Tender> acceptedTenders = StorageController.acceptedTenders;
         Tender chosenTender = StorageController.availTenders[stroke - 1];
         BusinessLogic.AcceptTender(stroke);
 

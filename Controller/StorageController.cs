@@ -9,8 +9,8 @@ public class StorageController
     public static List<Tender> availTenders = Initializer.InitializeNTenders(8);
 
     public static List<Truck> ownedTrucks = new List<Truck>();
-    public static List<Driver> ownedDrivers = new List<Driver>();
-    public static List<Tender> ownedTenders = new List<Tender>();
+    public static List<Driver> employedDrivers = new List<Driver>();
+    public static List<Tender> acceptedTenders = new List<Tender>();
 
     public static Company company = Initializer.InitializeCompany();
 }

@@ -23,7 +23,7 @@ public class DriverTest
     public void DriverIsAddedToCompany()
     {
         int stroke = 2;
-        List<Driver> employedDrivers = StorageController.ownedDrivers;
+        List<Driver> employedDrivers = StorageController.employedDrivers;
         Driver chosenDriver = StorageController.availDrivers[stroke - 1];
         BusinessLogic.EmployDriver(stroke);
 

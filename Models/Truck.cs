@@ -14,21 +14,32 @@ public class Truck
     public int TruckMaxPayload;
     public int TruckConsumption;
     public double TruckPrice;
+    public Driver? TruckDriver;
+    public Status State;
+
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
-        int truckMaxPayload,
-        int truckConsumption, double truckPrice)
+        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState)
     {
-        this.TruckType = truckType;
-        this.TruckAge = truckAge;
-        this.TruckLocation = truckLocation;
-        this.TruckSize = truckSize;
-        this.TruckPerformance = truckPerformance;
-        this.TruckMaxPayload = truckMaxPayload;
-        this.TruckConsumption = truckConsumption;
-        this.TruckPrice = truckPrice;
+        TruckType = truckType;
+        TruckAge = truckAge;
+        TruckLocation = truckLocation;
+        TruckSize = truckSize;
+        TruckPerformance = truckPerformance;
+        TruckMaxPayload = truckMaxPayload;
+        TruckConsumption = truckConsumption;
+        TruckPrice = truckPrice;
+        TruckDriver = truckDriver;
+        State = truckState;
     }
 
+    public enum Status
+    {
+        Free,
+        Transferring,
+        Moving,
+        Returning
+    }
 
     internal static string MappedTruckType(int randomTruckType)
     {

@@ -5,6 +5,8 @@ namespace Transporter.View;
 
 public static class BusinessLogic
 {
+    private static bool _runProgram = true;
+
     public static void RenderMainMenu()
     {
         do
@@ -14,7 +16,15 @@ public static class BusinessLogic
             PrintOutAvailableNavOptions();
             var stroke = GetUserInput();
             DetermineActionOnMenuInput(stroke);
-        } while (true);
+        } while (_runProgram);
+    }
+
+    private static void PrintOutAvailableNavOptions()
+    {
+        //ToDo Hieraus könnte man enums machen!?
+        Console.Write(
+            "1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n5. Show Company Resources \n0. End Program \n\n");
+        Console.Write("Please choose in order proceed and hit the equivalent number: ");
     }
 
     private static void DetermineActionOnMenuInput(int stroke)
@@ -34,6 +44,12 @@ public static class BusinessLogic
             case 4:
                 EndDay();
                 RenderMainMenu();
+                break;
+            case 5:
+                CompanyController.RenderMenu();
+                break;
+            case 0:
+                _runProgram = false;
                 break;
             default:
                 RenderMainMenu();
@@ -102,13 +118,7 @@ public static class BusinessLogic
         }
     }
 
-    private static void PrintOutAvailableNavOptions()
-    {
-        Console.Write("1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n");
-        Console.Write("Please choose in order proceed and hit the equivalent number: ");
-    }
-
-    private static int GetUserInput()
+    public static int GetUserInput()
     {
         var userInput = Console.ReadKey(true);
         try
@@ -122,14 +132,6 @@ public static class BusinessLogic
                 "An error occured. You might have not pressed a number. Please hit a number key: ");
             RenderMainMenu();
             throw;
-        }
-    }
-
-    private static void ClearConsoleScreen()
-    {
-        for (int i = 0; i < 20; i++)
-        {
-            Console.WriteLine();
         }
     }
 
@@ -164,7 +166,7 @@ public static class BusinessLogic
         }
 
 
-        StorageController.ownedTenders.Add((StorageController.availTenders[listIndex]));
+        StorageController.acceptedTenders.Add((StorageController.availTenders[listIndex]));
 
         StorageController.availTenders.Remove(StorageController.availTenders[listIndex]);
     }
@@ -181,8 +183,17 @@ public static class BusinessLogic
             RenderMainMenu();
         }
 
-        StorageController.ownedDrivers.Add(StorageController.availDrivers[indexForList]);
+        StorageController.employedDrivers.Add(StorageController.availDrivers[indexForList]);
         StorageController.availDrivers.Remove(StorageController.availDrivers[indexForList]);
+    }
+
+    // -------------------------------------------------------------------------------------------
+    private static void ClearConsoleScreen()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Console.WriteLine();
+        }
     }
 
     private static void CheckIfStrokeIsZero(int stroke)
