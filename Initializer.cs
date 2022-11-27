@@ -16,9 +16,9 @@ public static class Initializer
         return (firstNames, lastNames);
     }
 
-    public static City[] InitializeCities()
+    public static City?[] InitializeCities()
     {
-        City[] cityArray = new City[8];
+        City?[] cityArray = new City?[8];
         cityArray[0] = new City("Amsterdam", 868851, 297477);
         cityArray[1] = new City("Berlin", 1442341, 404144);
         cityArray[2] = new City("Esslingen", 1232391, -71899);

@@ -16,12 +16,12 @@ public class Truck
     public double TruckPrice;
     public Driver? TruckDriver;
     public Status TruckState;
-    public City Destination;
+    public City? Destination;
 
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
         int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckTruckState,
-        City destination)
+        City? destination)
     {
         TruckType = truckType;
         TruckAge = truckAge;

@@ -6,7 +6,7 @@ namespace Transporter.View;
 
 public class ConsolePrintOuts
 {
-    public static void PrintCities(City[] cities)
+    public static void PrintCities(City?[] cities)
     {
         for (var i = 0; i < cities.Length; i++)
         {
@@ -64,7 +64,7 @@ public class ConsolePrintOuts
                 $"{Truck.MappedTruckType(trucks[i].TruckType)}",
                 $"{Truck.MappedTruckAge(trucks[i].TruckAge)}",
                 $"{Truck.MappedTruckLocation(trucks[i].TruckLocation)}",
-                $"{trucks[i].Destination.CityName}",
+                $"{trucks[i].Destination?.CityName}",
                 $"{trucks[i].TruckPerformance} hp",
                 $"{trucks[i].TruckMaxPayload.ToString()}t",
                 $"{trucks[i].TruckConsumption} l/100km",

@@ -75,6 +75,7 @@ public class CompanyController
             GetUserInputForTruck();
         }
 
+
         var strokeForDriver = GetUserInputForDriver(strokeForTruck);
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
         {
@@ -87,6 +88,13 @@ public class CompanyController
         AssignDriverToTruck(strokeForTruck, strokeForDriver);
 
         BusinessLogic.ClearConsoleScreen();
+    }
+
+    private static void PrintOutOutOfRange()
+    {
+        BusinessLogic.ClearConsoleScreen();
+        Console.WriteLine(
+            "++++++++++++++ The number you hit was not given in the list above. Please Try again! ++++++++++++++");
     }
 
     private static int GetUserInputForDriver(int strokeForTruck)
@@ -102,6 +110,11 @@ public class CompanyController
             RenderMenu();
         }
 
+        if (strokeForDriver > StorageController.EmployedDrivers.Count)
+        {
+            PrintOutOutOfRange();
+            GetUserInputForTruck();
+        }
 
         return strokeForDriver;
     }
@@ -117,6 +130,12 @@ public class CompanyController
         if (strokeForTruck == 0)
         {
             RenderMenu();
+        }
+
+        if (strokeForTruck > StorageController.OwnedTrucks.Count)
+        {
+            PrintOutOutOfRange();
+            GetUserInputForTruck();
         }
 
         return strokeForTruck;
