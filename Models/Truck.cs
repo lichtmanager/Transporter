@@ -68,7 +68,7 @@ public class Truck
         }
 
         List<string> availableCities = new List<string>()
-            { "Amsterdam", "Berlin", "Esslingen", "Rom", "Lissabon", "Istanbul", "Aarhus", "Tallinn" };
+            { "Amsterdam", "Berlin", "Esslingen", "Rom", "Lissabon", "Istanbul", "Aarhus", "Tallinn", "" };
         string loc = availableCities[(int)truckLocation];
 
         return loc;

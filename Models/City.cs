@@ -9,9 +9,9 @@ public class City
 
     public City(string cityName, int easting, int northing)
     {
-        this.CityName = cityName;
-        this.Easting = easting;
-        this.Northing = northing;
+        CityName = cityName;
+        Easting = easting;
+        Northing = northing;
     }
 
 

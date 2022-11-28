@@ -18,7 +18,7 @@ public static class Initializer
 
     public static City?[] InitializeCities()
     {
-        City?[] cityArray = new City?[8];
+        City?[] cityArray = new City?[9];
         cityArray[0] = new City("Amsterdam", 868851, 297477);
         cityArray[1] = new City("Berlin", 1442341, 404144);
         cityArray[2] = new City("Esslingen", 1232391, -71899);
@@ -27,6 +27,7 @@ public static class Initializer
         cityArray[5] = new City("Istanbul", 3015490, -498084);
         cityArray[6] = new City("Aarhus", 1156381, 763352);
         cityArray[7] = new City("Tallinn", 1889074, 1368933);
+        cityArray[8] = new City("", 0, 0);
         return cityArray;
     }
 
@@ -58,7 +59,7 @@ public static class Initializer
     public static List<Driver> InitializeNDrivers(int numOfDriversToCreate)
     {
         List<Driver> listOfTruckers = new List<Driver>();
-        var (firstNames, lastNames) = Initializer.LoadNamesFromFile();
+        var (firstNames, lastNames) = LoadNamesFromFile();
 
         for (int i = 0; i < numOfDriversToCreate; i++)
         {

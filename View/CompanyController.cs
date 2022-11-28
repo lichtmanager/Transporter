@@ -224,8 +224,8 @@ public class CompanyController
             RenderMenu();
         }
 
-
         int strokeForTruck = GetUserInputForTruck();
+
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckState != Truck.Status.Available)
         {
             BusinessLogic.ClearConsoleScreen();
@@ -234,9 +234,20 @@ public class CompanyController
             RenderMenu();
         }
 
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver is null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Truck doesn't hava a Driver. Please assign a Driver and try again. ++++++++++++++");
+            RenderMenu();
+        }
+
+
         int strokeForCity = GetUserInputForCity();
 
+
         StorageController.OwnedTrucks[strokeForTruck - 1].Destination = StorageController.Cities[strokeForCity - 1];
+        StorageController.OwnedTrucks[strokeForTruck - 1].TruckLocation = 8;
     }
 
     private static int GetUserInputForCity()
