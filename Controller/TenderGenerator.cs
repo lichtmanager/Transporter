@@ -29,6 +29,7 @@ public static class TenderPropertiesController
         return startingCity;
     }
 
+
     public static string GenerateEndingCity()
     {
         string endingCity = Truck.MappedTruckLocation(TruckPropertiesController.GenerateRandomTruckLocation());

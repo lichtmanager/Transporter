@@ -1,3 +1,5 @@
+using Transporter.Models;
+
 namespace Transporter.Controller;
 
 public static class TruckPropertiesController
@@ -48,6 +50,14 @@ public static class TruckPropertiesController
         int truckAge = rnd.Next(0, 11);
 
         return truckAge;
+    }
+
+    public static int GenerateRandomIndexForTruckCity()
+    {
+        Random rnd = new Random();
+        int truckCity = rnd.Next(0, 8);
+
+        return truckCity;
     }
 
     public static int GenerateRandomTruckLocation()

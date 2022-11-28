@@ -8,22 +8,22 @@ public class Tender
 {
     public Good Good;
     public int Weight;
-    public string StartingCity;
-    public string EndingCity;
+    public City? StartingCity;
+    public City? EndingCity;
     public string DeliveryDate;
     public double Compensation;
     public double Penalty;
 
 
-    public Tender(Good good, int weight, string startingCity, string endingCity, string date, double compensation,
+    public Tender(Good good, int weight, City? startingCity, City? endingCity, string date, double compensation,
         double penalty, string deliveryDate)
     {
-        this.Good = TenderPropertiesController.ChooseRandomGood();
-        this.Weight = weight;
-        this.StartingCity = startingCity;
-        this.EndingCity = endingCity;
-        this.Compensation = compensation;
-        this.Penalty = penalty;
-        this.DeliveryDate = deliveryDate;
+        Good = TenderPropertiesController.ChooseRandomGood();
+        Weight = weight;
+        StartingCity = startingCity;
+        EndingCity = endingCity;
+        Compensation = compensation;
+        Penalty = penalty;
+        DeliveryDate = deliveryDate;
     }
 }

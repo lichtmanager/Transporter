@@ -16,9 +16,9 @@ public static class Initializer
         return (firstNames, lastNames);
     }
 
-    public static City?[] InitializeCities()
+    public static City[] InitializeCities()
     {
-        City?[] cityArray = new City?[9];
+        City[] cityArray = new City[9];
         cityArray[0] = new City("Amsterdam", 868851, 297477);
         cityArray[1] = new City("Berlin", 1442341, 404144);
         cityArray[2] = new City("Esslingen", 1232391, -71899);
@@ -82,8 +82,8 @@ public static class Initializer
             Random rnd = new Random();
             int rndWeight = rnd.Next(1, goodForTender.MaxWeight + 1);
 
-            string startingCity = "";
-            string endingCity = "";
+            City? startingCity = null;
+            City? endingCity = null;
 
             string deliveryDate = TenderPropertiesController.GenerateDeliveryDate(goodForTender);
             int compensation =
@@ -92,12 +92,13 @@ public static class Initializer
 
             do
             {
-                startingCity = TenderPropertiesController.GenerateStartingCity();
-                endingCity = TenderPropertiesController.GenerateEndingCity();
+                startingCity = CityGenerator.GenerateRandomCity();
+                endingCity = CityGenerator.GenerateRandomCity();
             } while (startingCity == endingCity);
 
-            listOfTenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate, compensation,
-                penalty, deliveryDate));
+            if (startingCity != null && endingCity != null)
+                listOfTenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate,
+                    compensation, penalty, deliveryDate));
         }
 
         return listOfTenders;
