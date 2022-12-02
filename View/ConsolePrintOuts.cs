@@ -57,7 +57,7 @@ public class ConsolePrintOuts
     public static void PrintOut(List<Truck> trucks)
     {
         var table = new ConsoleTable("#", "Type", "Age", "Location", "Destination", "Performance", "Payload",
-            "Consumption", "Price", "Driver", "Status");
+            "Consumption", "Price", "Driver", "Tender", "Status");
         for (int i = 0; i < trucks.Count; i++)
         {
             table.AddRow($"{i + 1}",
@@ -70,6 +70,7 @@ public class ConsolePrintOuts
                 $"{trucks[i].TruckConsumption} l/100km",
                 $"{trucks[i].TruckPrice:C}",
                 $"{trucks[i].TruckDriver?.TruckerName}",
+                $"{trucks[i].Tender?.Good.GoodsName}",
                 $"{trucks[i].TruckState}");
         }
 

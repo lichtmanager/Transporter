@@ -65,28 +65,53 @@ public class CompanyController
     {
         CheckPreconditionsForTruckDriverAssignment();
 
-        int strokeForTruck = GetUserInputForTruck();
-        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
-        {
-            BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine(
-                "++++++++++++++ The Truck already has a driver. Consider removing it first. ++++++++++++++");
-            GetUserInputForTruck();
-        }
+        var strokeForTruck = SelectTruck();
 
+        var strokeForDriver = SelectDriver();
 
+        AssignDriverToTruck(strokeForTruck, strokeForDriver);
+
+        BusinessLogic.ClearConsoleScreen();
+    }
+
+    private static int SelectDriver()
+    {
         var strokeForDriver = GetUserInputForDriver();
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                "++++++++++++++ The Driver already is assigned to a Truck. Consider removing it first. ++++++++++++++");
+                "++++++++++++++ The Driver is not available for this action. ++++++++++++++");
             GetUserInputForTruck();
         }
 
-        AssignDriverToTruck(strokeForTruck, strokeForDriver);
+        return strokeForDriver;
+    }
 
+    private static int SelectTruck()
+    {
+        int strokeForTruck = GetUserInputForTruck();
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Truck is not available for this action. Consider checking your selection. ++++++++++++++");
+            GetUserInputForTruck();
+        }
+
+        return strokeForTruck;
+    }
+
+    private static int SelectTender()
+    {
+        int strokeForTender = GetUserInputForTender();
+        if (StorageController.OwnedTrucks[strokeForTender - 1].Tender == null) return strokeForTender;
         BusinessLogic.ClearConsoleScreen();
+        Console.WriteLine(
+            "++++++++++++++ The Tender is not available for this action. Consider checking your selection. ++++++++++++++");
+        GetUserInputForTender();
+
+        return strokeForTender;
     }
 
     private static void PrintOutOutOfRange()
@@ -139,6 +164,28 @@ public class CompanyController
         }
 
         return strokeForTruck;
+    }
+
+    private static int GetUserInputForTender()
+    {
+        Console.WriteLine("Owned Tenders");
+        ConsolePrintOuts.PrintOut(StorageController.AcceptedTenders);
+        Console.WriteLine(
+            "Choose a tender or return to Company Actions with 0");
+
+        int strokeForTender = BusinessLogic.GetUserInput();
+        if (strokeForTender == 0)
+        {
+            RenderMenu();
+        }
+
+        if (strokeForTender > StorageController.AcceptedTenders.Count)
+        {
+            PrintOutOutOfRange();
+            GetUserInputForTruck();
+        }
+
+        return strokeForTender;
     }
 
     private static void CheckPreconditionsForTruckDriverAssignment()
@@ -197,7 +244,7 @@ public class CompanyController
             GetUserInputForTruck();
         }
 
-        var strokeForDriver = GetUserInputForDriver(strokeForTruck);
+        var strokeForDriver = GetUserInputForDriver();
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
         {
             BusinessLogic.ClearConsoleScreen();
@@ -213,6 +260,41 @@ public class CompanyController
 
     private static void AssignTenderToTruck()
     {
+        CheckPreconditionsForTenderAssignment();
+
+        var indexForTruckList = SelectTruck();
+
+        var indexForTenderList = SelectTender();
+
+        StorageController.OwnedTrucks[indexForTruckList].Tender =
+            StorageController.AcceptedTenders[indexForTenderList];
+
+
+        BusinessLogic.ClearConsoleScreen();
+    }
+
+    private static void CheckPreconditionsForTenderAssignment()
+    {
+        if (StorageController.OwnedTrucks.Count == 0)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ You don't own any trucks +++++++++++");
+            RenderMenu();
+        }
+
+        if (StorageController.EmployedDrivers.Count == 0)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ You don't have any employed drivers +++++++++++");
+            RenderMenu();
+        }
+
+        if (StorageController.AcceptedTenders.Count == 0)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine("+++++++++++ You don't have any accepted tenders +++++++++++");
+            RenderMenu();
+        }
     }
 
     private static void GetUserInputForTruckDestination()
