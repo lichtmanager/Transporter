@@ -261,14 +261,13 @@ public class CompanyController
     private static void AssignTenderToTruck()
     {
         CheckPreconditionsForTenderAssignment();
-
+        var indexForTenderList = SelectTender();
         var indexForTruckList = SelectTruck();
 
-        var indexForTenderList = SelectTender();
 
         StorageController.OwnedTrucks[indexForTruckList].Tender =
             StorageController.AcceptedTenders[indexForTenderList];
-
+//ToDo abfragen und einschränkungen fehlen
 
         BusinessLogic.ClearConsoleScreen();
     }
