@@ -29,9 +29,6 @@ public static class Main_
          // Initializer.InitializeNTenders(10);
          */
 
-        // BusinessLogic.RenderMainMenu();
-
-        City hello = CityGenerator.GenerateRandomCity();
-        Console.WriteLine(hello.CityName);
+        BusinessLogic.RenderMainMenu();
     }
 }

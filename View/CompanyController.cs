@@ -1,4 +1,3 @@
-using System.Runtime.Intrinsics.Arm;
 using Transporter.Controller;
 using Transporter.Models;
 
@@ -36,7 +35,7 @@ public class CompanyController
                 ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
                 break;
             case 5:
-                ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
+                ShowEmployedDrivers();
                 break;
             case 6:
                 GetUserInputForTruckDestination();
@@ -76,7 +75,7 @@ public class CompanyController
         }
 
 
-        var strokeForDriver = GetUserInputForDriver(strokeForTruck);
+        var strokeForDriver = GetUserInputForDriver();
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
         {
             BusinessLogic.ClearConsoleScreen();
@@ -97,7 +96,7 @@ public class CompanyController
             "++++++++++++++ The number you hit was not given in the list above. Please Try again! ++++++++++++++");
     }
 
-    private static int GetUserInputForDriver(int strokeForTruck)
+    private static int GetUserInputForDriver()
     {
         Console.WriteLine("Employed Drivers");
         ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
@@ -115,6 +114,7 @@ public class CompanyController
             PrintOutOutOfRange();
             GetUserInputForTruck();
         }
+
 
         return strokeForDriver;
     }
@@ -263,5 +263,11 @@ public class CompanyController
         }
 
         return strokeForCity;
+    }
+
+    private static void ShowEmployedDrivers()
+    {
+        ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
+        Console.WriteLine("See employed Drivers above");
     }
 }
