@@ -21,7 +21,7 @@ public class Truck
 
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
-        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckTruckState,
+        int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState,
         City? destination, Tender tender)
     {
         TruckType = truckType;
@@ -33,7 +33,7 @@ public class Truck
         TruckConsumption = truckConsumption;
         TruckPrice = truckPrice;
         TruckDriver = truckDriver;
-        TruckState = truckTruckState;
+        TruckState = truckState;
         Destination = destination;
         Tender = tender;
     }

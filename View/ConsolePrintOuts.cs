@@ -4,13 +4,16 @@ using Transporter.Models;
 
 namespace Transporter.View;
 
+using Transporter.Controller;
+using Transporter.View;
+
 public class ConsolePrintOuts
 {
     public static void PrintCities(City?[] cities)
     {
         for (var i = 0; i < cities.Length; i++)
         {
-            Console.WriteLine((i + 1) + " " + cities[i].CityName);
+            Console.WriteLine((i + 1) + " " + cities[i]?.CityName);
         }
     }
 
@@ -45,7 +48,8 @@ public class ConsolePrintOuts
         for (int i = 0; i < tenders.Count; i++)
         {
             table.AddRow($"{i + 1}", $"{tenders[i].Good.GoodsName}", $"{tenders[i].Good.ReqTruckForTransport}",
-                $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight:F1}t",
+                $"{tenders[i].StartingCity?.CityName}", $"{tenders[i].EndingCity?.CityName}",
+                $"{tenders[i].Weight:F1}t",
                 $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C0}",
                 $"{tenders[i].Penalty:C0}");
         }
@@ -76,5 +80,30 @@ public class ConsolePrintOuts
 
         table.Write();
         Console.WriteLine();
+    }
+
+    public static void PrintOutTenderAssignmentTable(List<Tender> tenders, List<Truck> trucks)
+    {
+        var table = new ConsoleTable("#", "Good", "Type", "Origin", "Destination", "Weight", "Delivery-date",
+            "Compensation", "Penalty", "#", "Type", "Location", "Payload", "Status");
+        for (int i = 0; i < tenders.Count; i++)
+        {
+            table.AddRow($"{i + 1}", $"{tenders[i].Good.GoodsName}", $"{tenders[i].Good.ReqTruckForTransport}",
+                $"{tenders[i].StartingCity}", $"{tenders[i].EndingCity}", $"{tenders[i].Weight:F1}t",
+                $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C0}",
+                $"{tenders[i].Penalty:C0}", $"{i + 1}", $"{Truck.MappedTruckType(trucks[i].TruckType)}",
+                $"{Truck.MappedTruckLocation(trucks[i].TruckLocation)}", $"{trucks[i].TruckMaxPayload.ToString()}t",
+                $"{trucks[i].TruckState}");
+        }
+    }
+// ----------------------------------------------------------------------------------------------------------------------
+// error messages    
+
+
+    public static void PrintOutOutOfRange()
+    {
+        BusinessLogic.ClearConsoleScreen();
+        Console.WriteLine(
+            "++++++++++++++ The number you hit was not given in the list above. Please Try again! ++++++++++++++");
     }
 }

@@ -14,5 +14,7 @@ public static class StorageController
     public static List<Truck> OwnedTrucks = new List<Truck>();
     public static List<Driver> EmployedDrivers = new List<Driver>();
     public static List<Tender> AcceptedTenders = new List<Tender>();
+    public static List<Truck> SuitableTrucks = new List<Truck>();
+
     public static Company Company = Initializer.InitializeCompany();
 }
