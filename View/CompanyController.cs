@@ -267,7 +267,8 @@ public class CompanyController
 
         StorageController.OwnedTrucks[indexForTruckList].Tender =
             StorageController.AcceptedTenders[indexForTenderList];
-//ToDo abfragen und einschränkungen fehlen
+
+        //ToDo abfragen und Einschränkungen fehlen
 
         BusinessLogic.ClearConsoleScreen();
     }
