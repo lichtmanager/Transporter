@@ -22,7 +22,7 @@ public class Truck
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
         int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState,
-        City? destination, Tender tender)
+        City? destination, Tender? tender)
     {
         TruckType = truckType;
         TruckAge = truckAge;
@@ -74,6 +74,34 @@ public class Truck
         string loc = availableCities[(int)truckLocation];
 
         return loc;
+    }
+
+    public static int MapCityToTruckLocation(City city)
+    {
+        int cityInt;
+        switch (city.CityName)
+        {
+            case "Amsterdam":
+                return 0;
+            case "Berlin":
+                return 1;
+            case "Esslingen":
+                return 2;
+            case "Rom":
+                return 3;
+            case "Lissabon":
+                return 4;
+            case "Istanbul":
+                return 5;
+            case "Aarhus":
+                return 6;
+            case "Tallinn":
+                return 7;
+            case "":
+                return 8;
+            case null: return 8;
+            default: return 8;
+        }
     }
 
     private static string MappedTruckSize(int randomTruckSize)

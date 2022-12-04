@@ -33,6 +33,7 @@ public class CompanyController
                 break;
             case 4:
                 ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
+                Console.WriteLine("Owned Trucks");
                 break;
             case 5:
                 ShowEmployedDrivers();
@@ -55,19 +56,21 @@ public class CompanyController
         //ToDo Hieraus könnte man enums machen!?
         Console.Write(
             "1. Assign Driver to Truck \n2. Unassing driver from truck " +
-            "\n3. Assing Tender to Truck \n4. Show bought Trucks \n5. Show emplyed Drivers \n6. Move Truck to location \n0. Return to Main Menu \n\n");
+            "\n3. Assing Tender to Truck \n4. Show bought Trucks \n5. Show employed Drivers \n6. Move Truck to location \n0. Return to Main Menu \n\n");
         Console.Write("Please choose in order proceed and hit the equivalent number: ");
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
 
     private static void SelectTruckAndDriverForAssignment()
     {
-        CheckPreconditionsForTruckDriverAssignment();
+        CheckIf.BoughtTrucksListIsNotZero();
+        CheckIf.EmployedTrucksListIsNotZero();
 
         var strokeForTruck = SelectTruck();
+        CheckIf.TruckDriverIsNull(strokeForTruck);
 
         var strokeForDriver = SelectDriver();
+        CheckIf.AssignedTruckIsNull(strokeForDriver);
 
         AssignDriverToTruck(strokeForTruck, strokeForDriver);
 
@@ -77,7 +80,6 @@ public class CompanyController
     private static int SelectDriver()
     {
         var strokeForDriver = GetUserInputForDriver();
-        CheckIf.AssignedTruckIsNull(strokeForDriver);
 
         return strokeForDriver;
     }
@@ -86,7 +88,6 @@ public class CompanyController
     private static int SelectTruck()
     {
         int strokeForTruck = GetUserInputForTruck();
-        CheckIf.TruckDriverIsNotNull(strokeForTruck);
 
         return strokeForTruck;
     }
@@ -95,7 +96,7 @@ public class CompanyController
     private static int SelectTender()
     {
         int strokeForTender = GetUserInputForTender();
-        CheckIf.TenderIsNull(strokeForTender);
+        //  CheckIf.TenderInTruckIsNotNull(strokeForTender);
 
         return strokeForTender;
     }
@@ -103,12 +104,14 @@ public class CompanyController
 
     private static int GetUserInputForDriver()
     {
-        Console.WriteLine("Employed Drivers");
         ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
+
+        Console.WriteLine("Employed Drivers");
         Console.WriteLine(
             "Choose a Driver to/from which you would like to (un)assign a Truck or return to Company Actions with 0");
-        int strokeForDriver = BusinessLogic.GetUserInput();
+        Console.WriteLine();
 
+        int strokeForDriver = BusinessLogic.GetUserInput();
         if (strokeForDriver == 0)
         {
             RenderMenu();
@@ -126,10 +129,12 @@ public class CompanyController
 
     public static int GetUserInputForTruck()
     {
-        Console.WriteLine("Owned Trucks");
         ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
+
+        Console.WriteLine("Owned Trucks");
         Console.WriteLine(
             "Choose a truck or return to Company Actions with 0");
+        Console.WriteLine();
 
         int strokeForTruck = BusinessLogic.GetUserInput();
         if (strokeForTruck == 0)
@@ -148,10 +153,12 @@ public class CompanyController
 
     public static int GetUserInputForTender()
     {
-        Console.WriteLine("Owned Tenders");
         ConsolePrintOuts.PrintOut(StorageController.AcceptedTenders);
+
+        Console.WriteLine("Owned Tenders");
         Console.WriteLine(
             "Choose a tender or return to Company Actions with 0");
+        Console.WriteLine();
 
         int strokeForTender = BusinessLogic.GetUserInput();
         if (strokeForTender == 0)
@@ -166,13 +173,6 @@ public class CompanyController
         }
 
         return strokeForTender;
-    }
-
-    private static void CheckPreconditionsForTruckDriverAssignment()
-    {
-        CheckIf.BoughtTrucksListIsNotZero();
-
-        CheckIf.EmployedTrucksListIsNotZero();
     }
 
 
@@ -198,10 +198,11 @@ public class CompanyController
 
     private static void SelectTruckAndDriverForUnassignment()
     {
-        CheckPreconditionsForTruckDriverAssignment();
+        CheckIf.BoughtTrucksListIsNotZero();
+        CheckIf.EmployedTrucksListIsNotZero();
 
         int strokeForTruck = GetUserInputForTruck();
-        CheckIf.TruckStatusIsNotAvailable(strokeForTruck);
+        CheckIf.TruckStatusIsAvailable(strokeForTruck);
 
         CheckIf.TruckDriverIsNotNull(strokeForTruck);
 
@@ -227,10 +228,7 @@ public class CompanyController
 
         StorageController.OwnedTrucks[indexForTruckList].Tender =
             StorageController.AcceptedTenders[indexForTenderList];
-
-        //ToDo abfragen und Einschränkungen fehlen
-
-        BusinessLogic.ClearConsoleScreen();
+        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
     }
 
     private static void GetUserInputForTruckDestination()

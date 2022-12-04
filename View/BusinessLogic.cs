@@ -61,6 +61,16 @@ public static class BusinessLogic
     {
         StorageController.Company.Date = StorageController.Company.Date.AddDays(1);
         ClearConsoleScreen();
+        foreach (var truck in StorageController.OwnedTrucks)
+        {
+            truck.TruckState = Truck.Status.Available;
+
+            if (Truck.MappedTruckLocation(truck.TruckLocation) == "")
+            {
+                truck.TruckLocation = Truck.MapCityToTruckLocation(truck.Destination);
+                truck.Destination = null;
+            }
+        }
     }
 
     private static void SelectTruck()
@@ -120,7 +130,7 @@ public static class BusinessLogic
 
     public static int GetUserInput()
     {
-        var userInput = Console.ReadKey(true);
+        var userInput = Console.ReadKey(false);
         try
         {
             int stroke = int.Parse(userInput.KeyChar.ToString());
@@ -138,7 +148,7 @@ public static class BusinessLogic
     public static void PurchaseTruck(int stroke)
     {
         int indexForList = stroke - 1;
-        CheckIfStrokeIsZero(stroke);
+        CheckIf.StrokeIsZero(stroke);
 
         if (indexForList >= StorageController.AvailTrucks.Count)
         {
@@ -155,7 +165,7 @@ public static class BusinessLogic
 
     public static void AcceptTender(int stroke)
     {
-        CheckIfStrokeIsZero(stroke);
+        CheckIf.StrokeIsZero(stroke);
 
         int listIndex = stroke - 1;
 
@@ -173,7 +183,7 @@ public static class BusinessLogic
 
     public static void EmployDriver(int stroke)
     {
-        CheckIfStrokeIsZero(stroke);
+        CheckIf.StrokeIsZero(stroke);
 
         int indexForList = stroke - 1;
 
@@ -193,15 +203,6 @@ public static class BusinessLogic
         for (int i = 0; i < 20; i++)
         {
             Console.WriteLine();
-        }
-    }
-
-    private static void CheckIfStrokeIsZero(int stroke)
-    {
-        if (stroke == 0)
-        {
-            ClearConsoleScreen();
-            RenderMainMenu();
         }
     }
 

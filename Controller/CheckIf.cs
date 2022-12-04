@@ -5,35 +5,58 @@ namespace Transporter.Controller;
 
 public static class CheckIf
 {
-    public static void TruckDriverIsNotNull(int strokeForTruck)
+    public static void StrokeIsZero(int stroke)
+    {
+        if (stroke == 0)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            BusinessLogic.RenderMainMenu();
+        }
+    }
+
+    public static void TruckDriverIsNull(int strokeForTruck)
     {
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                "++++++++++++++ The Truck doesn't have a driver. Select one first. ++++++++++++++");
+                "++++++++++++++ The Truck already has a driver ++++++++++++++");
+            CompanyController.GetUserInputForTruck();
+        }
+    }
+
+    public static void TruckDriverIsNotNull(int strokeForTruck)
+    {
+        if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver == null)
+        {
+            BusinessLogic.ClearConsoleScreen();
+            Console.WriteLine(
+                "++++++++++++++ The Truck already has a driver ++++++++++++++");
             CompanyController.GetUserInputForTruck();
         }
     }
 
     public static void AssignedTruckIsNotNull(int strokeForDriver)
     {
-        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
+        if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck == null)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                "++++++++++++++ The Driver isn't assigned to a Truck. ++++++++++++++");
+                "++++++++++++++ The Driver isn't assigned to a Truck ++++++++++++++");
             CompanyController.GetUserInputForTruck();
         }
     }
 
-    public static void TenderIsNull(int strokeForTender)
+    public static void TenderInTruckIsNotNull(int strokeForTender)
     {
+        BusinessLogic.ClearConsoleScreen();
+        Console.WriteLine(strokeForTender);
+        BusinessLogic.ClearConsoleScreen();
         if (StorageController.OwnedTrucks[strokeForTender - 1].Tender != null)
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                "++++++++++++++ The Tender is not available for this action. Consider checking your selection. ++++++++++++++");
+                "++++++++++++++ The Truck already has a Tender ++++++++++++++");
             CompanyController.GetUserInputForTender();
         }
     }
@@ -44,7 +67,7 @@ public static class CheckIf
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                "++++++++++++++ The Driver is not available for this action. ++++++++++++++");
+                "++++++++++++++ The Driver already has an assigned Truck ++++++++++++++");
             CompanyController.GetUserInputForTruck();
         }
     }
@@ -59,17 +82,15 @@ public static class CheckIf
         }
     }
 
-
     public static void BoughtTrucksListIsNotZero()
     {
         if (StorageController.OwnedTrucks.Count == 0)
         {
             BusinessLogic.ClearConsoleScreen();
-            Console.WriteLine("+++++++++++ You don't own any trucks+++++++++++");
+            Console.WriteLine("+++++++++++ You don't own any trucks +++++++++++");
             CompanyController.RenderMenu();
         }
     }
-
 
     public static void TruckMatchesTenderConditions(Tender acceptedTender, Truck ownedTruck)
     {
@@ -77,7 +98,7 @@ public static class CheckIf
         {
             BusinessLogic.ClearConsoleScreen();
             Console.WriteLine(
-                $"++++++++++++++ Fehler, Typen stimmen nicht überein ({Truck.MappedTruckType(ownedTruck.TruckType)} benötigt .++++++++++++++");
+                $"++++++++++++++ Fehler, Typen stimmen nicht überein ({Truck.MappedTruckType(ownedTruck.TruckType)} ausgwält und {acceptedTender.Good.ReqTruckForTransport} benötigt. .++++++++++++++");
             CompanyController.RenderMenu();
         }
 
@@ -85,15 +106,15 @@ public static class CheckIf
             Truck.MappedTruckLocation(ownedTruck.TruckLocation))
         {
             Console.WriteLine(
-                $"++++++++++++++ The truck needs to be in {acceptedTender.StartingCity} but is in" +
-                $" {ownedTruck.TruckLocation} right now. Consider moving it! ++++++++++++++");
+                $"++++++++++++++ The truck needs to be in {acceptedTender.StartingCity.CityName} but is in" +
+                $" {Truck.MappedTruckLocation(ownedTruck.TruckLocation)} right now. Consider moving it! ++++++++++++++");
             CompanyController.RenderMenu();
         }
 
         if (acceptedTender.Weight > ownedTruck.TruckMaxPayload)
         {
             Console.WriteLine(
-                $"++++++++++++++ The actual Payload exceeds the maximum by {acceptedTender.Weight - ownedTruck.TruckMaxPayload} ");
+                $"++++++++++++++ The actual Payload exceeds the maximum by {acceptedTender.Weight - ownedTruck.TruckMaxPayload}t ");
         }
 
         if (ownedTruck.TruckState != Truck.Status.Available)
@@ -127,12 +148,13 @@ public static class CheckIf
         }
     }
 
-    public static void TruckStatusIsNotAvailable(int strokeForTruck)
+    public static void TruckStatusIsAvailable(int strokeForTruck)
     {
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckState != Truck.Status.Available)
         {
             Console.WriteLine(
-                "++++++++++++++ The Truck you chose is not available for this action. Try again when the Status of the Truck is <Available>. ++++++++++++++");
+                $"++++++++++++++ The Truck you chose is {StorageController.OwnedTrucks[strokeForTruck - 1].TruckState}. " +
+                $"Try again when the Status of the Truck is <Available>. ++++++++++++++");
         }
     }
 }
