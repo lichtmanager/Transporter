@@ -67,7 +67,7 @@ public static class BusinessLogic
 
             if (Truck.MappedTruckLocation(truck.TruckLocation) == "")
             {
-                truck.TruckLocation = Truck.MapCityToTruckLocation(truck.Destination);
+                if (truck.Destination != null) truck.TruckLocation = Truck.MapCityToTruckLocation(truck.Destination);
                 truck.Destination = null;
             }
         }

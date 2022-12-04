@@ -78,7 +78,6 @@ public class Truck
 
     public static int MapCityToTruckLocation(City city)
     {
-        int cityInt;
         switch (city.CityName)
         {
             case "Amsterdam":
