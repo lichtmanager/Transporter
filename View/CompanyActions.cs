@@ -29,7 +29,7 @@ public static class CompanyActions
                 SelectTruckAndDriverForUnassignment();
                 break;
             case 3:
-                AssignTenderToTruck();
+                SelectTenderAndTruckForAssignment();
                 break;
             case 4:
                 ConsolePrintOuts.PrintOut(StorageController.OwnedTrucks);
@@ -95,7 +95,7 @@ public static class CompanyActions
         ConsolePrintOuts.ClearConsoleScreen();
     }
 
-    private static void AssignTenderToTruck()
+    private static void SelectTenderAndTruckForAssignment()
     {
         CheckIf.PreconditionsForTenderAssignment();
         var indexForTenderList = SelectTender() - 1;
@@ -105,10 +105,9 @@ public static class CompanyActions
             StorageController.OwnedTrucks[indexForTruckList]);
 
 
-        StorageController.OwnedTrucks[indexForTruckList].Tender =
-            StorageController.AcceptedTenders[indexForTenderList];
-        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
+        AssignTenderToTruck(indexForTruckList, indexForTenderList);
     }
+
 
     private static int SelectDriver()
     {
@@ -257,7 +256,7 @@ public static class CompanyActions
     }
 
 
-    private static void AssignDriverToTruck(int strokeForTruck, int strokeForDriver)
+    internal static void AssignDriverToTruck(int strokeForTruck, int strokeForDriver)
     {
         int indexForTruckList = strokeForTruck - 1;
         int indexForDriverList = strokeForDriver - 1;
@@ -268,13 +267,20 @@ public static class CompanyActions
             StorageController.OwnedTrucks[indexForTruckList];
     }
 
-    private static void UnassignDriverFromTruck(int strokeForTruck, int strokeForDriver)
+    internal static void UnassignDriverFromTruck(int strokeForTruck, int strokeForDriver)
     {
         int indexForTruckList = strokeForTruck - 1;
         int indexForDriverList = strokeForDriver - 1;
 
         StorageController.OwnedTrucks[indexForTruckList].TruckDriver = null;
         StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
+    }
+
+    internal static void AssignTenderToTruck(int indexForTruckList, int indexForTenderList)
+    {
+        StorageController.OwnedTrucks[indexForTruckList].Tender =
+            StorageController.AcceptedTenders[indexForTenderList];
+        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
     }
 
 
