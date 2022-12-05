@@ -3,7 +3,7 @@ using Transporter.Models;
 
 namespace Transporter.View;
 
-public class CompanyController
+public static class CompanyActions
 {
     public static void RenderMenu()
     {
@@ -50,7 +50,6 @@ public class CompanyController
         }
     }
 
-
     private static void PrintOutAvailableNavOptions()
     {
         //ToDo Hieraus könnte man enums machen!?
@@ -74,7 +73,41 @@ public class CompanyController
 
         AssignDriverToTruck(strokeForTruck, strokeForDriver);
 
-        BusinessLogic.ClearConsoleScreen();
+        ConsolePrintOuts.ClearConsoleScreen();
+    }
+
+    private static void SelectTruckAndDriverForUnassignment()
+    {
+        CheckIf.BoughtTrucksListIsNotZero();
+        CheckIf.EmployedTrucksListIsNotZero();
+
+        int strokeForTruck = GetUserInputForTruck();
+        CheckIf.TruckStatusIsAvailable(strokeForTruck);
+
+        CheckIf.TruckDriverIsNotNull(strokeForTruck);
+
+
+        var strokeForDriver = GetUserInputForDriver();
+        CheckIf.AssignedTruckIsNotNull(strokeForDriver);
+
+        UnassignDriverFromTruck(strokeForTruck, strokeForDriver);
+
+        ConsolePrintOuts.ClearConsoleScreen();
+    }
+
+    private static void AssignTenderToTruck()
+    {
+        CheckIf.PreconditionsForTenderAssignment();
+        var indexForTenderList = SelectTender() - 1;
+        var indexForTruckList = SelectTruck() - 1;
+
+        CheckIf.TruckMatchesTenderConditions(StorageController.AcceptedTenders[indexForTenderList],
+            StorageController.OwnedTrucks[indexForTruckList]);
+
+
+        StorageController.OwnedTrucks[indexForTruckList].Tender =
+            StorageController.AcceptedTenders[indexForTenderList];
+        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
     }
 
     private static int SelectDriver()
@@ -84,14 +117,12 @@ public class CompanyController
         return strokeForDriver;
     }
 
-
     private static int SelectTruck()
     {
         int strokeForTruck = GetUserInputForTruck();
 
         return strokeForTruck;
     }
-
 
     private static int SelectTender()
     {
@@ -119,7 +150,7 @@ public class CompanyController
 
         if (strokeForDriver > StorageController.EmployedDrivers.Count)
         {
-            ConsolePrintOuts.PrintOutOutOfRange();
+            ConsolePrintOuts.OutOfRange();
             GetUserInputForTruck();
         }
 
@@ -144,7 +175,7 @@ public class CompanyController
 
         if (strokeForTruck > StorageController.OwnedTrucks.Count)
         {
-            ConsolePrintOuts.PrintOutOutOfRange();
+            ConsolePrintOuts.OutOfRange();
             GetUserInputForTruck();
         }
 
@@ -168,74 +199,18 @@ public class CompanyController
 
         if (strokeForTender > StorageController.AcceptedTenders.Count)
         {
-            ConsolePrintOuts.PrintOutOutOfRange();
+            ConsolePrintOuts.OutOfRange();
             GetUserInputForTruck();
         }
 
         return strokeForTender;
     }
 
-
-    private static void AssignDriverToTruck(int strokeForTruck, int strokeForDriver)
-    {
-        int indexForTruckList = strokeForTruck - 1;
-        int indexForDriverList = strokeForDriver - 1;
-
-        StorageController.OwnedTrucks[indexForTruckList].TruckDriver =
-            StorageController.EmployedDrivers[indexForDriverList];
-        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck =
-            StorageController.OwnedTrucks[indexForTruckList];
-    }
-
-    private static void UnassignDriverFromTruck(int strokeForTruck, int strokeForDriver)
-    {
-        int indexForTruckList = strokeForTruck - 1;
-        int indexForDriverList = strokeForDriver - 1;
-
-        StorageController.OwnedTrucks[indexForTruckList].TruckDriver = null;
-        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
-    }
-
-    private static void SelectTruckAndDriverForUnassignment()
-    {
-        CheckIf.BoughtTrucksListIsNotZero();
-        CheckIf.EmployedTrucksListIsNotZero();
-
-        int strokeForTruck = GetUserInputForTruck();
-        CheckIf.TruckStatusIsAvailable(strokeForTruck);
-
-        CheckIf.TruckDriverIsNotNull(strokeForTruck);
-
-
-        var strokeForDriver = GetUserInputForDriver();
-        CheckIf.AssignedTruckIsNotNull(strokeForDriver);
-
-        UnassignDriverFromTruck(strokeForTruck, strokeForDriver);
-
-        BusinessLogic.ClearConsoleScreen();
-    }
-
-
-    private static void AssignTenderToTruck()
-    {
-        CheckIf.PreconditionsForTenderAssignment();
-        var indexForTenderList = SelectTender() - 1;
-        var indexForTruckList = SelectTruck() - 1;
-
-        CheckIf.TruckMatchesTenderConditions(StorageController.AcceptedTenders[indexForTenderList],
-            StorageController.OwnedTrucks[indexForTruckList]);
-
-
-        StorageController.OwnedTrucks[indexForTruckList].Tender =
-            StorageController.AcceptedTenders[indexForTenderList];
-        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
-    }
-
     private static void GetUserInputForTruckDestination()
     {
         if (StorageController.OwnedTrucks.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't own any trucks you could move. +++++++++++");
             RenderMenu();
         }
@@ -244,7 +219,7 @@ public class CompanyController
 
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckState != Truck.Status.Available)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "+++++++++++ The Truck you chose is not up for disposal. +++++++++++");
             RenderMenu();
@@ -252,7 +227,7 @@ public class CompanyController
 
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver is null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Truck doesn't hava a Driver. Please assign a Driver and try again. ++++++++++++++");
             RenderMenu();
@@ -281,9 +256,32 @@ public class CompanyController
         return strokeForCity;
     }
 
+
+    private static void AssignDriverToTruck(int strokeForTruck, int strokeForDriver)
+    {
+        int indexForTruckList = strokeForTruck - 1;
+        int indexForDriverList = strokeForDriver - 1;
+
+        StorageController.OwnedTrucks[indexForTruckList].TruckDriver =
+            StorageController.EmployedDrivers[indexForDriverList];
+        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck =
+            StorageController.OwnedTrucks[indexForTruckList];
+    }
+
+    private static void UnassignDriverFromTruck(int strokeForTruck, int strokeForDriver)
+    {
+        int indexForTruckList = strokeForTruck - 1;
+        int indexForDriverList = strokeForDriver - 1;
+
+        StorageController.OwnedTrucks[indexForTruckList].TruckDriver = null;
+        StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
+    }
+
+
     private static void ShowEmployedDrivers()
     {
         ConsolePrintOuts.PrintOut(StorageController.EmployedDrivers);
         Console.WriteLine("See employed Drivers above");
+        Console.WriteLine();
     }
 }

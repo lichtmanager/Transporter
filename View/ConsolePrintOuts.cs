@@ -7,7 +7,7 @@ namespace Transporter.View;
 using Transporter.Controller;
 using Transporter.View;
 
-public class ConsolePrintOuts
+public static class ConsolePrintOuts
 {
     public static void PrintCities(City?[] cities)
     {
@@ -100,10 +100,26 @@ public class ConsolePrintOuts
 // error messages    
 
 
-    public static void PrintOutOutOfRange()
+    public static void OutOfRange()
     {
-        BusinessLogic.ClearConsoleScreen();
+        ConsolePrintOuts.ClearConsoleScreen();
         Console.WriteLine(
             "++++++++++++++ The number you hit was not given in the list above. Please Try again! ++++++++++++++");
+    }
+
+    internal static void DisplayOutOfRangeMessage()
+    {
+        ConsolePrintOuts.ClearConsoleScreen();
+        Console.WriteLine(
+            "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------
+    public static void ClearConsoleScreen()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Console.WriteLine();
+        }
     }
 }

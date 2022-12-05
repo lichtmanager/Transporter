@@ -9,7 +9,7 @@ public static class CheckIf
     {
         if (stroke == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             BusinessLogic.RenderMainMenu();
         }
     }
@@ -18,10 +18,10 @@ public static class CheckIf
     {
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver != null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Truck already has a driver ++++++++++++++");
-            CompanyController.GetUserInputForTruck();
+            CompanyActions.GetUserInputForTruck();
         }
     }
 
@@ -29,10 +29,10 @@ public static class CheckIf
     {
         if (StorageController.OwnedTrucks[strokeForTruck - 1].TruckDriver == null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Truck already has a driver ++++++++++++++");
-            CompanyController.GetUserInputForTruck();
+            CompanyActions.GetUserInputForTruck();
         }
     }
 
@@ -40,24 +40,24 @@ public static class CheckIf
     {
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck == null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Driver isn't assigned to a Truck ++++++++++++++");
-            CompanyController.GetUserInputForTruck();
+            CompanyActions.GetUserInputForTruck();
         }
     }
 
     public static void TenderInTruckIsNotNull(int strokeForTender)
     {
-        BusinessLogic.ClearConsoleScreen();
+        ConsolePrintOuts.ClearConsoleScreen();
         Console.WriteLine(strokeForTender);
-        BusinessLogic.ClearConsoleScreen();
+        ConsolePrintOuts.ClearConsoleScreen();
         if (StorageController.OwnedTrucks[strokeForTender - 1].Tender != null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Truck already has a Tender ++++++++++++++");
-            CompanyController.GetUserInputForTender();
+            CompanyActions.GetUserInputForTender();
         }
     }
 
@@ -65,10 +65,10 @@ public static class CheckIf
     {
         if (StorageController.EmployedDrivers[strokeForDriver - 1].AssignedTruck != null)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 "++++++++++++++ The Driver already has an assigned Truck ++++++++++++++");
-            CompanyController.GetUserInputForTruck();
+            CompanyActions.GetUserInputForTruck();
         }
     }
 
@@ -76,9 +76,9 @@ public static class CheckIf
     {
         if (StorageController.EmployedDrivers.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't have any employed drivers +++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
     }
 
@@ -86,9 +86,9 @@ public static class CheckIf
     {
         if (StorageController.OwnedTrucks.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't own any trucks +++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
     }
 
@@ -96,10 +96,10 @@ public static class CheckIf
     {
         if (acceptedTender.Good.ReqTruckForTransport != Truck.MappedTruckType(ownedTruck.TruckType))
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine(
                 $"++++++++++++++ Fehler, Typen stimmen nicht überein ({Truck.MappedTruckType(ownedTruck.TruckType)} ausgwält und {acceptedTender.Good.ReqTruckForTransport} benötigt. .++++++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
 
         if (acceptedTender.StartingCity != null && acceptedTender.StartingCity.CityName !=
@@ -108,7 +108,7 @@ public static class CheckIf
             Console.WriteLine(
                 $"++++++++++++++ The truck needs to be in {acceptedTender.StartingCity.CityName} but is in" +
                 $" {Truck.MappedTruckLocation(ownedTruck.TruckLocation)} right now. Consider moving it! ++++++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
 
         if (acceptedTender.Weight > ownedTruck.TruckMaxPayload)
@@ -120,7 +120,7 @@ public static class CheckIf
         if (ownedTruck.TruckState != Truck.Status.Available)
         {
             Console.WriteLine($"The truck is {ownedTruck.TruckState}");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
     }
 
@@ -128,23 +128,23 @@ public static class CheckIf
     {
         if (StorageController.OwnedTrucks.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't own any trucks +++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
 
         if (StorageController.EmployedDrivers.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't have any employed drivers +++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
 
         if (StorageController.AcceptedTenders.Count == 0)
         {
-            BusinessLogic.ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ You don't have any accepted tenders +++++++++++");
-            CompanyController.RenderMenu();
+            CompanyActions.RenderMenu();
         }
     }
 

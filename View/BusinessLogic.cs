@@ -21,7 +21,6 @@ public static class BusinessLogic
 
     private static void PrintOutAvailableNavOptions()
     {
-        //ToDo Hieraus könnte man enums machen!?
         Console.Write(
             "1. Buy Truck \n2. Hire Driver \n3. Accept Tenders \n4. End tour\n5. Show Company Resources \n0. End Program \n\n");
         Console.Write("Please choose in order proceed and hit the equivalent number: ");
@@ -46,7 +45,7 @@ public static class BusinessLogic
                 RenderMainMenu();
                 break;
             case 5:
-                CompanyController.RenderMenu();
+                CompanyActions.RenderMenu();
                 break;
             case 0:
                 _runProgram = false;
@@ -60,7 +59,7 @@ public static class BusinessLogic
     public static void EndDay()
     {
         StorageController.Company.Date = StorageController.Company.Date.AddDays(1);
-        ClearConsoleScreen();
+        ConsolePrintOuts.ClearConsoleScreen();
         foreach (var truck in StorageController.OwnedTrucks)
         {
             truck.TruckState = Truck.Status.Available;
@@ -83,11 +82,11 @@ public static class BusinessLogic
 
             int stroke = GetUserInput();
             PurchaseTruck(stroke);
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
         }
         else
         {
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ There are no more trucks to buy +++++++++++");
         }
     }
@@ -101,11 +100,11 @@ public static class BusinessLogic
             Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
             int stroke = GetUserInput();
             EmployDriver(stroke);
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
         }
         else
         {
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ There are no more Drivers to employ +++++++++++");
         }
     }
@@ -119,11 +118,11 @@ public static class BusinessLogic
             Console.WriteLine("Choose the Tender to accept or return to the main menu with 0");
             int stroke = GetUserInput();
             AcceptTender(stroke);
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
         }
         else
         {
-            ClearConsoleScreen();
+            ConsolePrintOuts.ClearConsoleScreen();
             Console.WriteLine("+++++++++++ There are no more Tenders to accept +++++++++++");
         }
     }
@@ -152,7 +151,7 @@ public static class BusinessLogic
 
         if (indexForList >= StorageController.AvailTrucks.Count)
         {
-            DisplayOutOfRangeMessage();
+            ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
@@ -171,7 +170,7 @@ public static class BusinessLogic
 
         if (listIndex >= StorageController.AvailTenders.Count)
         {
-            DisplayOutOfRangeMessage();
+            ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
@@ -189,7 +188,7 @@ public static class BusinessLogic
 
         if (indexForList >= StorageController.AvailDrivers.Count)
         {
-            DisplayOutOfRangeMessage();
+            ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
         }
 
@@ -198,18 +197,4 @@ public static class BusinessLogic
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    public static void ClearConsoleScreen()
-    {
-        for (int i = 0; i < 20; i++)
-        {
-            Console.WriteLine();
-        }
-    }
-
-    private static void DisplayOutOfRangeMessage()
-    {
-        ClearConsoleScreen();
-        Console.WriteLine(
-            "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
-    }
 }
