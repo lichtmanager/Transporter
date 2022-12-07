@@ -48,7 +48,7 @@ public static class BusinessLogic
                 CompanyActions.RenderMenu();
                 break;
             case 0:
-                _runProgram = false;
+                Environment.Exit(0);
                 break;
             default:
                 RenderMainMenu();
@@ -149,7 +149,7 @@ public static class BusinessLogic
         int indexForList = stroke - 1;
         CheckIf.StrokeIsZero(stroke);
 
-        if (indexForList >= StorageController.AvailTrucks.Count)
+        if (stroke > StorageController.AvailTrucks.Count)
         {
             ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
@@ -168,7 +168,7 @@ public static class BusinessLogic
 
         int listIndex = stroke - 1;
 
-        if (listIndex >= StorageController.AvailTenders.Count)
+        if (stroke > StorageController.AvailTenders.Count)
         {
             ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
@@ -186,7 +186,7 @@ public static class BusinessLogic
 
         int indexForList = stroke - 1;
 
-        if (indexForList >= StorageController.AvailDrivers.Count)
+        if (stroke > StorageController.AvailDrivers.Count)
         {
             ConsolePrintOuts.DisplayOutOfRangeMessage();
             RenderMainMenu();
