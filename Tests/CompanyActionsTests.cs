@@ -1,4 +1,3 @@
-using System.Data.Common;
 using Transporter.Controller;
 using Transporter.Models;
 using Transporter.View;
@@ -59,6 +58,5 @@ public class CompanyActionsTests
 
         Assert.Null(StorageController.OwnedTrucks[stroke1 - 1].TruckDriver);
         Assert.Null(StorageController.EmployedDrivers[stroke2 - 1].AssignedTruck);
-        Assert.Equal(truckBeforeUnassign.TruckDriver, driverBeforeUnassign);
     }
 }
