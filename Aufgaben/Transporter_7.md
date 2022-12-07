@@ -24,7 +24,7 @@ Rückweg.
 
 - Ein LKW kann von einem Ort zu einem anderen bewegt werden
 - Ein LKW kann nur bewegt werden, wenn dieser frei ist.
-- Ein LKW hat einen Status: frei, unterwegs, wird bewegt, auf dem Rückweg.s
+- Ein LKW hat einen Status: frei, gebucht, wird bewegt, auf dem Rückweg.
 
 ## User Story 3
 
