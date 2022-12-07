@@ -59,4 +59,9 @@ public class CompanyActionsTests
         Assert.Null(StorageController.OwnedTrucks[stroke1 - 1].TruckDriver);
         Assert.Null(StorageController.EmployedDrivers[stroke2 - 1].AssignedTruck);
     }
+
+    [Fact]
+    internal void MoveTruck()
+    {
+    }
 }
