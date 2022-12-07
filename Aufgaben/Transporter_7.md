@@ -16,7 +16,7 @@ Hat ein LKW keinen Fahrer, so kann man ihm einen verfügbaren Fahrer zuweisen.
 
 ## User Story 2
 
-Nachdem der LKW einen Fahrer hat, kann ich diesen bewegen. Hierfür muss ich eine Zielstadt auswählen, zu der de LKW
+Nachdem der LKW einen Fahrer hat, kann ich diesen bewegen. Hierfür muss ich eine Zielstadt auswählen, zu der der LKW
 fahren soll. Ich kann mir den Status des LKWs anzeigen. Er ist entweder frei, unterwegs, wird bewegt oder auf dem
 Rückweg.
 
