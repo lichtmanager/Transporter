@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NWDAqPDCxkdeNgRr55an8hTHNHKYSC6tPIy9bF22uzgqeQBrfSyEAiWwh5ZCLx9F51X3EiGVeGWUZhhqbxiflQ==",
+  "dgSpecHash": "i38HJaDDnyVUhTLQA5QBl5Fs1Nrax2g4tNTc3gIpodwozzpwrlB89vz6IEFW85jW4YoL9ePQy856a2PMe9jmwA==",
   "success": true,
   "projectFilePath": "/Users/philipplichtmannegger/Development/dotNET/Transporter.csproj",
   "expectedPackageFiles": [
@@ -91,7 +91,10 @@
     "/Users/philipplichtmannegger/.nuget/packages/xunit.assert/2.4.2/xunit.assert.2.4.2.nupkg.sha512",
     "/Users/philipplichtmannegger/.nuget/packages/xunit.core/2.4.2/xunit.core.2.4.2.nupkg.sha512",
     "/Users/philipplichtmannegger/.nuget/packages/xunit.extensibility.core/2.4.2/xunit.extensibility.core.2.4.2.nupkg.sha512",
-    "/Users/philipplichtmannegger/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512"
+    "/Users/philipplichtmannegger/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512",
+    "/Users/philipplichtmannegger/.nuget/packages/microsoft.netcore.app.ref/6.0.11/microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "/Users/philipplichtmannegger/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.11/microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "/Users/philipplichtmannegger/.nuget/packages/microsoft.netcore.app.host.osx-x64/6.0.11/microsoft.netcore.app.host.osx-x64.6.0.11.nupkg.sha512"
   ],
   "logs": []
 }

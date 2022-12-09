@@ -49,20 +49,20 @@ public class City
 
     public static void ChooseCity(City[] cities)
     {
-        System.Console.WriteLine("Geben Sie die entsprechende Zahl für Ihren Wunschort ein: ");
+        Console.WriteLine("Geben Sie die entsprechende Zahl für Ihren Wunschort ein: ");
         GetUserInputForCitySelection(cities);
     }
 
     public static City ChooseStartCity(City[] cities)
     {
-        System.Console.WriteLine("Wählen Sie den Startort: ");
+        Console.WriteLine("Wählen Sie den Startort: ");
 
         return GetUserInputForCitySelection(cities);
     }
 
     internal static City ChooseEndCity(City[] cities)
     {
-        System.Console.WriteLine("Wählen Sie den Zielort: ");
+        Console.WriteLine("Wählen Sie den Zielort: ");
 
         return GetUserInputForCitySelection(cities);
     }
@@ -75,6 +75,14 @@ public class City
         int distance = (int)Math.Sqrt(Math.Pow(startCity.Northing - endCity.Northing, 2) +
                                       Math.Pow(startCity.Easting - endCity.Easting, 2));
 
-        System.Console.WriteLine($"Die Distanz beträgt: {distance / 1000} km");
+        Console.WriteLine($"Die Distanz beträgt: {distance / 1000} km");
+    }
+
+    public static int CalculateDistance(City departure, City destination)
+    {
+        int distance = (int)Math.Sqrt(Math.Pow(departure.Northing - destination.Northing, 2) +
+                                      Math.Pow(departure.Easting - destination.Easting, 2));
+
+        return distance;
     }
 }
