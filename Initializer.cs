@@ -48,7 +48,7 @@ public static class Initializer
 
             Truck truck = new Truck(
                 type, age, loc, size, perf, payload, cons, price,
-                null, state, null, null);
+                null, state, null, null, 0);
 
             listOfTrucks.Add(truck);
         }

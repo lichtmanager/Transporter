@@ -100,13 +100,20 @@ public static class CompanyActions
         CheckIf.PreconditionsForTenderAssignment();
         var indexForTenderList = SelectTender() - 1;
         var indexForTruckList = SelectTruck() - 1;
-
+        
         CheckIf.TruckMatchesTenderConditions(StorageController.AcceptedTenders[indexForTenderList],
             StorageController.OwnedTrucks[indexForTruckList]);
 
+        var truck = StorageController.OwnedTrucks[indexForTruckList];
+        var tender = StorageController.AcceptedTenders[indexForTenderList];
+        
+        
         int distance = City.CalculateDistance(StorageController.AcceptedTenders[indexForTenderList].StartingCity,
             StorageController.AcceptedTenders[indexForTenderList].EndingCity);
 
+        int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
+        
+        
         AssignTenderToTruck(indexForTruckList, indexForTenderList);
     }
 

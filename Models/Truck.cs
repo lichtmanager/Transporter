@@ -18,11 +18,12 @@ public class Truck
     public Status TruckState;
     public City? Destination;
     public Tender? Tender;
+    public int AvgSpeed;
 
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
         int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState,
-        City? destination, Tender? tender)
+        City? destination, Tender? tender,int avgSpeed )
     {
         TruckType = truckType;
         TruckAge = truckAge;
@@ -36,6 +37,7 @@ public class Truck
         TruckState = truckState;
         Destination = destination;
         Tender = tender;
+        AvgSpeed = avgSpeed;
     }
 
     public enum Status
