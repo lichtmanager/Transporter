@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Transporter.Controller;
 using Transporter.Models;
 
@@ -295,6 +296,7 @@ public static class CompanyActions
         StorageController.OwnedTrucks[indexForTruckList].Tender =
             StorageController.AcceptedTenders[indexForTenderList];
         StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
+        StorageController.AcceptedTenders[indexForTenderList].Truck = StorageController.OwnedTrucks[indexForTruckList];
     }
 
 

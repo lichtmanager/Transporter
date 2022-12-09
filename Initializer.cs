@@ -98,7 +98,7 @@ public static class Initializer
 
             if (startingCity != null && endingCity != null)
                 listOfTenders.Add(new Tender(goodForTender, rndWeight, startingCity, endingCity, deliveryDate,
-                    compensation, penalty, deliveryDate));
+                    compensation, penalty, deliveryDate, null));
         }
 
         return listOfTenders;

@@ -13,10 +13,11 @@ public class Tender
     public string DeliveryDate;
     public double Compensation;
     public double Penalty;
+    public Truck? Truck;
 
 
     public Tender(Good good, int weight, City startingCity, City endingCity, string date, double compensation,
-        double penalty, string deliveryDate)
+        double penalty, string deliveryDate, Truck? truck)
     {
         Good = TenderPropertiesController.ChooseRandomGood();
         Weight = weight;
@@ -25,5 +26,6 @@ public class Tender
         Compensation = compensation;
         Penalty = penalty;
         DeliveryDate = deliveryDate;
+        Truck = truck; 
     }
 }
