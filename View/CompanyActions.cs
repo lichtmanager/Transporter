@@ -236,6 +236,11 @@ public static class CompanyActions
         int strokeForCity = GetUserInputForCity();
 
 
+        SetTruckDestination(strokeForTruck, strokeForCity);
+    }
+
+    private static void SetTruckDestination(int strokeForTruck, int strokeForCity)
+    {
         StorageController.OwnedTrucks[strokeForTruck - 1].Destination = StorageController.Cities[strokeForCity - 1];
         StorageController.OwnedTrucks[strokeForTruck - 1].TruckLocation = 8;
     }
