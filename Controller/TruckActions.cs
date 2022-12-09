@@ -4,10 +4,10 @@ namespace Transporter.Controller;
 
 public class TruckActions
 {
-    internal int calculateTravelTime(int distance)
+    internal int CalculateTravelTime(int distance)
     {
         const int hours = 8;
-        int travelTime = 0;
+        int travelTime = 1;
 
 
         return travelTime;

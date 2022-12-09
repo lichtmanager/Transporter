@@ -113,6 +113,7 @@ public static class CompanyActions
             StorageController.AcceptedTenders[indexForTenderList].EndingCity);
 
         int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
+        Console.WriteLine(travelTime);
         
         
         AssignTenderToTruck(indexForTruckList, indexForTenderList);

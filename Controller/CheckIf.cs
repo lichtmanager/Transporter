@@ -122,6 +122,13 @@ public static class CheckIf
             Console.WriteLine($"The truck is {ownedTruck.TruckState}");
             CompanyActions.RenderMenu();
         }
+
+        if (acceptedTender.Truck != null)
+        {
+            Console.WriteLine("The Tender already is assigned to another truck!");
+            CompanyActions.RenderMenu();
+            
+        }
     }
 
     public static void PreconditionsForTenderAssignment()
