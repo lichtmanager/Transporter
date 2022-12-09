@@ -104,6 +104,8 @@ public static class CompanyActions
         CheckIf.TruckMatchesTenderConditions(StorageController.AcceptedTenders[indexForTenderList],
             StorageController.OwnedTrucks[indexForTruckList]);
 
+        int distance = City.CalculateDistance(StorageController.AcceptedTenders[indexForTenderList].StartingCity,
+            StorageController.AcceptedTenders[indexForTenderList].EndingCity);
 
         AssignTenderToTruck(indexForTruckList, indexForTenderList);
     }
