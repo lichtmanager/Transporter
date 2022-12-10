@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Transporter.Controller;
 using Transporter.Models;
 
@@ -108,12 +107,15 @@ public static class CompanyActions
         var truck = StorageController.OwnedTrucks[indexForTruckList];
         var tender = StorageController.AcceptedTenders[indexForTenderList];
         
-        
         int distance = City.CalculateDistance(StorageController.AcceptedTenders[indexForTenderList].StartingCity,
             StorageController.AcceptedTenders[indexForTenderList].EndingCity);
 
         int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
         Console.WriteLine(travelTime);
+
+        DateTime arrivalDate = TruckActions.CalculateArrivalDate(travelTime);
+        StorageController.OwnedTrucks[indexForTruckList].ArrivalDate = arrivalDate;
+        
         
         
         AssignTenderToTruck(indexForTruckList, indexForTenderList);
@@ -254,6 +256,8 @@ public static class CompanyActions
     {
         StorageController.OwnedTrucks[strokeForTruck - 1].Destination = StorageController.Cities[strokeForCity - 1];
         StorageController.OwnedTrucks[strokeForTruck - 1].TruckLocation = 8;
+        StorageController.OwnedTrucks[strokeForTruck - 1].TruckState = Truck.Status.Moving;
+
     }
 
     private static int GetUserInputForCity()

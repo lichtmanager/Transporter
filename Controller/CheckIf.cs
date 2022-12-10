@@ -164,4 +164,16 @@ public static class CheckIf
                 $"Try again when the Status of the Truck is <Available>. ++++++++++++++");
         }
     }
+
+    internal static void ArrivalDateWasReached()
+    {
+        foreach (var truck in StorageController.OwnedTrucks)
+        {
+            if (truck.ArrivalDate == DateTime.Today)
+            {
+                truck.TruckState = Truck.Status.Available;
+                truck.ArrivalDate = null;
+            }   
+        }
+    }
 }

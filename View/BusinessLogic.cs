@@ -62,7 +62,8 @@ public static class BusinessLogic
         ConsolePrintOuts.ClearConsoleScreen();
         foreach (var truck in StorageController.OwnedTrucks)
         {
-            truck.TruckState = Truck.Status.Available;
+            CheckIf.ArrivalDateWasReached();
+            //truck.TruckState = Truck.Status.Available;
 
             if (Truck.MappedTruckLocation(truck.TruckLocation) == "")
             {
