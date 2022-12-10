@@ -5,7 +5,7 @@ namespace Transporter.View;
 
 public static class BusinessLogic
 {
-    private static bool _runProgram = true;
+    private static readonly bool _runProgram = true;
 
     public static void RenderMainMenu()
     {
@@ -58,12 +58,10 @@ public static class BusinessLogic
 
     public static void EndDay()
     {
-        StorageController.Company.Date = StorageController.Company.Date.AddDays(1);
-        ConsolePrintOuts.ClearConsoleScreen();
         foreach (var truck in StorageController.OwnedTrucks)
         {
             CheckIf.ArrivalDateWasReached();
-            //truck.TruckState = Truck.Status.Available;
+            // truck.TruckState = Truck.Status.Available;
 
             if (Truck.MappedTruckLocation(truck.TruckLocation) == "")
             {
@@ -71,6 +69,9 @@ public static class BusinessLogic
                 truck.Destination = null;
             }
         }
+
+        StorageController.Company.Date = StorageController.Company.Date.AddDays(1);
+        ConsolePrintOuts.ClearConsoleScreen();
     }
 
     private static void SelectTruck()
@@ -81,7 +82,7 @@ public static class BusinessLogic
             ConsolePrintOuts.PrintOut(StorageController.AvailTrucks);
             Console.WriteLine("Choose the truck to buy or return to RenderMainMenu with 0");
 
-            int stroke = GetUserInput();
+            var stroke = GetUserInput();
             PurchaseTruck(stroke);
             ConsolePrintOuts.ClearConsoleScreen();
         }
@@ -99,7 +100,7 @@ public static class BusinessLogic
         {
             ConsolePrintOuts.PrintOut(StorageController.AvailDrivers);
             Console.WriteLine("Choose the Driver to employ or return to RenderMainMenu with 0");
-            int stroke = GetUserInput();
+            var stroke = GetUserInput();
             EmployDriver(stroke);
             ConsolePrintOuts.ClearConsoleScreen();
         }
@@ -117,7 +118,7 @@ public static class BusinessLogic
         {
             ConsolePrintOuts.PrintOut(StorageController.AvailTenders);
             Console.WriteLine("Choose the Tender to accept or return to the main menu with 0");
-            int stroke = GetUserInput();
+            var stroke = GetUserInput();
             AcceptTender(stroke);
             ConsolePrintOuts.ClearConsoleScreen();
         }
@@ -133,7 +134,7 @@ public static class BusinessLogic
         var userInput = Console.ReadKey(false);
         try
         {
-            int stroke = int.Parse(userInput.KeyChar.ToString());
+            var stroke = int.Parse(userInput.KeyChar.ToString());
             return stroke;
         }
         catch (Exception)
@@ -147,7 +148,7 @@ public static class BusinessLogic
 
     public static void PurchaseTruck(int stroke)
     {
-        int indexForList = stroke - 1;
+        var indexForList = stroke - 1;
         CheckIf.StrokeIsZero(stroke);
 
         if (stroke > StorageController.AvailTrucks.Count)
@@ -156,7 +157,7 @@ public static class BusinessLogic
             RenderMainMenu();
         }
 
-        StorageController.OwnedTrucks.Add((StorageController.AvailTrucks[indexForList]));
+        StorageController.OwnedTrucks.Add(StorageController.AvailTrucks[indexForList]);
 
         StorageController.Company.Balance -= StorageController.AvailTrucks[indexForList].TruckPrice;
 
@@ -167,7 +168,7 @@ public static class BusinessLogic
     {
         CheckIf.StrokeIsZero(stroke);
 
-        int listIndex = stroke - 1;
+        var listIndex = stroke - 1;
 
         if (stroke > StorageController.AvailTenders.Count)
         {
@@ -176,7 +177,7 @@ public static class BusinessLogic
         }
 
 
-        StorageController.AcceptedTenders.Add((StorageController.AvailTenders[listIndex]));
+        StorageController.AcceptedTenders.Add(StorageController.AvailTenders[listIndex]);
 
         StorageController.AvailTenders.Remove(StorageController.AvailTenders[listIndex]);
     }
@@ -185,7 +186,7 @@ public static class BusinessLogic
     {
         CheckIf.StrokeIsZero(stroke);
 
-        int indexForList = stroke - 1;
+        var indexForList = stroke - 1;
 
         if (stroke > StorageController.AvailDrivers.Count)
         {

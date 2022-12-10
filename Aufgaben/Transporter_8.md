@@ -10,7 +10,7 @@ weshalb er max. 8h am Tag fahren darf. Ein überladener LKW benötigt
 
 ### Akzeptanzkriterien
 
-- Der LKW fährt max. 8h/Tag
+- Die Reisedauer wird unter beachtung des Tageslimits korrekt berechnet.
 - Die Durchschnittsgeschwindigkeit passt zum Fahrertyp
 - Die Fahrzeit wird korrekt berechnet
 - Das Gewicht/Leistungs-verhältnis wird korrekt berechnet
