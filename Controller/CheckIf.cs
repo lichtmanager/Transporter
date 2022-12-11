@@ -102,8 +102,7 @@ public static class CheckIf
             CompanyActions.RenderMenu();
         }
 
-        if (acceptedTender.StartingCity != null && acceptedTender.StartingCity.CityName !=
-            Truck.MappedTruckLocation(ownedTruck.TruckLocation))
+        if (acceptedTender.StartingCity.CityName != Truck.MappedTruckLocation(ownedTruck.TruckLocation))
         {
             Console.WriteLine(
                 $"++++++++++++++ The truck needs to be in {acceptedTender.StartingCity.CityName} but is in" +
@@ -111,11 +110,6 @@ public static class CheckIf
             CompanyActions.RenderMenu();
         }
 
-        if (acceptedTender.Weight > ownedTruck.TruckMaxPayload)
-        {
-            Console.WriteLine(
-                $"++++++++++++++ The actual Payload exceeds the maximum by {acceptedTender.Weight - ownedTruck.TruckMaxPayload}t ");
-        }
 
         if (ownedTruck.TruckState != Truck.Status.Available)
         {

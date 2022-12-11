@@ -297,7 +297,7 @@ public static class CompanyActions
         StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
     }
 
-    internal static void AssignTenderToTruck(Truck truck, Tender tender)
+    private static void AssignTenderToTruck(Truck truck, Tender tender)
     {
         truck.Tender = tender;
         truck.TruckState = Truck.Status.Booked;
