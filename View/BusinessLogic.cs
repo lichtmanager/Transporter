@@ -63,10 +63,11 @@ public static class BusinessLogic
             CheckIf.ArrivalDateWasReached();
             // truck.TruckState = Truck.Status.Available;
 
-            if (Truck.MappedTruckLocation(truck.TruckLocation) == "")
+            if (Truck.MappedTruckLocation(truck.TruckLocation) == "" && truck.TruckState == Truck.Status.Moving)
             {
                 if (truck.Destination != null) truck.TruckLocation = Truck.MapCityToTruckLocation(truck.Destination);
                 truck.Destination = null;
+                truck.TruckState = Truck.Status.Available;
             }
         }
 
@@ -197,6 +198,4 @@ public static class BusinessLogic
         StorageController.EmployedDrivers.Add(StorageController.AvailDrivers[indexForList]);
         StorageController.AvailDrivers.Remove(StorageController.AvailDrivers[indexForList]);
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
 }

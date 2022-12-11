@@ -100,24 +100,26 @@ public static class CompanyActions
         CheckIf.PreconditionsForTenderAssignment();
         var indexForTenderList = SelectTender() - 1;
         var indexForTruckList = SelectTruck() - 1;
-        
+
         CheckIf.TruckMatchesTenderConditions(StorageController.AcceptedTenders[indexForTenderList],
             StorageController.OwnedTrucks[indexForTruckList]);
 
         var truck = StorageController.OwnedTrucks[indexForTruckList];
         var tender = StorageController.AcceptedTenders[indexForTenderList];
-        
+
         int distance = City.CalculateDistance(StorageController.AcceptedTenders[indexForTenderList].StartingCity,
             StorageController.AcceptedTenders[indexForTenderList].EndingCity);
 
         int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
         Console.WriteLine(travelTime);
 
+        int speed = TruckActions.SpeedOfTruck(StorageController.OwnedTrucks[indexForTruckList],
+            StorageController.AcceptedTenders[indexForTenderList]);
+
         DateTime arrivalDate = TruckActions.CalculateArrivalDate(travelTime);
         StorageController.OwnedTrucks[indexForTruckList].ArrivalDate = arrivalDate;
-        
-        
-        
+
+
         AssignTenderToTruck(indexForTruckList, indexForTenderList);
     }
 
@@ -257,7 +259,6 @@ public static class CompanyActions
         StorageController.OwnedTrucks[strokeForTruck - 1].Destination = StorageController.Cities[strokeForCity - 1];
         StorageController.OwnedTrucks[strokeForTruck - 1].TruckLocation = 8;
         StorageController.OwnedTrucks[strokeForTruck - 1].TruckState = Truck.Status.Moving;
-
     }
 
     private static int GetUserInputForCity()
@@ -302,6 +303,8 @@ public static class CompanyActions
             StorageController.AcceptedTenders[indexForTenderList];
         StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
         StorageController.AcceptedTenders[indexForTenderList].Truck = StorageController.OwnedTrucks[indexForTruckList];
+        StorageController.OwnedTrucks[indexForTruckList].Destination =
+            StorageController.AcceptedTenders[indexForTenderList].EndingCity;
     }
 
 

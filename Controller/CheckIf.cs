@@ -119,7 +119,7 @@ public static class CheckIf
 
         if (ownedTruck.TruckState != Truck.Status.Available)
         {
-            Console.WriteLine($"The truck is {ownedTruck.TruckState}");
+            Console.WriteLine($"The truck is {ownedTruck.TruckState} right now. Can't do this.");
             CompanyActions.RenderMenu();
         }
 
@@ -127,7 +127,6 @@ public static class CheckIf
         {
             Console.WriteLine("The Tender already is assigned to another truck!");
             CompanyActions.RenderMenu();
-            
         }
     }
 
@@ -173,7 +172,18 @@ public static class CheckIf
             {
                 truck.TruckState = Truck.Status.Available;
                 truck.ArrivalDate = null;
-            }   
+            }
         }
+    }
+
+    public static int TruckIsOverloaded(Truck truck, Tender tender)
+    {
+        int maxTonsTransportable = (int)(truck.TruckPerformance / 7.5);
+        if (tender.Weight <= maxTonsTransportable)
+        {
+            return 0;
+        }
+
+        return tender.Weight - maxTonsTransportable;
     }
 }
