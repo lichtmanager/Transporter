@@ -106,21 +106,21 @@ public static class CompanyActions
 
         var truck = StorageController.OwnedTrucks[indexForTruckList];
         var tender = StorageController.AcceptedTenders[indexForTenderList];
+        truck.AvgSpeed = TruckActions.SpeedOfTruck(truck,
+            tender);
 
-        int distance = City.CalculateDistance(StorageController.AcceptedTenders[indexForTenderList].StartingCity,
-            StorageController.AcceptedTenders[indexForTenderList].EndingCity);
+        int distance = City.CalculateDistance(tender.StartingCity,
+            tender.EndingCity);
 
         int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
         Console.WriteLine(travelTime);
 
-        int speed = TruckActions.SpeedOfTruck(StorageController.OwnedTrucks[indexForTruckList],
-            StorageController.AcceptedTenders[indexForTenderList]);
 
         DateTime arrivalDate = TruckActions.CalculateArrivalDate(travelTime);
-        StorageController.OwnedTrucks[indexForTruckList].ArrivalDate = arrivalDate;
+        truck.ArrivalDate = arrivalDate;
 
 
-        AssignTenderToTruck(indexForTruckList, indexForTenderList);
+        AssignTenderToTruck(truck, tender);
     }
 
 
@@ -297,14 +297,12 @@ public static class CompanyActions
         StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
     }
 
-    internal static void AssignTenderToTruck(int indexForTruckList, int indexForTenderList)
+    internal static void AssignTenderToTruck(Truck truck, Tender tender)
     {
-        StorageController.OwnedTrucks[indexForTruckList].Tender =
-            StorageController.AcceptedTenders[indexForTenderList];
-        StorageController.OwnedTrucks[indexForTruckList].TruckState = Truck.Status.Booked;
-        StorageController.AcceptedTenders[indexForTenderList].Truck = StorageController.OwnedTrucks[indexForTruckList];
-        StorageController.OwnedTrucks[indexForTruckList].Destination =
-            StorageController.AcceptedTenders[indexForTenderList].EndingCity;
+        truck.Tender = tender;
+        truck.TruckState = Truck.Status.Booked;
+        tender.Truck = truck;
+        truck.Destination = tender.EndingCity;
     }
 
 

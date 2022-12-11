@@ -83,6 +83,6 @@ public class City
         int distance = (int)Math.Sqrt(Math.Pow(departure.Northing - destination.Northing, 2) +
                                       Math.Pow(departure.Easting - destination.Easting, 2));
 
-        return distance;
+        return distance / 1000;
     }
 }

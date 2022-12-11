@@ -30,7 +30,7 @@ public static class TruckActions
     {
         int travelTime = distance / truck.AvgSpeed;
         Console.WriteLine("------------");
-        Console.WriteLine(distance);
+        Console.WriteLine($"distance{distance}");
         Console.WriteLine(truck.AvgSpeed);
         Console.WriteLine("------------");
 

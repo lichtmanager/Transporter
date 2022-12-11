@@ -43,7 +43,7 @@ public static class ConsolePrintOuts
     public static void PrintOut(List<Tender> tenders)
     {
         var table = new ConsoleTable("#", "Good", "Type", "Origin", "Destination", "Weight", "Delivery-date",
-            "Compensation", "Penalty");
+            "Compensation", "Penalty", "Assigned Truck");
 
         for (int i = 0; i < tenders.Count; i++)
         {
@@ -51,7 +51,8 @@ public static class ConsolePrintOuts
                 $"{tenders[i].StartingCity?.CityName}", $"{tenders[i].EndingCity?.CityName}",
                 $"{tenders[i].Weight:F1}t",
                 $"{tenders[i].DeliveryDate}", $"{tenders[i].Compensation:C0}",
-                $"{tenders[i].Penalty:C0}");
+                $"{tenders[i].Penalty:C0}",
+                $"Destination {tenders[i].Truck?.Destination?.CityName}");
         }
 
         table.Write();
@@ -102,14 +103,14 @@ public static class ConsolePrintOuts
 
     public static void OutOfRange()
     {
-        ConsolePrintOuts.ClearConsoleScreen();
+        ClearConsoleScreen();
         Console.WriteLine(
             "++++++++++++++ The number you hit was not given in the list above. Please Try again! ++++++++++++++");
     }
 
     internal static void DisplayOutOfRangeMessage()
     {
-        ConsolePrintOuts.ClearConsoleScreen();
+        ClearConsoleScreen();
         Console.WriteLine(
             "Nopes, definitely the wrong number. Try again with one inside the offered range ¯\\_(ツ)_/¯");
     }

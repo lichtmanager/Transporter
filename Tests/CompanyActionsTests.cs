@@ -14,7 +14,7 @@ public class CompanyActionsTests
         StorageController.EmployedDrivers = Initializer.InitializeNDrivers(5);
     }
 
-    [Fact]
+    /*[Fact]
     internal void AssignTenderToTruck_Test()
     {
         BuySomeRecourcesForTheCompany();
@@ -25,7 +25,7 @@ public class CompanyActionsTests
 
         Assert.Equal(chosenTender, StorageController.OwnedTrucks[4].Tender);
         Assert.Equal(Truck.Status.Booked, StorageController.OwnedTrucks[4].TruckState);
-    }
+    }*/
 
     [Fact]
     internal void AssignDriverToTruck_Test()
