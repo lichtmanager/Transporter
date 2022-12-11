@@ -39,7 +39,7 @@ public static class CompanyActions
                 ShowEmployedDrivers();
                 break;
             case 6:
-                GetUserInputForTruckDestination();
+                GetUserInputToMoveTruckToDestination();
                 break;
             case 0:
                 BusinessLogic.RenderMainMenu();
@@ -106,8 +106,8 @@ public static class CompanyActions
 
         var truck = StorageController.OwnedTrucks[indexForTruckList];
         var tender = StorageController.AcceptedTenders[indexForTenderList];
-        truck.AvgSpeed = TruckActions.SpeedOfTruck(truck,
-            tender);
+
+        truck.AvgSpeed = TruckActions.SpeedOfTruck(truck, tender);
 
         int distance = City.CalculateDistance(tender.StartingCity,
             tender.EndingCity);
@@ -220,7 +220,7 @@ public static class CompanyActions
         return strokeForTender;
     }
 
-    private static void GetUserInputForTruckDestination()
+    private static void GetUserInputToMoveTruckToDestination()
     {
         if (StorageController.OwnedTrucks.Count == 0)
         {

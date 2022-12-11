@@ -12,16 +12,7 @@ public static class TruckActions
         int days = travelHours / maxHours;
         if (travelHours % maxHours != 0) days += 1;
 
-
         var arrivalDate = DateTime.Today.AddDays(days);
-
-
-        Console.WriteLine("------------");
-        Console.WriteLine("Arrival Date");
-        Console.WriteLine(travelHours);
-        Console.WriteLine(maxHours);
-        Console.WriteLine(days);
-        Console.WriteLine("------------");
 
         return arrivalDate;
     }
@@ -29,11 +20,6 @@ public static class TruckActions
     public static int CalculateTravelTimeInHours(int distance, Truck truck, Tender tender)
     {
         int travelTime = distance / truck.AvgSpeed;
-        Console.WriteLine("------------");
-        Console.WriteLine($"distance{distance}");
-        Console.WriteLine(truck.AvgSpeed);
-        Console.WriteLine("------------");
-
 
         return travelTime;
     }
@@ -81,11 +67,7 @@ public static class TruckActions
     private static double GenerateWeightFactor(int overloadWeight)
     {
         // für jede Tonne zu viel gehen 5% Geschwindigkeit verloren
-        double percentage = 0;
-        for (int i = 0; i < overloadWeight; i++)
-        {
-            percentage += 0.05;
-        }
+        double percentage = overloadWeight * 0.05;
 
         return (1 - percentage);
     }

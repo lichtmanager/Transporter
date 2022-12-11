@@ -154,19 +154,16 @@ public static class CheckIf
         {
             Console.WriteLine(
                 $"++++++++++++++ The Truck you chose is {StorageController.OwnedTrucks[strokeForTruck - 1].TruckState}. " +
-                $"Try again when the Status of the Truck is <Available>. ++++++++++++++");
+                "Try again when the Status of the Truck is <Available>. ++++++++++++++");
         }
     }
 
-    internal static void ArrivalDateWasReached()
+    internal static void ArrivalDateWasReached(Truck truck)
     {
-        foreach (var truck in StorageController.OwnedTrucks)
+        if (truck.ArrivalDate == StorageController.Company.Date)
         {
-            if (truck.ArrivalDate == DateTime.Today)
-            {
-                truck.TruckState = Truck.Status.Available;
-                truck.ArrivalDate = null;
-            }
+            truck.TruckState = Truck.Status.Available;
+            truck.ArrivalDate = null;
         }
     }
 

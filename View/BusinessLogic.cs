@@ -60,10 +60,9 @@ public static class BusinessLogic
     {
         foreach (var truck in StorageController.OwnedTrucks)
         {
-            CheckIf.ArrivalDateWasReached();
-            // truck.TruckState = Truck.Status.Available;
+            CheckIf.ArrivalDateWasReached(truck);
 
-            if (Truck.MappedTruckLocation(truck.TruckLocation) == "" && truck.TruckState == Truck.Status.Moving)
+            if (truck.TruckState == Truck.Status.Moving && Truck.MappedTruckLocation(truck.TruckLocation) == "")
             {
                 if (truck.Destination != null) truck.TruckLocation = Truck.MapCityToTruckLocation(truck.Destination);
                 truck.Destination = null;
