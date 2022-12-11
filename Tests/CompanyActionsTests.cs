@@ -14,18 +14,25 @@ public class CompanyActionsTests
         StorageController.EmployedDrivers = Initializer.InitializeNDrivers(5);
     }
 
-    /*[Fact]
+    [Fact]
     internal void AssignTenderToTruck_Test()
     {
         BuySomeRecourcesForTheCompany();
+        var truck = StorageController.OwnedTrucks[4];
+        var tender = StorageController.AcceptedTenders[4];
 
-        var chosenTender = StorageController.AcceptedTenders[4];
+        int distance = City.CalculateDistance(tender.StartingCity, tender.EndingCity);
+        int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
+        int avgSpeed = TruckActions.SpeedOfTruck(truck, tender);
+        DateTime arrivalDate = TruckActions.CalculateArrivalDate(travelTime);
 
-        CompanyActions.AssignTenderToTruck(4, 4);
 
-        Assert.Equal(chosenTender, StorageController.OwnedTrucks[4].Tender);
+        CompanyActions.AssignTenderToTruck(truck, tender, arrivalDate, avgSpeed);
+
+
+        Assert.Equal(tender, StorageController.OwnedTrucks[4].Tender);
         Assert.Equal(Truck.Status.Booked, StorageController.OwnedTrucks[4].TruckState);
-    }*/
+    }
 
     [Fact]
     internal void AssignDriverToTruck_Test()
@@ -58,10 +65,5 @@ public class CompanyActionsTests
 
         Assert.Null(StorageController.OwnedTrucks[stroke1 - 1].TruckDriver);
         Assert.Null(StorageController.EmployedDrivers[stroke2 - 1].AssignedTruck);
-    }
-
-    [Fact]
-    internal void MoveTruck()
-    {
     }
 }

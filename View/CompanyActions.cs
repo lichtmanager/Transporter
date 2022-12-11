@@ -107,20 +107,13 @@ public static class CompanyActions
         var truck = StorageController.OwnedTrucks[indexForTruckList];
         var tender = StorageController.AcceptedTenders[indexForTenderList];
 
-        truck.AvgSpeed = TruckActions.SpeedOfTruck(truck, tender);
 
-        int distance = City.CalculateDistance(tender.StartingCity,
-            tender.EndingCity);
-
+        int distance = City.CalculateDistance(tender.StartingCity, tender.EndingCity);
         int travelTime = TruckActions.CalculateTravelTimeInHours(distance, truck, tender);
-        Console.WriteLine(travelTime);
-
-
+        int avgSpeed = TruckActions.SpeedOfTruck(truck, tender);
         DateTime arrivalDate = TruckActions.CalculateArrivalDate(travelTime);
-        truck.ArrivalDate = arrivalDate;
 
-
-        AssignTenderToTruck(truck, tender);
+        AssignTenderToTruck(truck, tender, arrivalDate, avgSpeed);
     }
 
 
@@ -297,12 +290,14 @@ public static class CompanyActions
         StorageController.EmployedDrivers[indexForDriverList].AssignedTruck = null;
     }
 
-    private static void AssignTenderToTruck(Truck truck, Tender tender)
+    public static void AssignTenderToTruck(Truck truck, Tender tender, DateTime arrivalDate, int avgSpeed)
     {
         truck.Tender = tender;
         truck.TruckState = Truck.Status.Booked;
         tender.Truck = truck;
         truck.Destination = tender.EndingCity;
+        truck.AvgSpeed = avgSpeed;
+        truck.ArrivalDate = arrivalDate;
     }
 
 

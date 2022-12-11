@@ -36,16 +36,16 @@ public static class TruckActions
 
         if (truckOverloadWeight != 0)
         {
-            weightFactor = GenerateWeightFactor(truckOverloadWeight);
+            weightFactor = CalculateWeightFactor(truckOverloadWeight);
         }
 
-        driverFactor = GenerateDriverFactor(truck);
+        driverFactor = GetDriverFactor(truck);
 
         speed = (int)Math.Ceiling(avgSpeed * driverFactor * weightFactor);
         return speed;
     }
 
-    private static double GenerateDriverFactor(Truck truck)
+    private static double GetDriverFactor(Truck truck)
     {
         Debug.Assert(truck.TruckDriver != null,
             $"truck.TruckDriver != null, {truck.TruckDriver.TruckerName},{Truck.MappedTruckType(truck.TruckType)},{truck.Destination?.CityName ?? truck.TruckLocation.ToString()}");
@@ -65,7 +65,7 @@ public static class TruckActions
         return driverFactor;
     }
 
-    private static double GenerateWeightFactor(int overloadWeight)
+    private static double CalculateWeightFactor(int overloadWeight)
     {
         // für jede Tonne zu viel gehen 5% Geschwindigkeit verloren
         double percentage = overloadWeight * 0.05;
@@ -80,7 +80,7 @@ public static class TruckActions
         int distance = City.CalculateDistance(tender.StartingCity,
             tender.EndingCity);
 
-        double driverFactor = GenerateDriverFactor(tender.Truck!);
+        double driverFactor = GetDriverFactor(tender.Truck!);
 
         int truckConsumption = TruckPropertiesController.DetermineTruckConsumption(tender.Truck!.TruckType,
             tender.Truck.TruckSize, tender.Truck.TruckAge);
