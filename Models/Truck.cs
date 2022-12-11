@@ -9,7 +9,7 @@ public class Truck
     public int TruckType;
     public int TruckAge;
     public int TruckLocation;
-    private int TruckSize;
+    public int TruckSize;
     public int TruckPerformance;
     public int TruckMaxPayload;
     public int TruckConsumption;
@@ -24,7 +24,7 @@ public class Truck
 
     public Truck(int truckType, int truckAge, int truckLocation, int truckSize, int truckPerformance,
         int truckMaxPayload, int truckConsumption, double truckPrice, Driver? truckDriver, Status truckState,
-        City? destination, Tender? tender,int avgSpeed, DateTime? arrivalDate )
+        City? destination, Tender? tender, int avgSpeed, DateTime? arrivalDate)
     {
         TruckType = truckType;
         TruckAge = truckAge;

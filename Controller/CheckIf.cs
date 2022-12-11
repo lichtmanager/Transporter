@@ -160,11 +160,18 @@ public static class CheckIf
 
     internal static void ArrivalDateWasReached(Truck truck)
     {
-        if (truck.ArrivalDate == StorageController.Company.Date)
-        {
-            truck.TruckState = Truck.Status.Available;
-            truck.ArrivalDate = null;
-        }
+        if (truck.ArrivalDate != StorageController.Company.Date) return;
+        truck.TruckState = Truck.Status.Available;
+        truck.ArrivalDate = null;
+        double fuelPrice = TruckActions.CalculateFuelPrice(truck.Tender!);
+        StorageController.Company.Balance -= fuelPrice;
+        //CheckIf.TenderIsTooLate(truck.ArrivalDate, truck);
+    }
+
+    public static bool TenderIsTooLate(DateTime arrivalDate, Truck truck)
+    {
+        // if arrivaldate is after deliverdate --> punishment
+        return false; //dieser fals is nur damit die IDE ned meckert
     }
 
     public static int TruckIsOverloaded(Truck truck, Tender tender)

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Transporter.Models;
+using Transporter.View;
 
 namespace Transporter.Controller;
 
@@ -70,5 +71,25 @@ public static class TruckActions
         double percentage = overloadWeight * 0.05;
 
         return (1 - percentage);
+    }
+
+    public static double CalculateFuelPrice(Tender tender)
+    {
+        double pricePerLiter = 1;
+
+        int distance = City.CalculateDistance(tender.StartingCity,
+            tender.EndingCity);
+
+        double driverFactor = GenerateDriverFactor(tender.Truck!);
+
+        int truckConsumption = TruckPropertiesController.DetermineTruckConsumption(tender.Truck!.TruckType,
+            tender.Truck.TruckSize, tender.Truck.TruckAge);
+
+        double actualTruckConsumption = truckConsumption * driverFactor;
+        double actualRouteConsumption = actualTruckConsumption * distance / 100;
+
+        double fuelCosts = actualRouteConsumption * pricePerLiter;
+
+        return fuelCosts;
     }
 }
